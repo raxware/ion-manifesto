@@ -1,0 +1,7 @@
+{
+  "name": "ion-manifesto",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
