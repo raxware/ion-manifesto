@@ -13,16 +13,12 @@ ion-content::part(background) {
   background: #d2c98b;
 }
 
-ion-content::part(scroll) {
-  color: #fff;
-}
-
 swiper-container {
   --swiper-theme-color: #000;
 }
 
 .scene {
-  display: inline-block;
+  display: block;
   width: 100%;
   height: 80vh;
   perspective: 600px;

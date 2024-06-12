@@ -23,7 +23,7 @@
           (swipeup)="addToCointainer(i)"
           (swipedown)="openMenu(i)">
             <div class="card__face front" (doubletap)="flip(true)">
-              <ion-card class="card-front">
+              <ion-card>
                 <swiper-container nested="true" pagination="true">
                   @for (pic of slide.pictures; track pic) {
                     <swiper-slide>
@@ -56,7 +56,7 @@
               </ion-card>
             </div>
             <div class="card__face back" (doubletap)="flip(false)">
-              <ion-card class="card-back">
+              <ion-card>
                 <ion-card-header>
                   <ion-card-title>{{slide.name}}</ion-card-title>
                   <ion-card-subtitle>Type: {{slide.type}}</ion-card-subtitle>
