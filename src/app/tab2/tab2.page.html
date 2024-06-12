@@ -14,4 +14,47 @@
       alt="Header image"
     ></ion-img>
   </ion-header>
+
+  <swiper-container pagination="true" [allowSlideNext]="allowSlideCard" [allowSlidePrev]="allowSlideCard">
+    @for (slide of slides; track slide.id; let i = $index) {
+      <swiper-slide>
+        <ion-card
+        (swipeup)="addToCointainer(i)"
+        (swipedown)="openMenu(i)">
+          <swiper-container nested="true" pagination="true">
+            @for (pic of slide.pictures; track pic) {
+              <swiper-slide>
+                <ion-img
+                  (press)="openCamera(i)"
+                  [src]="pic"
+                  alt="Item"
+                ></ion-img>
+              </swiper-slide>
+            } @empty {
+              <ion-img class="img-placeholder"
+                (press)="openCamera(i)"
+                src="../../assets/cube-white.png"
+                alt="Placeholder image"
+              ></ion-img>
+            }
+          </swiper-container>
+          <ion-card-header (press)="editForm(i)">
+            <ion-card-title>{{slide.name}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            @for (tag of slide.tags; track tag) {
+              <ion-chip>
+                <ion-label>{{tag}}</ion-label>
+              </ion-chip>
+            } @empty {
+              No tags.
+            }
+          </ion-card-content>
+        </ion-card>
+      </swiper-slide>
+    } @empty {
+      No slides.
+    }
+</swiper-container>
+
 </ion-content>
