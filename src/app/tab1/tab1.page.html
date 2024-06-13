@@ -24,7 +24,7 @@
           (swipedown)="openMenu(i)">
             <div class="card__face front" (doubletap)="flip(true)">
               <ion-card>
-                <swiper-container nested="true" pagination="true">
+                <swiper-container #swiperImages nested="true" pagination="true">
                   @for (pic of slide.pictures; track pic) {
                     <swiper-slide>
                       <ion-img
