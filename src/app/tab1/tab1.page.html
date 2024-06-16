@@ -24,23 +24,19 @@
           (swipedown)="openMenu(i)">
             <div class="card__face front" (doubletap)="flip(true)">
               <ion-card>
-                <swiper-container #swiperImages nested="true" pagination="true">
-                  @for (pic of slide.pictures; track pic) {
-                    <swiper-slide>
-                      <ion-img
-                        (press)="openCamera(i)"
-                        [src]="pic"
-                        alt="Item"
-                      ></ion-img>
-                    </swiper-slide>
-                  } @empty {
-                    <ion-img class="img-placeholder"
-                      (press)="openCamera(i)"
-                      src="../../assets/cube-white.png"
-                      alt="Placeholder image"
-                    ></ion-img>
-                  }
-                </swiper-container>
+                @if (slide.picture) {
+                  <ion-img
+                  (press)="openCamera(i)"
+                  [src]="slide.picture"
+                  alt="Item"
+                ></ion-img>
+                } @else {
+                  <ion-img class="img-placeholder"
+                    (press)="openCamera(i)"
+                    src="../../assets/cube-white.png"
+                    alt="Placeholder image"
+                  ></ion-img>
+                }
                 <ion-card-header (press)="editForm(i)">
                   <ion-card-title>{{slide.name}}</ion-card-title>
                 </ion-card-header>

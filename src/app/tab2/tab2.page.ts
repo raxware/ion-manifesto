@@ -19,7 +19,7 @@ export class Tab2Page {
     {
       id: 1,
       name: 'name1',
-      pictures: ['../../assets/book1.png', '../../assets/book2.jpeg'],
+      picture: '../../assets/book2.jpeg',
       type: 'type1',
       quantity: 1,
       tags: ['test1', 'test2']
@@ -27,7 +27,7 @@ export class Tab2Page {
     {
       id: 2,
       name: 'name2',
-      pictures: [],
+      picture: '',
       type: 'type2',
       quantity: 2,
       tags: ['test']
@@ -35,7 +35,7 @@ export class Tab2Page {
     {
       id: 3,
       name: 'name3',
-      pictures: [],
+      picture: '',
       type: 'type3',
       quantity: 3,
       tags: []
