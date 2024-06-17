@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-06-17T06:13:37.465Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="Ru91hYWPgarpsksUzrkE" version="22.0.2" type="device">
+<mxfile host="Electron" modified="2024-06-17T07:17:10.204Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="2j1qKwrFCZjBYM7D6vis" version="22.0.2" type="device">
   <diagram name="Pàgina-1" id="wEcYSD4VbKXbieK8MTMO">
-    <mxGraphModel dx="1114" dy="883" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="883" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -45,8 +45,8 @@
         <mxCell id="KG268rfdw6J6ob5oxrYt-20" value="" style="html=1;dashed=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;shape=mxgraph.gmdl.share2;strokeColor=none;fillColor=#737373;shadow=0;sketch=0;" vertex="1" parent="1">
           <mxGeometry x="1025" y="160" width="40" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="KG268rfdw6J6ob5oxrYt-23" value="Anar al perfil&lt;br&gt;[ Només quan logged-in ]" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="835" y="280" width="80" height="120" as="geometry" />
+        <mxCell id="KG268rfdw6J6ob5oxrYt-23" value="Ir al perfil&lt;br&gt;[ Solo cuando logged-in ]" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="710" y="280" width="205" height="80" as="geometry" />
         </mxCell>
         <mxCell id="KG268rfdw6J6ob5oxrYt-24" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0;exitDx=25;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="KG268rfdw6J6ob5oxrYt-23" target="KG268rfdw6J6ob5oxrYt-6">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -54,7 +54,7 @@
             <mxPoint x="915" y="310" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="KG268rfdw6J6ob5oxrYt-25" value="Logout [Només quan logged-in ]" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="KG268rfdw6J6ob5oxrYt-25" value="Logout [Solo cuando logged-in ]" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="965" y="320" width="80" height="120" as="geometry" />
         </mxCell>
         <mxCell id="KG268rfdw6J6ob5oxrYt-26" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;entryX=0.4;entryY=0.825;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="KG268rfdw6J6ob5oxrYt-25" target="KG268rfdw6J6ob5oxrYt-20">
@@ -63,7 +63,7 @@
             <mxPoint x="915" y="310" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="KG268rfdw6J6ob5oxrYt-27" value="&lt;h1&gt;Heading&lt;/h1&gt;&lt;p&gt;Pera todas las páginas&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+        <mxCell id="KG268rfdw6J6ob5oxrYt-27" value="&lt;h1&gt;Heading&lt;/h1&gt;&lt;p&gt;Para todas las páginas&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="250" y="50" width="190" height="80" as="geometry" />
         </mxCell>
         <mxCell id="KG268rfdw6J6ob5oxrYt-28" value="&lt;h1&gt;Página del perfil&lt;/h1&gt;&lt;p&gt;Bloqueada hasta que se valida el correo.&lt;/p&gt;&lt;p&gt;Única página a la que se puede acceder hasta que se valida el correo y se establece un nombre de usuario.&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
@@ -102,11 +102,11 @@
         <mxCell id="KG268rfdw6J6ob5oxrYt-87" value="" style="strokeColor=#999999;verticalLabelPosition=bottom;shadow=0;dashed=0;verticalAlign=top;strokeWidth=2;html=1;shape=mxgraph.mockup.misc.trashcanIcon;" vertex="1" parent="KG268rfdw6J6ob5oxrYt-55">
           <mxGeometry x="300" y="7.5" width="30" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="KG268rfdw6J6ob5oxrYt-56" value="&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;correo-del-usuario@un-sitio-conocido.com&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="KG268rfdw6J6ob5oxrYt-56" value="&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;correo-del-usuario@un-sitio-con-nombre-largo.com&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="240" y="572" width="340" height="30" as="geometry" />
         </mxCell>
         <mxCell id="KG268rfdw6J6ob5oxrYt-57" value="El nombre para mostrar evita mostrar el email de los usuarios&lt;br&gt;&lt;br&gt;El nombre de usuario se puede cambiar, pero no quitar" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="670" y="530" width="140" height="167" as="geometry" />
+          <mxGeometry x="670" y="440" width="140" height="167" as="geometry" />
         </mxCell>
         <mxCell id="KG268rfdw6J6ob5oxrYt-58" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="KG268rfdw6J6ob5oxrYt-46" target="KG268rfdw6J6ob5oxrYt-57">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -115,7 +115,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="KG268rfdw6J6ob5oxrYt-60" value="Ya existen lugares para compartir imágenes de avatar (como gravatar)&lt;br&gt;&lt;br&gt;La imagen de usuario sí se puede quitar." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="640" y="720" width="170" height="160" as="geometry" />
+          <mxGeometry x="890" y="530" width="170" height="160" as="geometry" />
         </mxCell>
         <mxCell id="KG268rfdw6J6ob5oxrYt-62" value="Cambiar email" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.buttons.button;strokeColor=#666666;fontColor=#ffffff;mainText=;buttonStyle=round;fontSize=17;fontStyle=1;fillColor=#008cff;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="240" y="710" width="150" height="50" as="geometry" />
@@ -133,11 +133,11 @@
         <mxCell id="KG268rfdw6J6ob5oxrYt-65" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="40" y="1040" width="540" height="560" as="geometry" />
         </mxCell>
-        <mxCell id="KG268rfdw6J6ob5oxrYt-66" value="&lt;h1&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Otros objetos asociados al usuario (página inicial)&lt;/font&gt;&lt;/h1&gt;&lt;p&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Página de inicio de la aplicación cuando usuario validado y tiene nombre.&lt;/span&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="220" y="955" width="440" height="80" as="geometry" />
+        <mxCell id="KG268rfdw6J6ob5oxrYt-66" value="&lt;h1&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Otros artefactos asociados al usuario (página inicial)&lt;/font&gt;&lt;/h1&gt;&lt;p&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Página de inicio de la aplicación cuando usuario validado y tiene nombre.&lt;/span&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="920" width="480" height="80" as="geometry" />
         </mxCell>
         <mxCell id="KG268rfdw6J6ob5oxrYt-67" value="Aunque no esté validado el usuario sí se puede cambiar el correo o la contraseña.&lt;br&gt;&lt;br&gt;Son las únicas acciones activas sin validar el usuario." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="260" y="810" width="330" height="120" as="geometry" />
+          <mxGeometry x="420" y="790" width="330" height="120" as="geometry" />
         </mxCell>
         <mxCell id="KG268rfdw6J6ob5oxrYt-68" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;entryX=0.5;entryY=0.96;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.324;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="KG268rfdw6J6ob5oxrYt-67" target="KG268rfdw6J6ob5oxrYt-62">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -183,6 +183,27 @@
         </mxCell>
         <mxCell id="KG268rfdw6J6ob5oxrYt-86" value="&lt;font style=&quot;font-size: 20px;&quot; face=&quot;Comic Sans MS&quot;&gt;Visualización de la localización&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="KG268rfdw6J6ob5oxrYt-84">
           <mxGeometry y="140" width="500" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KG268rfdw6J6ob5oxrYt-88" value="La lista de organizadores ha de incluir los organizadores del usuario junto con los organizadores a los que el usuario tiene acceso" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="810" y="870" width="290" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="KG268rfdw6J6ob5oxrYt-89" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;entryX=0.007;entryY=0.76;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="KG268rfdw6J6ob5oxrYt-71" target="KG268rfdw6J6ob5oxrYt-88">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="550" y="940" as="sourcePoint" />
+            <mxPoint x="600" y="890" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KG268rfdw6J6ob5oxrYt-90" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.concepts.home_page;fillColor=#7FBA42;" vertex="1" parent="1">
+          <mxGeometry x="157" y="159" width="53" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="KG268rfdw6J6ob5oxrYt-91" value="Ir a la página inicial (artefactos del usuario)&lt;br&gt;&lt;br&gt;[ Solo cuando logged-in, email validado y el usuario tiene displayName ]&lt;br&gt;&lt;br&gt;Puede usarse directamente el logo, si se prefiere" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="200" y="240" width="300" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="KG268rfdw6J6ob5oxrYt-92" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;" edge="1" parent="1" source="KG268rfdw6J6ob5oxrYt-91" target="KG268rfdw6J6ob5oxrYt-90">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="550" y="460" as="sourcePoint" />
+            <mxPoint x="600" y="410" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
