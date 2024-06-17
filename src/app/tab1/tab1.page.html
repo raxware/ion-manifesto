@@ -1,69 +1,19 @@
-<ion-header class="ion-no-border header" [translucent]="true">
-  <ion-img
-    class="header-image"
-    src="../../assets/cube.png"
-    alt="Header image"
-  ></ion-img>
+<ion-header class="ion-no-border" [translucent]="true">
+  <app-header></app-header>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header class="ion-no-border header" collapse="condense">
-    <ion-img
-      class="header-image"
-      src="../../assets/cube.png"
-      alt="Header image"
-    ></ion-img>
+  <ion-header class="ion-no-border" collapse="condense">
+    <app-header></app-header>
   </ion-header>
 
   <swiper-container pagination="true" [allowSlideNext]="allowSlideCard" [allowSlidePrev]="allowSlideCard">
     @for (slide of slides; track slide.id; let i = $index) {
       <swiper-slide>
-        <div class="scene scene--card">
-          <div class="card" [class.is-flipped]="currentCardFlipped"
-          (swipeup)="addToCointainer(i)"
-          (swipedown)="openMenu(i)">
-            <div class="card__face front" (doubletap)="flip(true)">
-              <ion-card>
-                @if (slide.picture) {
-                  <ion-img
-                  (press)="openCamera(i)"
-                  [src]="slide.picture"
-                  alt="Item"
-                ></ion-img>
-                } @else {
-                  <ion-img class="img-placeholder"
-                    (press)="openCamera(i)"
-                    src="../../assets/cube-white.png"
-                    alt="Placeholder image"
-                  ></ion-img>
-                }
-                <ion-card-header (press)="editForm(i)">
-                  <ion-card-title>{{slide.name}}</ion-card-title>
-                </ion-card-header>
-                <ion-card-content>
-                  @for (tag of slide.tags; track tag) {
-                    <ion-chip>
-                      <ion-label>{{tag}}</ion-label>
-                    </ion-chip>
-                  } @empty {
-                    No tags.
-                  }
-                </ion-card-content>
-              </ion-card>
-            </div>
-            <div class="card__face back" (doubletap)="flip(false)">
-              <ion-card>
-                <ion-card-header>
-                  <ion-card-title>{{slide.name}}</ion-card-title>
-                  <ion-card-subtitle>Type: {{slide.type}}</ion-card-subtitle>
-                </ion-card-header>
-                <ion-card-content>
-                  Here's a small text description for the card content. Nothing more, nothing less.
-                </ion-card-content>
-              </ion-card>
-            </div>
-          </div>
-        </div>
+        <app-item-card
+        [item]="slide"
+        [isFlipped]="currentCardFlipped"
+        (flipCard)="flip($event)"></app-item-card>
       </swiper-slide>
     } @empty {
       No slides.
