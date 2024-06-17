@@ -14,12 +14,11 @@ import { Item } from '../model/interfaces';
 export class Tab1Page {
   currentCardFlipped: boolean = false;
   allowSlideCard: boolean = true;
-  currentPics: string[] = [];
   slides: Item[] = [
     {
       id: 1,
       name: 'name1',
-      pictures: ['../../assets/book1.png', '../../assets/book2.jpeg'],
+      picture: '../../assets/book1.png',
       type: 'type1',
       quantity: 1,
       tags: ['test1', 'test2']
@@ -27,7 +26,7 @@ export class Tab1Page {
     {
       id: 2,
       name: 'name2',
-      pictures: [],
+      picture: '',
       type: 'type2',
       quantity: 2,
       tags: ['test']
@@ -35,7 +34,7 @@ export class Tab1Page {
     {
       id: 3,
       name: 'name3',
-      pictures: [],
+      picture: '',
       type: 'type3',
       quantity: 3,
       tags: []
@@ -56,6 +55,9 @@ export class Tab1Page {
     console.log(this.slides[i], 'press on picture');
     this.photoService.addItemPicture().then((value) => {
       console.log(value);
+      if (value.webviewPath)  {
+        this.slides[i].picture = value.webviewPath;
+      }
     });
   }
 
