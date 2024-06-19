@@ -1,17 +1,56 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border header" [translucent]="true">
+  <ion-img
+    class="header-image"
+    src="../../assets/cube.png"
+    alt="Header image"
+  ></ion-img>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
+  <ion-header class="ion-no-border header" collapse="condense">
+    <ion-img
+      class="header-image"
+      src="../../assets/cube.png"
+      alt="Header image"
+    ></ion-img>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <swiper-container pagination="true" [allowSlideNext]="allowSlideCard" [allowSlidePrev]="allowSlideCard">
+    @for (slide of slides; track slide.id; let i = $index) {
+      <swiper-slide>
+        <ion-card
+        (swipeup)="addToCointainer(i)"
+        (swipedown)="openMenu(i)">
+          @if (slide.picture) {
+            <ion-img
+            (press)="openCamera(i)"
+            [src]="slide.picture"
+            alt="Item"
+          ></ion-img>
+          } @else {
+            <ion-img class="img-placeholder"
+              (press)="openCamera(i)"
+              src="../../assets/cube-white.png"
+              alt="Placeholder image"
+            ></ion-img>
+          }
+          <ion-card-header (press)="editForm(i)">
+            <ion-card-title>{{slide.name}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            @for (tag of slide.tags; track tag) {
+              <ion-chip>
+                <ion-label>{{tag}}</ion-label>
+              </ion-chip>
+            } @empty {
+              No tags.
+            }
+          </ion-card-content>
+        </ion-card>
+      </swiper-slide>
+    } @empty {
+      No slides.
+    }
+</swiper-container>
+
 </ion-content>

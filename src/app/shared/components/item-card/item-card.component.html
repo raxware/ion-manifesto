@@ -1,0 +1,46 @@
+<div class="scene scene--card">
+  <div class="card" [class.is-flipped]="isFlipped"
+  (swipeup)="addToCointainer()"
+  (swipedown)="openMenu()">
+    <div class="card__face front" (doubletap)="flip()">
+      <ion-card>
+        @if (item && item.picture) {
+          <ion-img
+          (press)="openCamera()"
+          [src]="item.picture"
+          alt="Item"
+        ></ion-img>
+        } @else {
+          <ion-img class="img-placeholder"
+            (press)="openCamera()"
+            src="../../assets/cube-white.png"
+            alt="Placeholder image"
+          ></ion-img>
+        }
+        <ion-card-header (press)="editForm()">
+          <ion-card-title>{{item?.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          @for (tag of item?.tags; track tag) {
+            <ion-chip>
+              <ion-label>{{tag}}</ion-label>
+            </ion-chip>
+          } @empty {
+            No tags.
+          }
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div class="card__face back" (doubletap)="flip()">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{item?.name}}</ion-card-title>
+          <ion-card-subtitle>Type: {{item?.type}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Here's a small text description for the card content. Nothing more, nothing less.
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</div>
