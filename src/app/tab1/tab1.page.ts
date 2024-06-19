@@ -1,14 +1,15 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
-import { PhotoService } from '../services/photo.service';
 import { Item } from '../model/interfaces';
+import { ItemCardComponent } from '../shared/components/item-card/item-card.component';
+import { HeaderComponent } from '../shared/components/header/header.component';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, HeaderComponent, ItemCardComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class Tab1Page {
@@ -40,32 +41,11 @@ export class Tab1Page {
       tags: []
     }];
 
-  constructor(public photoService: PhotoService) {}
+  constructor() {}
 
   flip(isFlipped: boolean) {
     this.currentCardFlipped = isFlipped;
     this.allowSlideCard = !isFlipped;
   }
 
-  editForm(i: number) {
-    console.log(this.slides[i], 'press on name');
-  }
-
-  openCamera(i: number) {
-    console.log(this.slides[i], 'press on picture');
-    this.photoService.addItemPicture().then((value) => {
-      console.log(value);
-      if (value.webviewPath)  {
-        this.slides[i].picture = value.webviewPath;
-      }
-    });
-  }
-
-  addToCointainer(i: number) {
-    console.log(this.slides[i], 'swipeup');
-  }
-
-  openMenu(i: number) {
-    console.log(this.slides[i], 'swipedown');
-  }
 }

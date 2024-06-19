@@ -19,8 +19,9 @@ export class ItemCardComponent {
 
   constructor(public photoService: PhotoService) { }
 
-  flip(isFlipped: boolean) {
-    this.flipCard.emit(isFlipped);
+  flip() {
+    this.isFlipped = !this.isFlipped;
+    this.flipCard.emit(this.isFlipped);
   }
 
   editForm() {

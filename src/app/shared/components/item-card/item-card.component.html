@@ -2,7 +2,7 @@
   <div class="card" [class.is-flipped]="isFlipped"
   (swipeup)="addToCointainer()"
   (swipedown)="openMenu()">
-    <div class="card__face front" (doubletap)="flip(true)">
+    <div class="card__face front" (doubletap)="flip()">
       <ion-card>
         @if (item && item.picture) {
           <ion-img
@@ -31,7 +31,7 @@
         </ion-card-content>
       </ion-card>
     </div>
-    <div class="card__face back" (doubletap)="flip(false)">
+    <div class="card__face back" (doubletap)="flip()">
       <ion-card>
         <ion-card-header>
           <ion-card-title>{{item?.name}}</ion-card-title>
