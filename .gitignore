@@ -12,6 +12,10 @@ $RECYCLE.BIN/
 *.log
 log.txt
 
+# old version from drawio
+*.bkp
+.$*.dtmp
+
 
 /.sourcemaps
 /.versions

@@ -1,17 +1,23 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border" [translucent]="true">
+  <app-header></app-header>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
+  <ion-header class="ion-no-border" collapse="condense">
+    <app-header></app-header>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <swiper-container pagination="true" [allowSlideNext]="allowSlideCard" [allowSlidePrev]="allowSlideCard">
+    @for (slide of slides; track slide.id; let i = $index) {
+      <swiper-slide>
+        <app-item-card
+        [item]="slide"
+        [isFlipped]="currentCardFlipped"
+        (flipCard)="flip($event)"></app-item-card>
+      </swiper-slide>
+    } @empty {
+      No slides.
+    }
+</swiper-container>
+
 </ion-content>
