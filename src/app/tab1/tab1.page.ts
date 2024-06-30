@@ -15,33 +15,70 @@ import { HeaderComponent } from '../shared/components/header/header.component';
 export class Tab1Page {
   currentCardFlipped: boolean = false;
   allowSlideCard: boolean = true;
+  tabBarElement: any;
+
+  constructor() {}
+
+  showHideTabs() {
+    console.log('swipedown anywere in tab1');
+  }
+
   slides: Item[] = [
     {
       id: 1,
-      name: 'name1',
-      picture: '../../assets/book1.png',
-      type: 'type1',
+      name: '',
+      maker: '',
+      picture: '',
+      type: '',
       quantity: 1,
       tags: ['test1', 'test2']
     },
     {
       id: 2,
-      name: 'name2',
+      name: '',
+      maker: '',
       picture: '',
-      type: 'type2',
+      type: '',
       quantity: 2,
       tags: ['test']
     },
     {
       id: 3,
-      name: 'name3',
+      name: '',
+      maker: '',
       picture: '',
-      type: 'type3',
+      type: '',
       quantity: 3,
       tags: []
-    }];
-
-  constructor() {}
+    },
+    {
+      id: 4,
+      name: '',
+      maker: '',
+      picture: '',
+      type: '',
+      quantity: 1,
+      tags: ['test1', 'test2']
+    },
+    {
+      id: 5,
+      name: '',
+      maker: '',
+      picture: '',
+      type: '',
+      quantity: 2,
+      tags: ['test']
+    },
+    {
+      id: 6,
+      name: '',
+      maker: '',
+      picture: '',
+      type: '',
+      quantity: 3,
+      tags: []
+    }
+  ];
 
   flip(isFlipped: boolean) {
     this.currentCardFlipped = isFlipped;
@@ -49,3 +86,4 @@ export class Tab1Page {
   }
 
 }
+

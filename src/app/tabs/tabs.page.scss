@@ -1,3 +1,11 @@
 ion-tab-bar {
-  --background: var(--ion-tab-bar-background, var(--ion-background-color, #ffe0ad));
+  --background: linear-gradient(#ffeecc, #fff2d8, #fef8ec, #fffcf6, #ffffff, #ffffff);
+  --color-selected: #ffcc77;
+  --color: #aaaaaa;
+  //display: none;
 }
+
+.rotated {
+  transform: rotate(90deg);
+}
+

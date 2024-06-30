@@ -1,23 +1,33 @@
-<ion-header class="ion-no-border" [translucent]="true">
-  <app-header></app-header>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header class="ion-no-border" collapse="condense">
-    <app-header></app-header>
-  </ion-header>
-
-  <swiper-container pagination="true" [allowSlideNext]="allowSlideCard" [allowSlidePrev]="allowSlideCard">
+<ion-content [fullscreen]="true" (swipedown)="showHideTabs()">
+  <div class="altHeader">
+    <!--<div class="place-badge"><ion-badge style="position:absolute; z-index:100" color="success">5</ion-badge></div>-->
+    <ion-img
+      class="header-image"
+      src="../../assets/logoC.png"
+      alt="Header image"
+    ></ion-img>
+    
+  </div>
+  <swiper-container pagination-type="fraction" keyboard-enabled="true" grab-Cursor="true" [allowSlideNext]="allowSlideCard" [allowSlidePrev]="allowSlideCard">
     @for (slide of slides; track slide.id; let i = $index) {
-      <swiper-slide>
-        <app-item-card
-        [item]="slide"
-        [isFlipped]="currentCardFlipped"
-        (flipCard)="flip($event)"></app-item-card>
-      </swiper-slide>
+      <swiper-slide><app-item-card [item]="slide" [isFlipped]="currentCardFlipped" (flipCard)="flip($event)"></app-item-card></swiper-slide>
     } @empty {
       No slides.
     }
-</swiper-container>
+  </swiper-container>
 
+
+  <ion-segment value="buttons">
+    <ion-segment-button value="default">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="boxed">
+      <ion-label>Boxed</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="unboxed">
+      <ion-label>Unboxed</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-content>
+

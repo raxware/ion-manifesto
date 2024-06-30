@@ -14,16 +14,70 @@ export class PhotoService {
     this.platform = platform;
   }
 
-  public async addItemPicture():Promise<UserPhoto> {
+  public async picFromCamera():Promise<UserPhoto> {
     // Take a photo
-    const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-      quality: 100
-    });
-
+      const capturedPhoto = await Camera.getPhoto({
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera,
+        quality: 100
+      })
     return await this.savePicture(capturedPhoto);
   }
+  public async picFromGallery():Promise<UserPhoto> {
+    // Select photo from gallery
+      const capturedPhoto = await Camera.getPhoto({
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Photos,
+        quality: 100
+      })
+    return await this.savePicture(capturedPhoto);
+  }
+
+/*---------------------------------------------DISCUSS WITH RAMÓN---------------------------------------------*/
+/*
+  public async addItemPicture(imgSource: string):Promise<UserPhoto> {
+    // Take a photo or select it from photo gallery
+    if (imgSource === 'camera') {
+      const capturedPhoto = await Camera.getPhoto({
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera,
+        quality: 100,
+//        width: 374,
+//        height: 374,
+      });
+    } 
+  //  else if (imgSource === 'gallery') {
+      const capturedPhoto = await Camera.getPhoto({
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Photos,
+        quality: 100,
+//        width: 374,
+//        height: 374,
+      });
+  //}
+    return await this.savePicture(capturedPhoto);
+  }
+*/
+  /*
+    public async addItemPicture(imgSource: string):Promise<UserPhoto> {
+    // Take a photo or select it from photo gallery
+    let capturedPhoto: Photo;
+    switch (imgSource){
+      case 'camera': capturedPhoto = await Camera.getPhoto({
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera,
+        quality: 100
+      }); break;
+      case 'gallery': capturedPhoto = await Camera.getPhoto({
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Photos,
+        quality: 100
+      }); break;
+    }
+    return await this.savePicture(capturedPhoto: Photo)
+  }
+  */
+ /*---------------------------------------------------------------------------------------------------------*/
 
   // Save picture to file on device
   private async savePicture(photo: Photo): Promise<UserPhoto> {
@@ -31,7 +85,8 @@ export class PhotoService {
     const base64Data = await this.readAsBase64(photo);
 
     // Write the file to the data directory
-    const fileName = Date.now() + '.jpeg';
+    const fileName = 'manifesto_' + Date.now() + '.jpeg';
+    //console.log(fileName, 'picture name');
     const savedFile = await Filesystem.writeFile({
       path: fileName,
       data: base64Data,
@@ -63,7 +118,6 @@ export class PhotoService {
       const file = await Filesystem.readFile({
         path: photo.path!
       });
-
       return file.data;
     }
     else {

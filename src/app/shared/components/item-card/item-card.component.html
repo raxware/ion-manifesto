@@ -1,46 +1,92 @@
 <div class="scene scene--card">
-  <div class="card" [class.is-flipped]="isFlipped"
-  (swipeup)="addToCointainer()"
-  (swipedown)="openMenu()">
+  <div class="card" [class.is-flipped]="isFlipped" (swipeup)="addToContainer()" (swipedown)="openMenu()">
     <div class="card__face front" (doubletap)="flip()">
       <ion-card>
-        @if (item && item.picture) {
-          <ion-img
-          (press)="openCamera()"
-          [src]="item.picture"
-          alt="Item"
-        ></ion-img>
-        } @else {
-          <ion-img class="img-placeholder"
-            (press)="openCamera()"
-            src="../../assets/cube-white.png"
-            alt="Placeholder image"
-          ></ion-img>
-        }
-        <ion-card-header (press)="editForm()">
-          <ion-card-title>{{item?.name}}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          @for (tag of item?.tags; track tag) {
-            <ion-chip>
-              <ion-label>{{tag}}</ion-label>
-            </ion-chip>
-          } @empty {
-            No tags.
-          }
+        <ion-card-content class="whiteBorder flex-self-aligned">
+          <ion-card-content class="bgLayer flex-self-aligned">
+            <ion-card-content class="contentFront inline-self-aligned">
+              <ion-card-content class="imgFrame inline-self-aligned child-align">
+                @if (item && item.picture) {
+                  <ion-img class="offUnderSpace" (press)="addImage()" [src]="item.picture" alt="Item"></ion-img>
+                } @else {
+                  <ion-img class="offUnderSpace" (press)="addImage()" src="../../assets/plus2.jpg" alt=""></ion-img>
+                }
+              </ion-card-content>
+              <ion-card-content class="contentSpliter inline-self-aligned child-align">
+                    <ion-card-header>
+                      <ion-card-title>{{item?.name}}</ion-card-title>
+                    </ion-card-header>
+              </ion-card-content>
+              <ion-card-content class="contentSpliter inline-self-aligned child-align">
+                @if (item && (item.maker !== 'Name')) {
+                <ion-card-header>
+                  <ion-card-title>{{item.maker}}</ion-card-title>
+                </ion-card-header>
+              } @else {
+                <ion-card-header>
+                  <ion-card-title class="hiddenContent">{{item?.maker}}</ion-card-title>
+                </ion-card-header>
+              }
+              </ion-card-content>
+              <ion-card-content class="contentSpliter inline-self-aligned child-align">
+                      <ion-card-content class="gridFrame inline-self-aligned child-align">
+                        <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="{{typeIcon}}"></ion-icon></ion-card-content>
+                        <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="" (press)="callSomethingElse"></ion-icon></ion-card-content>
+                        <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="" (press)="callSomethingElse"></ion-icon></ion-card-content>
+                        <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="" (press)="callSomethingElse"></ion-icon></ion-card-content>
+                        <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="" (press)="callSomethingElse"></ion-icon></ion-card-content>
+                      </ion-card-content>
+              </ion-card-content>
+            </ion-card-content>
+          </ion-card-content>
         </ion-card-content>
       </ion-card>
     </div>
     <div class="card__face back" (doubletap)="flip()">
       <ion-card>
-        <ion-card-header>
-          <ion-card-title>{{item?.name}}</ion-card-title>
-          <ion-card-subtitle>Type: {{item?.type}}</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          Here's a small text description for the card content. Nothing more, nothing less.
+        <ion-card-content class="whiteBorder flex-self-aligned">
+          <ion-card-content class="bgLayer flex-self-aligned">
+            <ion-card-content class="contentBack inline-self-aligned">
+
+              
+              <ion-card-content class="contentSpliter inline-self-aligned child-align">
+                <ion-card-content class="gridFrame inline-self-aligned child-align">
+                  <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="" (press)="callSomethingElse"></ion-icon></ion-card-content>                  
+                  <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="{{typeIcon}}" (press)="openType()"></ion-icon></ion-card-content>
+                  <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="" (press)="callSomethingElse"></ion-icon></ion-card-content>
+                  <ion-card-content class="gridCell inline-self-aligned child-align">
+                              <ion-thumbnail class="thumbFrame">
+                                @if (item && item.picture) {
+                                  <img class="offUnderSpace" (press)="editImage()" [src]="item.picture" alt="Item" />
+                                } @else {
+                                  <img class="offUnderSpace" (press)="editImage()" />
+                                }
+                              </ion-thumbnail>
+                  </ion-card-content>
+                  <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="" (press)="callSomethingElse"></ion-icon></ion-card-content>
+                </ion-card-content>
+              </ion-card-content>
+              <ion-card-content class="contentSpliter inline-self-aligned child-align">
+                <ion-card-content>
+                  <ion-input id="input0" class="thingName" label="{{thingName}}" label-placement="floating" fill="outline" placeholder="{{item!.name}}" blur=""></ion-input>
+                </ion-card-content>
+              </ion-card-content>
+              <ion-card-content class="contentSpliter inline-self-aligned child-align">
+                <ion-card-content>
+                  <ion-input id="input1" class="thingMaker" label="{{thingMaker}}" label-placement="floating" fill="outline" placeholder="{{item!.maker}}" blur=""></ion-input>
+                </ion-card-content>
+              </ion-card-content>
+              <ion-card-content class="contentSpliter inline-self-aligned child-align hiddenContent">
+                <ion-card-content>
+                  <ion-input id="input1" class="thingMaker" label="{{thingMaker}}" label-placement="floating" fill="outline" placeholder="{{thingMaker}}" blur=""></ion-input>
+                </ion-card-content>
+              </ion-card-content>
+            </ion-card-content>
+          </ion-card-content>
         </ion-card-content>
       </ion-card>
     </div>
   </div>
 </div>
+
+

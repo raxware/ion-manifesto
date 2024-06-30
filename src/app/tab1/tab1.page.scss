@@ -1,7 +1,26 @@
-ion-content::part(background) {
-  background: #d2c98b;
+.altHeader {
+  //background: transparent;
+  //background: #8080804e;
+  .header-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.75vh;
+    width: 15%;
+  }
+  .place-badge{
+    display: block;
+    margin-left: 55%;
+    margin-right: auto;
+  }
 }
 
-swiper-container {
+/*
+--swiper-container {
   --swiper-theme-color: #000;
 }
+*/
+
+/*ion-segment-button {
+  --background: linear-gradient(#ffeecc, #fff2d8, #fef8ec, #fffcf6, #ffffff, #ffffff);
+}*/

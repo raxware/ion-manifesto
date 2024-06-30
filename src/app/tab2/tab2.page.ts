@@ -19,6 +19,7 @@ export class Tab2Page {
     {
       id: 1,
       name: 'name1',
+      maker: '',
       picture: '../../assets/book2.jpeg',
       type: 'type1',
       quantity: 1,
@@ -27,6 +28,7 @@ export class Tab2Page {
     {
       id: 2,
       name: 'name2',
+      maker:'',
       picture: '',
       type: 'type2',
       quantity: 2,
@@ -35,6 +37,7 @@ export class Tab2Page {
     {
       id: 3,
       name: 'name3',
+      maker:'',
       picture: '',
       type: 'type3',
       quantity: 3,
