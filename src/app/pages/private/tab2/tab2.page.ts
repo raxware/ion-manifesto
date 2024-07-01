@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonChip, IonLabel } from '@ionic/angular/standalone';
-import { PhotoService } from '../services/photo.service';
-import { Item } from '../model/interfaces';
+import { PhotoService } from 'src/app/services/photo.service';
+import { Item } from 'src/app/model/interfaces';
 
 @Component({
   selector: 'app-tab2',

@@ -10,6 +10,8 @@ import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
 
 // Call the element loader before the bootstrapModule/bootstrapApplication call
 defineCustomElements(window);
@@ -39,6 +41,6 @@ bootstrapApplication(AppComponent, {
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: HammerConfig
-    }
+    }, provideFirebaseApp(() => initializeApp({"projectId":"manifesto-268c5","appId":"1:167271764279:web:a156eaed7b7723d6d58ab2","storageBucket":"manifesto-268c5.appspot.com","apiKey":"AIzaSyB8ISzWHB4YBy6S4QX6apmeal6tpdI6q4E","authDomain":"manifesto-268c5.firebaseapp.com","messagingSenderId":"167271764279","measurementId":"G-XVJEEQW56C"})), provideAuth(() => getAuth())
   ],
 });

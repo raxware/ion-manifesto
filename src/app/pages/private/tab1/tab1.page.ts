@@ -1,8 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
-import { Item } from '../model/interfaces';
-import { ItemCardComponent } from '../shared/components/item-card/item-card.component';
-import { HeaderComponent } from '../shared/components/header/header.component';
+import { Item } from 'src/app/model/interfaces';
+import { ItemCardComponent } from 'src/app/shared/components/item-card/item-card.component';
+import { HeaderComponent } from 'src/app//shared/components/header/header.component';
 
 @Component({
   selector: 'app-tab1',
