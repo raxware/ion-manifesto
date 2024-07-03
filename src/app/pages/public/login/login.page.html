@@ -33,13 +33,17 @@
 	  
 					<ion-card-content class="halfHeight inline-self-aligned ">
 					  <form (ngSubmit)="login()" [formGroup]="credentials">
-						<input type="email" formControlName="email" label="Email" label-placement="floating" fill="outline" placeholder="Enter email" />
+						<ion-input type="email" formControlName="email" label="Email" label-placement="floating" fill="outline" placeholder="Enter email" />
+						<!--<ion-note slot="error" *ngIf="(email!.dirty || email!.touched) && email!.errors">Email is invalid</ion-note>-->
 						<div class="headFoot"><ion-label>&nbsp;</ion-label></div>
-						<input type="password" formControlName="password" label="Password" label-placement="floating" fill="outline" placeholder="Enter password" />
+						<ion-input #input type="password" formControlName="password" label="Password" label-placement="floating" fill="outline" placeholder="Enter password" />
+						<!--<ion-note slot="error" *ngIf="(password!.dirty || password!.touched) && password!.errors">Password needs to be 6 characters</ion-note>-->
 						<ion-grid [fixed]="true">
 						  <ion-row>
 							<ion-col><ion-label class="decorated" (click)="doSmthng('reset pwd')">Forgot password?</ion-label></ion-col>
-							<ion-col><ion-checkbox class="endOfLine" justify="end" (ionChange)="doSmthng('show pwd')">Show password</ion-checkbox></ion-col>
+							<ion-col>
+								<ion-checkbox class="endOfLine" justify="end" (ionChange)="togglePasswordMode(password?.value)">{{pwdSatusLabel}}</ion-checkbox>
+							</ion-col>
 						  </ion-row>
 						</ion-grid>                
 						<ion-button type="submit" class="endOfLine">Sign in</ion-button>
@@ -48,7 +52,7 @@
 	  
 					<div class="headFoot endOfLine ">
 					  <h4> No profile yet? &nbsp;</h4>
-					  <h4 class="decorated" (click)="flip()">Sign up for an account!&nbsp;</h4>
+					  <h4 class="decorated" (click)="flip('wentToBack')">Sign up for an account!&nbsp;</h4>
 					</div>
 	  
 				  </ion-card-content>
@@ -79,13 +83,17 @@
 	  
 					<ion-card-content class="halfHeight inline-self-aligned ">
 					  <form [formGroup]="credentials">
-						<input type="email" formControlName="email" label="Email" label-placement="floating" fill="outline" placeholder="Enter email" />
+						<ion-input type="email" formControlName="email" label="Email" label-placement="floating" fill="outline" placeholder="Enter email" />
+						<!--<ion-note slot="error" *ngIf="(email!.dirty || email!.touched) && email!.errors">Email is invalid</ion-note>-->
 						<div class="headFoot"><ion-label>&nbsp;</ion-label></div>
-						<input type="password" formControlName="password" label="Password" label-placement="floating" fill="outline" placeholder="Enter password" />
+						<ion-input #input type="password" formControlName="password" label="Password" label-placement="floating" fill="outline" placeholder="Enter password" />
+						<!--<ion-note slot="error" *ngIf="(password!.dirty || password!.touched) && password!.errors">Password needs to be 6 characters</ion-note>-->
 						<ion-grid [fixed]="true">
 						  <ion-row>
 							<ion-col><ion-label> </ion-label></ion-col>
-							<ion-col><ion-checkbox class="endOfLine" justify="end">Show password</ion-checkbox></ion-col>
+							<ion-col>
+								<ion-checkbox class="endOfLine" justify="end" (ionChange)="togglePasswordMode(password?.value)">{{pwdSatusLabel}}</ion-checkbox>
+							</ion-col>
 						  </ion-row>
 						</ion-grid>
 						<ion-button type="button" class="endOfLine" (click)="register()">Sign up</ion-button>
@@ -94,7 +102,7 @@
 	  
 					<div class="endOfLine ">
 					  <h4> Already have a profile? &nbsp;</h4>
-					  <h4 class="decorated" (click)="flip()">Go back to 'front' and Sign in! &nbsp;</h4>
+					  <h4 class="decorated" (click)="flip('wentToFront')">Go back to 'front' and Sign in! &nbsp;</h4>
 					</div>
 					  
 				  </ion-card-content>
@@ -106,7 +114,6 @@
 	  </div>
 	  
 	  
-
 
 
 

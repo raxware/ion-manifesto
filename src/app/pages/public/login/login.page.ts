@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonNote, IonButton, IonCardContent, IonCard, IonGrid, IonRow, IonCol, IonLabel, IonCheckbox } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonNote, IonButton, 
+	IonCardContent, IonCard, IonGrid, IonRow, IonCol, IonLabel, IonCheckbox, IonInput } from '@ionic/angular/standalone';
 import { AlertController, ToastController, LoadingController } from '@ionic/angular'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,21 +12,28 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonCheckbox, IonLabel, IonCol, IonRow, IonGrid, IonCard, IonCardContent, IonButton, IonNote, IonItem, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonInput, IonCheckbox, IonLabel, IonCol, IonRow, 
+	IonGrid, IonCard, IonCardContent, IonButton, 
+	IonNote, IonItem, IonContent, IonHeader, 
+	IonTitle, IonToolbar, CommonModule, FormsModule, 
+	ReactiveFormsModule]
 })
 export class LoginPage implements OnInit {
 	credentials!: FormGroup;
 
 	@Input() isFlipped: boolean = false;
+	@Input() isHidden: boolean = true;
+	@Input() pwdSatusLabel: string = 'Show password';
  
 	@Output() flipCard = new EventEmitter<boolean>();
+	@Output() showPwd = new EventEmitter<boolean>();
 
 	constructor(
 		private fb: FormBuilder,
 		private loadingController: LoadingController,
 		private alertController: AlertController,
 		private authService: AuthService,
-		private router: Router
+		private router: Router,
 	) {}
 
 	// Easy access for form fields
@@ -38,9 +46,10 @@ export class LoginPage implements OnInit {
 	}
 
 	ngOnInit() {
+		let pwd: string;
 		this.credentials = this.fb.group({
-			email: ['test', [Validators.required, Validators.email]],
-			password: ['test', [Validators.required, Validators.minLength(6)]]
+			email: ['', [Validators.required, Validators.email]],
+			password: ['', [Validators.required, Validators.minLength(6)]]
 		});
 	}
 
@@ -97,7 +106,9 @@ export class LoginPage implements OnInit {
 	}
 	*/
 
-	flip() {
+	flip(face: string) {
+		let cardFace = face;
+		console.log(cardFace);
 		this.isFlipped = !this.isFlipped;
 		this.flipCard.emit(this.isFlipped);
 	}
@@ -111,6 +122,18 @@ export class LoginPage implements OnInit {
 		  console.log('Smthng', direction);
 		}
 		*/
+	}
+
+	togglePasswordMode(pwd: string){
+		this.isHidden = !this.isHidden;
+		this.showPwd.emit(this.isHidden);
+		if (!this.isHidden){
+			this.pwdSatusLabel = 'Hide password';
+
+		} else{
+			this.pwdSatusLabel = 'Show password';
+		}
+		console.log(pwd)
 	}
 
 }

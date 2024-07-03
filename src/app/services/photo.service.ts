@@ -13,7 +13,7 @@ export class PhotoService {
   constructor(platform: Platform) {
     this.platform = platform;
   }
-
+/*
   public async picFromCamera():Promise<UserPhoto> {
     // Take a photo
       const capturedPhoto = await Camera.getPhoto({
@@ -32,32 +32,22 @@ export class PhotoService {
       })
     return await this.savePicture(capturedPhoto);
   }
-
+*/
 /*---------------------------------------------DISCUSS WITH RAMÓN---------------------------------------------*/
-/*
+
   public async addItemPicture(imgSource: string):Promise<UserPhoto> {
     // Take a photo or select it from photo gallery
-    if (imgSource === 'camera') {
+    let source: CameraSource = CameraSource.Camera;
+    console.log(imgSource);
+    if (imgSource === 'gallery') { source= CameraSource.Photos; } 
       const capturedPhoto = await Camera.getPhoto({
         resultType: CameraResultType.Uri,
-        source: CameraSource.Camera,
+        source,
         quality: 100,
-//        width: 374,
-//        height: 374,
       });
-    } 
-  //  else if (imgSource === 'gallery') {
-      const capturedPhoto = await Camera.getPhoto({
-        resultType: CameraResultType.Uri,
-        source: CameraSource.Photos,
-        quality: 100,
-//        width: 374,
-//        height: 374,
-      });
-  //}
     return await this.savePicture(capturedPhoto);
   }
-*/
+
   /*
     public async addItemPicture(imgSource: string):Promise<UserPhoto> {
     // Take a photo or select it from photo gallery

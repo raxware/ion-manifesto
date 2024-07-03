@@ -72,6 +72,22 @@ export class ItemCardComponent implements OnInit{
       {text: 'Cancel', role: 'cancel', handler: (alertData: any) => { console.log('addImg cancel', alertData); }}]
     );
   }
+  
+  openCamera(imgSource: string) {
+
+      this.photoService.addItemPicture(imgSource).then((value) => {
+        if (value.webviewPath && this.item) {
+          this.item.picture = value.webviewPath;
+          if ((this.item!.type === 'Type')){
+          this.addType();
+          //console.log(this.item!.picture);
+          }
+        }
+      });
+  }
+
+/* 
+
   openCamera(imgSource: string) {
     if (imgSource === 'camera') {
       this.photoService.picFromCamera().then((value) => {
@@ -95,6 +111,11 @@ export class ItemCardComponent implements OnInit{
       });
     }
   }
+
+*/
+
+
+
 
   alertLocked(){
     this.alertService.basicAlert(
