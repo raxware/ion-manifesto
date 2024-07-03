@@ -15,47 +15,56 @@
 
   <div class="altHeader">
     <!--<div class="place-badge"><ion-badge style="position:absolute; z-index:100" color="success">5</ion-badge></div>-->
-    <ion-img
-    style="width: 15% !important; height: auto !important;"
-      class="header-image"
-      src="../../assets/logo.png"
-      alt="Header image"
-    ></ion-img>
-    
+    <ion-img class="header-image" src="../../assets/logo.png" alt="Header image"></ion-img>
   </div>
-
 
 <div class="scene scene--card">
   <div class="card">
     <div class="card__face front">
 
-
       <ion-card>
         <ion-card-content class="whiteBorder flex-self-aligned">
           <ion-card-content class="bgLayer flex-self-aligned">
             <ion-card-content class="contentFront inline-self-aligned">
+              <ion-grid class="contentSpliter inline-self-aligned child-align">
+                <!--  <ion-row class="gridFrame">
+                    <ion-col class="gridCell fullAdjust">&nbsp;</ion-col>
+                    <ion-col class="gridCell fullAdjust">&nbsp;</ion-col>
+                  </ion-row>
+                -->
+                <ion-row class="gridFrame">
+                  <ion-col class="gridFrame">
+                    <ion-card-content class="quarterHeight inline-self-aligned quarterWidth ">
+                      <ion-card-content class="framing">
+                        <p class="text-custom sized">manifesto</p>
+                          <div class="fitPlace framing">Keeping Things Trackable</div>
+                        </ion-card-content>
+                      </ion-card-content>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+<!--          <ion-card-content class="contentSpliter inline-self-aligned child-align"></ion-card-content>
               <ion-card-content class="contentSpliter inline-self-aligned child-align"></ion-card-content>
-              <ion-card-content class="contentSpliter inline-self-aligned child-align"></ion-card-content>
-            <!--  <ion-card-content class="contentSpliter inline-self-aligned child-align">
+              <ion-card-content class="contentSpliter inline-self-aligned child-align">
                 <ion-card-header><ion-card-title>TAB 2</ion-card-title></ion-card-header>
               </ion-card-content>
-            -->  
-              <ion-card-content class="contentSpliter inline-self-aligned child-align"></ion-card-content>
+--> 
               <ion-grid class="contentSpliter inline-self-aligned child-align">
+                <ion-row class="gridFrame"><ion-col class="gridCell fullAdjust"></ion-col></ion-row>
                 <ion-row class="gridFrame">
-                  <ion-col class="gridCell"><ion-button size="large"><ion-icon slot="icon-only" name="help-circle"></ion-icon></ion-button></ion-col>
-                  <ion-col class="gridCell"><ion-button size="large"><ion-icon slot="icon-only" name="information-circle"></ion-icon></ion-button></ion-col>
+                  <ion-col class="gridCell fullAdjust"><ion-button size="large"><ion-icon slot="icon-only" name="help-circle"></ion-icon></ion-button></ion-col>
+                  <ion-col class="gridCell fullAdjust"><ion-button size="large"><ion-icon slot="icon-only" name="information-circle"></ion-icon></ion-button></ion-col>
+                  <ion-col class="gridCell fullAdjust"><ion-button size="large"><ion-icon class="diagonal" slot="icon-only" name="mail"></ion-icon></ion-button></ion-col>
                 </ion-row>
-                <ion-card-content class="contentSpliter inline-self-aligned child-align"></ion-card-content>
-                <ion-row class="gridFrame"><ion-col class="gridCell"></ion-col></ion-row>
+                <ion-row class="gridFrame"><ion-col class="gridCell fullAdjust"></ion-col></ion-row>
                 <ion-row class="gridFrame">
-                  <ion-col class="gridCell"><ion-button size="large"><ion-icon class="diagonal" slot="icon-only" name="send"></ion-icon></ion-button></ion-col>
-                  <ion-col class="gridCell"><ion-button size="large"><ion-icon slot="icon-only" name="settings"></ion-icon></ion-button></ion-col>
+                  <ion-col class="gridCell fullAdjust"><ion-button size="large"><ion-icon slot="icon-only" name="settings"></ion-icon></ion-button></ion-col>
+                  <ion-col class="gridCell fullAdjust"><ion-button size="large" ><ion-icon slot="icon-only" name="cube"></ion-icon></ion-button></ion-col>
+                  <ion-col class="gridCell fullAdjust"><ion-button size="large" (click)="logOut()"><ion-icon slot="icon-only" name="log-out"></ion-icon></ion-button></ion-col>
                 </ion-row>
-                <ion-card-content class="contentSpliter inline-self-aligned child-align"></ion-card-content>
-                <ion-row class="gridFrame"><ion-col class="gridCell"></ion-col></ion-row>
+                <ion-row class="gridFrame"><ion-col class="gridCell fullAdjust"></ion-col></ion-row>
                 <ion-row class="gridFrame">
-                  <ion-col class="gridCell"><ion-button size="large" (click)="logOut()"><ion-icon slot="icon-only" name="log-out"></ion-icon></ion-button></ion-col>
+                  
                 </ion-row>
               </ion-grid>
             </ion-card-content>

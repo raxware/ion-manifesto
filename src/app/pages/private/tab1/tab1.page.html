@@ -2,12 +2,7 @@
 <ion-content [fullscreen]="true" (swipedown)="showHideTabs()">
   <div class="altHeader">
     <!--<div class="place-badge"><ion-badge style="position:absolute; z-index:100" color="success">5</ion-badge></div>-->
-    <ion-img
-      class="header-image"
-      src="../../assets/logo.png"
-      alt="Header image"
-    ></ion-img>
-    
+    <ion-img class="header-image" src="../../assets/logo.png" alt="Header image"></ion-img>
   </div>
   <swiper-container pagination-type="fraction" keyboard-enabled="true" grab-Cursor="true" [allowSlideNext]="allowSlideCard" [allowSlidePrev]="allowSlideCard">
     @for (slide of slides; track slide.id; let i = $index) {

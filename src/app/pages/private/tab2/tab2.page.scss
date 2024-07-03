@@ -1,10 +1,26 @@
-
+.altHeader {
+  //background: transparent;
+  //background: #8080804e;
+  .header-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.75vh;
+    width: 15%;
+  }
+  .place-badge{
+    display: block;
+    margin-left: 55%;
+    margin-right: auto;
+  }
+}
 
 .scene {
   display: block;
   width: 100%;
   height: 80vh;
   perspective: 600px;
+//  margin-top: 1.75vh;
   .card {
     position: relative;
     width: 100%;
@@ -88,19 +104,32 @@ ion-card{
   margin: 0;
 }
 
-/*
-.imgFrame {
-  width: 100%;
-  height: fit-content;
-  min-height: 362px;
-  max-height: 374px;
-  //max-height: 374px;
-  background-color: #ffcc7744;
-} // FRONT CARD IMG ------------ DO NOT CHANGE!!!
- */
-
-/*---------------------------------------------NO MORE CHANGE UP FROM HERE ---------------------------------------------*/
-
+/*------------------------------------------------------------------------------------------*/
+.custom-ripple {
+  color: #ffcc77;
+}
+.diagonal{
+  transform: rotate(-30deg);
+  font-size: 6.5vh
+}
+.framing{
+  position: relative;
+  //border: lawngreen dotted .5px;
+}
+.decorated{
+  color: #ff400090;
+}
+.sized{
+  font-size: 84px;
+  color: #ffcc77;
+}
+.fitPlace{
+  position: relative !important;
+  display: ruby-text;
+  float: right;
+  text-align: right;
+  //border:#ff00d9 dotted .5px;
+}
 .hiddenContent{
   display: none !important;
 }
@@ -127,12 +156,14 @@ ion-card{
     //border:#dc15ff dotted .8px;
     //border-radius: 5%;
   margin: .2%;
-
 }
-.thumbFrame{
-    height: 100%;
-    width: 100%;
-    //border:#15ff6b dotted .8px;
+.fullAdjust{
+  height: 100%;
+  width: 100%;
+  //border:#dc15ff dotted .8px;
+}
+.half{
+  height: 50%;
 }
 
 /*------------------------------------------------------------------------------------------*/
@@ -145,8 +176,8 @@ ion-card-header{
 }
 ion-button{
   color: rgb(255, 255, 255);
-  width: 100px;
-  height: 100px;
+  width: 8vh;
+  height: 8vh;
 }
 ion-icon{
   color: #ffffff !important ;
@@ -157,12 +188,4 @@ ion-img::part(image) {
   border-radius: 5px;
 //  max-width: 374px;
 //  max-height: 374px;
-}
-
-.custom-ripple {
-  color: #ffcc77;
-}
-
-.diagonal{
-  transform: rotate(-30deg);
 }

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonNote, IonButton, 
-	IonCardContent, IonCard, IonGrid, IonRow, IonCol, IonLabel, IonCheckbox, IonInput } from '@ionic/angular/standalone';
+	IonCardContent, IonCard, IonGrid, IonRow, IonCol, IonLabel, IonCheckbox, IonInput, IonImg } from '@ionic/angular/standalone';
 import { AlertController, ToastController, LoadingController } from '@ionic/angular'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonInput, IonCheckbox, IonLabel, IonCol, IonRow, 
+  imports: [IonImg, IonInput, IonCheckbox, IonLabel, IonCol, IonRow, 
 	IonGrid, IonCard, IonCardContent, IonButton, 
 	IonNote, IonItem, IonContent, IonHeader, 
 	IonTitle, IonToolbar, CommonModule, FormsModule, 
