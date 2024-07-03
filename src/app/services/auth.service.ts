@@ -6,7 +6,7 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signO
 })
 export class AuthService {
 
-  public emailUser: string = '';
+  public userEmail: string = '';
 
   constructor(private auth: Auth) {}
 
@@ -22,7 +22,7 @@ export class AuthService {
   async login({ email, password }: {email: string; password: string}) {
     try {
       const user = await signInWithEmailAndPassword(this.auth, email, password);
-        this.emailUser = user.user.email!;
+      this.userEmail = user.user.email!;
       return user;
     } catch (e) {
       return null;
@@ -30,12 +30,16 @@ export class AuthService {
   }
 
   logout() {
-    this.emailUser = '';
+    this.userEmail = '';
     return signOut(this.auth);
   }
 
-  setEmailUser(emailUser: string){
-    this.emailUser = emailUser;
+  setEmailUser(email: string){
+    this.userEmail = email;
+  }
+
+  getUserEmail() {
+    return this.userEmail;
   }
 
 }

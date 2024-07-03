@@ -14,7 +14,6 @@ import { book, brush, build, calculator, camera, chatbubbles,
   person, 
 } from 'ionicons/icons';
 
-
 @Component({
   selector: 'app-item-card',
   templateUrl: './item-card.component.html',

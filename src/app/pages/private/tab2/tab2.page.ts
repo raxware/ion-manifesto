@@ -1,14 +1,28 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonChip, IonLabel } from '@ionic/angular/standalone';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit } from '@angular/core';
+import { IonIcon, IonHeader, IonToolbar, IonTitle, IonContent, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonChip, IonLabel } from '@ionic/angular/standalone';
 import { PhotoService } from 'src/app/services/photo.service';
 import { Item } from 'src/app/model/interfaces';
+import { AuthService } from 'src/app/services/auth.service';
+import { addIcons } from 'ionicons';
+import { book, brush, build, calculator, camera, chatbubbles, 
+  checkmarkCircle, cube, diamond, dice, disc, extensionPuzzle, 
+  film, gameController, home, images, language, medkit, rocket, 
+  shirt, thumbsDown, thumbsUp, wine, cash, musicalNotes,
+  person, logOut, logOutOutline, logOutSharp, helpCircle, 
+  helpCircleOutline, send, informationCircleOutline,
+  informationCircle, settings, mail, mailOutline
+} from 'ionicons/icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss'],
   standalone: true,
-  imports: [IonLabel, IonChip, IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonImg, IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonLabel, IonChip, IonCardContent, IonCardTitle, 
+    IonCardHeader, IonCard, IonImg, IonHeader, IonToolbar, 
+    IonTitle, IonContent, IonIcon,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class Tab2Page {
@@ -44,7 +58,15 @@ export class Tab2Page {
       tags: []
     }];
 
-  constructor(public photoService: PhotoService) {}
+  constructor (private authService: AuthService,
+    private router: Router)  {
+      addIcons({book, build, calculator, brush, shirt, wine, film, dice, diamond, camera, 
+        chatbubbles, medkit, images, extensionPuzzle, rocket, language, cube, gameController, 
+        disc, thumbsUp, thumbsDown, home, checkmarkCircle, cash, musicalNotes, person, logOut, 
+        logOutOutline, logOutSharp, helpCircle, helpCircleOutline, send, informationCircle, 
+        informationCircleOutline, settings, mail, mailOutline
+      });
+    }
 
   flip(isFlipped: boolean) {
     this.currentCardFlipped = isFlipped;
@@ -68,4 +90,9 @@ export class Tab2Page {
     console.log(this.slides[i], 'swipedown');
   }
 
+  logOut() {
+    this.authService.logout().then(() => {
+      this.router.navigateByUrl('/login', { replaceUrl: true });
+    })
+  }
 }

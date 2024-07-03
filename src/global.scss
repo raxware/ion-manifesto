@@ -25,6 +25,12 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+@font-face {
+	font-family: 'customTypo';
+	font-style: normal;
+	font-weight: normal;
+	src: url('./assets/fonts/Comforter.ttf');
+}
 
 :root {
 
@@ -35,12 +41,12 @@
 	--ion-color-primary-shade: #e0b469;
 	--ion-color-primary-tint: #ffd185;
 
-	--ion-color-secondary: #e0c200;
-	--ion-color-secondary-rgb: 224,194,0;
+	--ion-color-secondary: #ffcc77;
+	--ion-color-secondary-rgb: 255, 204, 119;
 	--ion-color-secondary-contrast: #000000;
 	--ion-color-secondary-contrast-rgb: 0,0,0;
-	--ion-color-secondary-shade: #c5ab00;
-	--ion-color-secondary-tint: #e3c81a;
+	--ion-color-secondary-shade: #ffcc77;
+	--ion-color-secondary-tint: #ffcc77;
 
 	--ion-color-tertiary: #ff622e;
 	--ion-color-tertiary-rgb: 255,98,46;
@@ -93,7 +99,12 @@
 
 	--swiper-pagination-color: #ffcc77;
 
+
 }
+
+.text-custom { 
+	font-family: "customTypo";
+  }
 
 /**
  * Ionic Dark Mode

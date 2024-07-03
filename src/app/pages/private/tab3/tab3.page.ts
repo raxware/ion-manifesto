@@ -1,19 +1,25 @@
 import { Component, Input } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItemSliding, IonItem, IonLabel, IonItemOptions, IonItemOption, IonIcon, IonThumbnail, IonRippleEffect, IonImg } from '@ionic/angular/standalone';
-
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, 
+  IonItemSliding, IonItem, IonLabel, IonItemOptions, IonItemOption, 
+  IonIcon, IonThumbnail, IonRippleEffect, IonImg } from '@ionic/angular/standalone';
+import { ProtoCardPage } from 'src/app/shared/components/proto-card/proto-card.page';
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss'],
-  standalone: true,
-  imports: [IonImg, IonRippleEffect, IonIcon, IonThumbnail, IonItemOption, IonItemOptions, IonLabel, IonItem, IonItemSliding, IonList, IonHeader, IonToolbar, IonTitle, IonContent],
+    selector: 'app-tab3',
+    templateUrl: 'tab3.page.html',
+    styleUrls: ['tab3.page.scss'],
+    standalone: true,
+    imports: [IonImg, IonRippleEffect, IonIcon,
+        IonThumbnail, IonItemOption, IonItemOptions,
+        IonLabel, IonItem, IonItemSliding, IonList,
+        IonHeader, IonToolbar, IonTitle, IonContent, 
+        ProtoCardPage]
 })
 
 export class Tab3Page {
 
   @Input() containerName: string='Box 1';
 
-  public containersArray = new Array(3);
+  public containersArray = new Array(12);
 
   constructor() {}
 }

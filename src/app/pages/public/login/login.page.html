@@ -1,34 +1,147 @@
-<ion-header [translucent]="true">
+<!--<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
-</ion-header>
-
+</ion-header>-->
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<!--  <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">login</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header>-->
 
-  <form (ngSubmit)="login()" [formGroup]="credentials">
-		<ion-item fill="solid" class="ion-margin-bottom">
-			<ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
-			<ion-note slot="error" *ngIf="(email!.dirty || email!.touched) && email!.errors"
-				>Email is invalid</ion-note
-			>
-		</ion-item>
-		<ion-item fill="solid" class="ion-margin-bottom">
-			<ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-			<ion-note slot="error" *ngIf="(password!.dirty || password!.touched) && password!.errors"
-				>Password needs to be 6 characters</ion-note
-			>
-		</ion-item>
+  @if (credentials !== undefined) {
 
-		<ion-button type="submit" expand="block" [disabled]="!credentials.valid">Log in</ion-button>
-		<ion-button type="button" expand="block" color="secondary" (click)="register()"
-			>Create account</ion-button
-		>
-	</form>
+	<div class="scene scene--card">
+		<div class="card" [class.is-flipped]="isFlipped" (swipeup)="doSmthng('up')" (swipedown)="doSmthng('down')">
+		  <div class="card__face front">
+			<ion-card>
+			  <ion-card-content class="whiteBorder inline-self-aligned child-align">
+				<ion-card-content class="bgLayer inline-self-aligned child-align">
+				  <ion-card-content class="contentFull inline-self-aligned child-align">
+	  
+					<div class="headFoot "><h1>Welcome!</h1></div>
+	  
+					<ion-card-content class="quarterHeight inline-self-aligned quarterWidth ">
+					  <ion-card-content class="framing">
+						<ion-card-content class="framing">
+						  <div class="fitPlace">Sign in to</div>
+						</ion-card-content>
+						<p class="text-custom sized">manifesto</p>
+					  </ion-card-content>
+					</ion-card-content>
+	  
+					<ion-card-content class="halfHeight inline-self-aligned ">
+					  <form (ngSubmit)="login()" [formGroup]="credentials">
+						<input type="email" formControlName="email" label="Email" label-placement="floating" fill="outline" placeholder="Enter email" />
+						<div class="headFoot"><ion-label>&nbsp;</ion-label></div>
+						<input type="password" formControlName="password" label="Password" label-placement="floating" fill="outline" placeholder="Enter password" />
+						<ion-grid [fixed]="true">
+						  <ion-row>
+							<ion-col><ion-label class="decorated" (click)="doSmthng('reset pwd')">Forgot password?</ion-label></ion-col>
+							<ion-col><ion-checkbox class="endOfLine" justify="end" (ionChange)="doSmthng('show pwd')">Show password</ion-checkbox></ion-col>
+						  </ion-row>
+						</ion-grid>                
+						<ion-button type="submit" class="endOfLine">Sign in</ion-button>
+					  </form>
+					</ion-card-content>
+	  
+					<div class="headFoot endOfLine ">
+					  <h4> No profile yet? &nbsp;</h4>
+					  <h4 class="decorated" (click)="flip()">Sign up for an account!&nbsp;</h4>
+					</div>
+	  
+				  </ion-card-content>
+				</ion-card-content>
+			  </ion-card-content>
+			</ion-card>
+		  </div>
+	  
+		  <div class="card__face back">
+			<ion-card>
+			  <ion-card-content class="whiteBorder inline-self-aligned child-align">
+				<ion-card-content class="bgLayer inline-self-aligned child-align">
+				  <ion-card-content class="contentFull inline-self-aligned child-align">
+	  
+					<!--<div class="headFoot "><h1>Create a new profile!</h1></div>--> 
+	  
+					<ion-card-content class="quarterHeight inline-self-aligned quarterWidth ">
+					  <ion-card-content class="framing ">
+						<div class="headFoot "><h1>Create a new profile!</h1></div>
+					  <!-- <p style="font-weight: bold" class="decorated"> Disclaimer: </p>
+						<p style="border-width: 100% !important;">
+						  Make sure to provide a real email address, <br> in case your password needs to be reset.<br> 
+						  This app stores data in the cloud <br>and links it to users profile credentials only.<br> 
+						  If your password can't be recovered, <br>your data can't be recovered either.</p>
+					  --> 
+					  </ion-card-content>
+					</ion-card-content>
+	  
+					<ion-card-content class="halfHeight inline-self-aligned ">
+					  <form [formGroup]="credentials">
+						<input type="email" formControlName="email" label="Email" label-placement="floating" fill="outline" placeholder="Enter email" />
+						<div class="headFoot"><ion-label>&nbsp;</ion-label></div>
+						<input type="password" formControlName="password" label="Password" label-placement="floating" fill="outline" placeholder="Enter password" />
+						<ion-grid [fixed]="true">
+						  <ion-row>
+							<ion-col><ion-label> </ion-label></ion-col>
+							<ion-col><ion-checkbox class="endOfLine" justify="end">Show password</ion-checkbox></ion-col>
+						  </ion-row>
+						</ion-grid>
+						<ion-button type="button" class="endOfLine" (click)="register()">Sign up</ion-button>
+					  </form>
+					</ion-card-content>
+	  
+					<div class="endOfLine ">
+					  <h4> Already have a profile? &nbsp;</h4>
+					  <h4 class="decorated" (click)="flip()">Go back to 'front' and Sign in! &nbsp;</h4>
+					</div>
+					  
+				  </ion-card-content>
+				</ion-card-content>
+			  </ion-card-content>
+			</ion-card>
+		  </div>
+		</div>
+	  </div>
+	  
+	  
+
+
+
+
+
+<!--
+	<form (ngSubmit)="login()" [formGroup]="credentials">
+			<ion-item fill="solid" class="ion-margin-bottom">
+				<input type="email" placeholder="Email" formControlName="email" /> -->
+				<!-- ************* Investigate additional requirementes to propelly use <ion-input> -->
+			<!--	<ion-note slot="error" *ngIf="(email!.dirty || email!.touched) && email!.errors">Email is invalid</ion-note>-->	
+<!--
+			</ion-item>
+			<ion-item fill="solid" class="ion-margin-bottom">
+				<input type="password" placeholder="Password" formControlName="password" />  -->
+				<!-- ************* Investigate additional requirementes to propelly use <ion-input> -->
+			<!--	<ion-note slot="error" *ngIf="(password!.dirty || password!.touched) && password!.errors">Password needs to be 6 characters</ion-note> -->	
+<!--		</ion-item>
+-->	
+
+			<!--<ion-button type="submit" expand="block" [disabled]="credentials.valid">Log in</ion-button>-->
+<!--			<ion-button type="submit" expand="block">Log in</ion-button>
+			<ion-button type="button" expand="block" color="secondary" (click)="register()">Create account</ion-button>
+		</form>
+-->
+
+}
+
+
+
+
+
+
+
+
+
 
 </ion-content>
+
