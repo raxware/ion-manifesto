@@ -16,10 +16,46 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/public/login/login.page').then( m => m.LoginPage),
     ...canActivate(redirectLoggedInToHome)
   },
+  {
+    path: 'menu',
+    loadComponent: () => import('./pages/private/buttons/menu/menu.page').then( m => m.MenuPage)
+  },
   /*
   {
+    path: 'card-front',
+    loadComponent: () => import('./pages/private/shared/components/card-front/card-front.page').then( m => m.CardFrontPage)
+  },
+  {
+    path: 'card-back',
+    loadComponent: () => import('./pages/private/shared/components/card-back/card-back.page').then( m => m.CardBackPage)
+  },
+  {
+    path: 'info',
+    loadComponent: () => import('./pages/private/buttons/info/info.page').then( m => m.InfoPage)
+  },
+  {
+    path: 'help',
+    loadComponent: () => import('./pages/private/buttons/help/help.page').then( m => m.HelpPage)
+  },
+  {
+    path: 'feedback',
+    loadComponent: () => import('./pages/private/buttons/feedback/feedback.page').then( m => m.FeedbackPage)
+  },
+  {
+    path: 'settings',
+    loadComponent: () => import('./pages/private/buttons/settings/settings.page').then( m => m.SettingsPage)
+  },
+  {
+    path: 'share',
+    loadComponent: () => import('./pages/private/buttons/share/share.page').then( m => m.SharePage)
+  },
+  {
+    path: 'logout',
+    loadComponent: () => import('./pages/private/buttons/logout/logout.page').then( m => m.LogoutPage)
+  },
+  {
     path: 'proto-card',
-    loadComponent: () => import('./shared/components/proto-card/proto-card.page').then( m => m.ProtoCardPage),
+    loadComponent: () => import('./pages/private/shared/proto-card/proto-card.page').then( m => m.ProtoCardPage),
     ...canActivate(redirectUnauthorizedToLogin)
   },
   */

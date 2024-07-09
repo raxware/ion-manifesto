@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AlertController, ToastController, LoadingController } from '@ionic/angular'
+import { AlertController, ToastController, LoadingController } from '@ionic/angular/standalone'
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AlertService {
 
   toast: any; 
@@ -22,9 +23,11 @@ export class AlertService {
     return confirm.inputs;
   }
 
-  async presentToast(message: any){
-  this.toast = await this.toastCtrlr.create({ message, duration: 10000, position: 'bottom' });
-  this.toast.present();
+  async presentToast(msg: any){
+    this.toast = await this.toastCtrlr.create({
+      message: msg, position: 'bottom', duration: 2000,
+    });
+    this.toast.present();
   }
 
   async dismissToast(){
@@ -41,4 +44,5 @@ export class AlertService {
   async dismissDefaultLoading(){
     this.loading.dismiss
   }
+
 }

@@ -1,0 +1,51 @@
+<ion-content [fullscreen]="true">
+    <ion-grid [fixed]="true" class="headTop">
+        <ion-row><ion-col><h1>&nbsp;</h1></ion-col></ion-row>
+        <ion-row>
+          <ion-col>
+            <p class="headLeft downSized">&nbsp;</p>
+            <p class="text-custom upSized">manifesto</p>
+            <p class="bottomRight downSized">Keeping Things Trackable</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+      <ion-grid [fixed]="true">
+        <ion-row><ion-col>&nbsp;</ion-col></ion-row>
+        <ion-row><ion-col>&nbsp;</ion-col></ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button size="large" type="button">
+              <ion-icon slot="icon-only" name="cube"></ion-icon>
+            </ion-button></ion-col>
+          <ion-col>
+            <ion-button size="large" type="button">
+              <ion-icon slot="icon-only" name="cube"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button size="large" type="button">
+              <ion-icon slot="icon-only" name="cube"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row><ion-col></ion-col></ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button size="large" type="button">
+              <ion-icon slot="icon-only" name="cube"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button size="large" type="button">
+              <ion-icon slot="icon-only" name="cube"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button size="large" (click)="logOut()">
+              <ion-icon slot="icon-only" name="log-out"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>

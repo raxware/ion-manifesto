@@ -1,3 +1,7 @@
+ion-content::part(background) {
+    background: transparent !important;
+}
+
 .scene {
     display: block;
     width: 100%;
@@ -30,6 +34,7 @@
       }
     }
   }
+  
   ion-card{
     display: flex;
     justify-content: center;
@@ -54,6 +59,15 @@
     }
   }
   
+  .flex-self-aligned{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    border-radius: 5px;
+    padding: 0%;
+  }
+  
   .inline-self-aligned{
     display: inline-block;
     position: relative;
@@ -68,61 +82,55 @@
     align-content: center;
     text-align: center;
   }
- /*------------------------------------------------------------------------------------------*/
-  .headFoot{
-    position: relative;
-    display: flex;
-    height: 5%;
+  
+  .offUnderSpace{
+    display:inline-block !important;
+    vertical-align: middle;
+    line-height:20px;
+    margin: 0;
+  }
+  
+  .imgFrame {
     width: 100%;
-      //border:#ff7700 dotted .5px;
-  }
-  .endOfLine{
-    position: relative;
-    display:ruby-text !important;
-    text-align: right !important;
-  }
-  .framing{
-    position: absolute;
-    //border: lawngreen dotted .5px;
-  }
-  .decorated{
-    color: #ff400090;
-  }
-  .sized{
-    font-size: 84px;
-    color: #ffcc77;
-  }
-  .quarterWidth{
-    position: relative;
-    display: inline-flex;
-    width: 35%;
-    height: 100%;
-    //  border:#ff0004 dotted .5px;
-  }
-  .quarterHeight{
-    height: 35%;
-    width: 100%;
-    //  border:#0000ff dotted .5px;
-  }
-  .halfHeight{
-    height: 50%;
-    width: 100%;
-    padding: 0%;
-    //  border:#00ff22 dotted .5px;
-  }
-  .fitPlace{
-    position: relative;
-    display: inline;
-    //border:#ff00d9 dotted .5px;
-  }
+    height: fit-content;
+    min-height: 362px;
+    max-height: 374px;
+    //max-height: 374px;
+    background-color: #ffcc7744;
+  } // FRONT CARD IMG ------------ DO NOT CHANGE!!!
+  
+  /*---------------------------------------------NO MORE CHANGE UP FROM HERE ---------------------------------------------*/
+  
   .hiddenContent{
     display: none !important;
   }
-  .contentFull{
+  .contentFront, .contentBack{
     width: 97.5%;
     height: 98.5%;
       //border:#ff00d9 dotted .5px;
   }
+  .contentSpliter{
+    width: 100%;
+    height: auto;
+      //height: 41.5%;
+      //border:#0000ff dotted .5px;
+  }
+  .gridFrame{
+    width: 100%;
+    height: 28.5%;
+      //border:#00eeff dotted .5px;
+  }
+  .gridCell{
+    width: 19.5%;
+    height: 7svh;
+      //border:#dc15ff dotted .8px;
+    margin: .2%;
+  }
+  .thumbFrame{
+      height: 10vh;
+      width: 10vh;
+  }
+  
   /*------------------------------------------------------------------------------------------*/
   img{
     border-radius: 5px;
@@ -132,10 +140,13 @@
     background-color: transparent;
   }
   ion-button{
-    color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255) !important;
+    width: 8vh;
+    height: 8vh;
   }
   ion-icon{
-    color: #ffcc77;
+    //color: #ffcc77;
+    color: #ffffff;
     font-size: 48px;
   }
   ion-img::part(image) {

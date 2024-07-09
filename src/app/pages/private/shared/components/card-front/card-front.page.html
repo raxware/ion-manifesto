@@ -1,0 +1,67 @@
+<ion-content [fullscreen]="true">
+
+  <ion-card-content class="imgFrame inline-self-aligned child-align">
+    @if (item && item.picture) {
+      <ion-img class="offUnderSpace" (press)="addImage()" [src]="item.picture" alt="Item"></ion-img>
+    } @else {
+      <ion-img class="offUnderSpace" (press)="addImage()" src="../../assets/plus2.jpg" alt=""></ion-img>
+    }
+  </ion-card-content>
+
+  <ion-card-content class="contentSpliter inline-self-aligned child-align">
+        <ion-card-header>
+          <ion-card-title (press)="callSomethingElse()">{{item?.name}}</ion-card-title>
+        </ion-card-header>
+  </ion-card-content>
+
+  <ion-card-content class="contentSpliter inline-self-aligned child-align">
+    @if (item && (item.maker !== 'Name')) {
+      <ion-card-header>
+        <ion-card-title (press)="callSomethingElse()">{{item.name}}</ion-card-title>
+      </ion-card-header>
+    } @else {
+      <ion-card-header>
+      <ion-card-title class="hiddenContent">{{item?.maker}}</ion-card-title>
+      </ion-card-header>
+    }
+  </ion-card-content>
+
+  <ion-card-content class="contentSpliter inline-self-aligned child-align">
+
+    <ion-card-content class="gridFrame inline-self-aligned child-align">
+      <ion-card-content class="gridCell inline-self-aligned child-align">
+        <ion-button size="large" type="button" (click)="dummyAlert()">
+          <ion-icon slot="icon-only" name="{{typeIcon}}"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+
+      <ion-card-content class="gridCell inline-self-aligned child-align">
+        <ion-button size="large" type="button" (click)="dummyToast('hello')">
+          <ion-icon slot="icon-only" name="{{typeIcon}}" (press)="callSomethingElse"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+
+      <ion-card-content class="gridCell inline-self-aligned child-align">
+        <ion-button size="large" type="button" (click)="dummyAlert()">
+          <ion-icon slot="icon-only" name="{{typeIcon}}"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+
+      <ion-card-content class="gridCell inline-self-aligned child-align">
+        <ion-button size="large" type="button" (click)="dummyToast('world')">
+          <ion-icon slot="icon-only" name="{{typeIcon}}" (press)="callSomethingElse">
+        </ion-icon>
+      </ion-button>
+      </ion-card-content>
+
+      <ion-card-content class="gridCell inline-self-aligned child-align">
+        <ion-button size="large" type="button" (click)="dummyAlert()">
+          <ion-icon slot="icon-only" name="{{typeIcon}}"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+    
+    </ion-card-content>
+
+  </ion-card-content>
+
+</ion-content>

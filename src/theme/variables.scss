@@ -1,9 +1,20 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
 
+
 ion-content::part(background) {
   //background-image: url(/../../../assets/whiteNBG.png), linear-gradient(#ff400012, #ffcd7724);
   background-image: url(/../../../assets/whiteNBG.png), linear-gradient(#ffb62516, #ffcd7710);
   background-size: 33.3%;
 }
 
+
+/*
+//splash background
+ion-content::part(background) {
+  background-color: rgb(39, 39, 39); 
+  background-image: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 100%);
+  background-size: 100% !important;
+}
+
+*/

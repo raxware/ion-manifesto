@@ -1,15 +1,15 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonSegment } from '@ionic/angular/standalone';
 import { Item } from 'src/app/model/interfaces';
 import { ItemCardComponent } from 'src/app/shared/components/item-card/item-card.component';
-import { HeaderComponent } from 'src/app//shared/components/header/header.component';
+import { HeaderComponent } from 'src/app/pages/private/shared/header/header.component';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, HeaderComponent, ItemCardComponent],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, HeaderComponent, ItemCardComponent, IonSegment],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class Tab1Page {

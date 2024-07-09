@@ -1,3 +1,14 @@
+.altHeader {
+    //background: transparent;
+    //background: #8080804e;
+    .header-image {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 1.75vh;
+      width: 15%;
+    }
+}
 
 ion-item-option {
     --background: transparent;
@@ -8,7 +19,7 @@ ion-item-option {
     --color: #aaaaaa;
 }
 ion-thumbnail { 
-    --size: 5vh;
+    --size: 7vh;
     --border-radius: 5px; 
 }
 ion-list { --ion-item-background: #fffcf660;}

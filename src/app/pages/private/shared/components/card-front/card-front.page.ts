@@ -1,32 +1,26 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { IonIcon, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, 
-  IonChip, IonLabel, IonCardSubtitle, IonAlert, IonButton, IonInput, IonItem, 
-  IonThumbnail, IonItemOption, IonSegment,
-} from "@ionic/angular/standalone";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardContent, IonImg, IonCardHeader, IonCardTitle, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Item } from 'src/app/model/interfaces';
 import { PhotoService } from 'src/app/services/photo.service';
 import { AlertService } from 'src/app/services/alert-service.service';
-import { addIcons } from 'ionicons';
 import { book, brush, build, calculator, camera, chatbubbles, 
   checkmarkCircle, cube, diamond, dice, disc, extensionPuzzle, 
   film, gameController, home, images, language, medkit, rocket, 
   shirt, thumbsDown, thumbsUp, wine, cash, musicalNotes,
   person, 
 } from 'ionicons/icons';
-import { CardFrontPage } from "../../../pages/private/shared/components/card-front/card-front.page";
-import { CardBackPage } from "../../../pages/private/shared/components/card-back/card-back.page";
+import { addIcons } from 'ionicons';
 
 @Component({
-    selector: 'app-item-card',
-    templateUrl: './item-card.component.html',
-    styleUrls: ['./item-card.component.scss'],
-    standalone: true,
-    imports: [IonButton, IonAlert, IonCardSubtitle, IonLabel,
-        IonChip, IonCardContent, IonCardTitle, IonCardHeader,
-        IonCard, IonImg, IonInput, IonIcon, IonItem, IonSegment, IonThumbnail,
-        IonItemOption, CardFrontPage, CardBackPage]
+  selector: 'app-card-front',
+  templateUrl: './card-front.page.html',
+  styleUrls: ['./card-front.page.scss'],
+  standalone: true,
+  imports: [IonIcon, IonButton, IonCardTitle, IonCardHeader, IonImg, IonCardContent, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
-export class ItemCardComponent implements OnInit{
+export class CardFrontPage implements OnInit{
  
   @Input() isFlipped: boolean = false;
   @Input() item?: Item;
@@ -81,6 +75,7 @@ export class ItemCardComponent implements OnInit{
           this.item.picture = value.webviewPath;
           if ((this.item!.type === 'Type')){
           this.addType();
+          //console.log(this.item!.picture);
           }
         }
       });
@@ -108,8 +103,12 @@ export class ItemCardComponent implements OnInit{
        { label: 'Tools', type: 'radio', value: 'Tools' },
        { label: 'Cloth', type: 'radio', value: 'Cloth' },
        { label: 'Comic', type: 'radio', value: 'Comic' },
+       /*
+       { label: 'Comic', type: 'radio', value: 'Comic' },
        { label: 'Wine', type: 'radio', value: 'Wine'},
        { label: 'Currency', type: 'radio', value: 'Currency'},
+       { label: 'Human', type: 'radio', value: 'Human' },
+       */
       ],
       [{text: 'Cancel', role: 'cancel', handler: (alertData: string) => { this.item!.type = 'undefined'; console.log('addType cancel', alertData); }}, 
        {text: 'Ok', handler: (alertData: string) => { this.item!.type = alertData; this.typeSelector(this.item!.type);}}
@@ -125,6 +124,7 @@ export class ItemCardComponent implements OnInit{
       case "Comic": this.typeIcon = 'chatbubbles'; this.thingMaker = "Author"; this.thingName = sellectedType ; break;
       case "Wine": this.typeIcon = 'wine'; this.thingMaker = "Producer"; this.thingName = sellectedType ; break;
       case "Currency": this.typeIcon = 'cash'; this.thingMaker = "Country"; this.thingName = sellectedType ; break;
+      case "Human": this.typeIcon = 'person'; this.thingMaker = "Surname"; this.thingName = sellectedType ; break;
     }
   }
 
@@ -152,5 +152,3 @@ export class ItemCardComponent implements OnInit{
   }
 
 }
-
-

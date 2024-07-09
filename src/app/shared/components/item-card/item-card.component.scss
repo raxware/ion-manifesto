@@ -118,7 +118,7 @@ ion-card{
 }
 .gridCell{
   width: 19.5%;
-  height: 7.5svh;
+  height: 7svh;
     //border:#dc15ff dotted .8px;
   margin: .2%;
 }
@@ -136,10 +136,13 @@ ion-card-header{
   background-color: transparent;
 }
 ion-button{
-  color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255) !important;
+  width: 8vh;
+  height: 8vh;
 }
 ion-icon{
-  color: #ffcc77;
+  //color: #ffcc77;
+  color: #ffffff;
   font-size: 48px;
 }
 ion-img::part(image) {

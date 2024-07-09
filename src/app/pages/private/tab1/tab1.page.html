@@ -6,7 +6,9 @@
   </div>
   <swiper-container pagination-type="fraction" keyboard-enabled="true" grab-Cursor="true" [allowSlideNext]="allowSlideCard" [allowSlidePrev]="allowSlideCard">
     @for (slide of slides; track slide.id; let i = $index) {
-      <swiper-slide><app-item-card [item]="slide" [isFlipped]="currentCardFlipped" (flipCard)="flip($event)"></app-item-card></swiper-slide>
+      <swiper-slide>
+        <app-item-card [item]="slide" [isFlipped]="currentCardFlipped" (flipCard)="flip($event)"></app-item-card>
+      </swiper-slide>
     } @empty {
       No slides.
     }
@@ -24,5 +26,6 @@
       <ion-label>Unboxed</ion-label>
     </ion-segment-button>
   </ion-segment>
+  
 </ion-content>
 

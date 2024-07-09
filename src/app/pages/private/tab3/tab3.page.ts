@@ -2,7 +2,8 @@ import { Component, Input } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, 
   IonItemSliding, IonItem, IonLabel, IonItemOptions, IonItemOption, 
   IonIcon, IonThumbnail, IonRippleEffect, IonImg } from '@ionic/angular/standalone';
-import { ProtoCardPage } from 'src/app/shared/components/proto-card/proto-card.page';
+import { ProtoCardPage } from '../shared/proto-card/proto-card.page';
+
 @Component({
     selector: 'app-tab3',
     templateUrl: 'tab3.page.html',
@@ -22,5 +23,7 @@ export class Tab3Page {
   public containersArray = new Array(12);
 
   constructor() {}
+
+  
 }
 

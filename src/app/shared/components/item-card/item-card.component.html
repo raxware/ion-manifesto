@@ -4,9 +4,12 @@
       <ion-card>
         <ion-card-content class="whiteBorder flex-self-aligned">
           <ion-card-content class="bgLayer flex-self-aligned">
-
-
             <ion-card-content class="contentFront inline-self-aligned">
+
+             <!-- ************************************************************************** -->
+              <!--
+
+
               <ion-card-content class="imgFrame inline-self-aligned child-align">
                 @if (item && item.picture) {
                   <ion-img class="offUnderSpace" (press)="addImage()" [src]="item.picture" alt="Item"></ion-img>
@@ -16,13 +19,13 @@
               </ion-card-content>
               <ion-card-content class="contentSpliter inline-self-aligned child-align">
                     <ion-card-header>
-                      <ion-card-title>{{item?.name}}</ion-card-title>
+                      <ion-card-title (press)="callSomethingElse()">{{item?.name}}</ion-card-title>
                     </ion-card-header>
               </ion-card-content>
               <ion-card-content class="contentSpliter inline-self-aligned child-align">
                 @if (item && (item.maker !== 'Name')) {
                 <ion-card-header>
-                  <ion-card-title>{{item.maker}}</ion-card-title>
+                  <ion-card-title (press)="callSomethingElse()">{{item.name}}</ion-card-title>
                 </ion-card-header>
               } @else {
                 <ion-card-header>
@@ -32,15 +35,41 @@
               </ion-card-content>
               <ion-card-content class="contentSpliter inline-self-aligned child-align">
                       <ion-card-content class="gridFrame inline-self-aligned child-align">
-                        <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="{{typeIcon}}"></ion-icon></ion-card-content>
-                        <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="" (press)="callSomethingElse"></ion-icon></ion-card-content>
-                        <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="" (press)="callSomethingElse"></ion-icon></ion-card-content>
-                        <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="" (press)="callSomethingElse"></ion-icon></ion-card-content>
-                        <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="" (press)="callSomethingElse"></ion-icon></ion-card-content>
+                        <ion-card-content class="gridCell inline-self-aligned child-align">
+                          <ion-button size="large" type="button" (click)="dummyAlert()">
+                            <ion-icon slot="icon-only" name="{{typeIcon}}"></ion-icon>
+                          </ion-button>
+                        </ion-card-content>
+                        <ion-card-content class="gridCell inline-self-aligned child-align">
+                          <ion-button size="large" type="button" (click)="dummyToast('hello')">
+                            <ion-icon slot="icon-only" name="{{typeIcon}}" (press)="callSomethingElse"></ion-icon>
+                          </ion-button>
+                        </ion-card-content>
+                        <ion-card-content class="gridCell inline-self-aligned child-align">
+                          <ion-button size="large" type="button" (click)="dummyAlert()">
+                            <ion-icon slot="icon-only" name="{{typeIcon}}"></ion-icon>
+                          </ion-button>
+                        </ion-card-content>
+                        <ion-card-content class="gridCell inline-self-aligned child-align">
+                          <ion-button size="large" type="button" (click)="dummyToast('world')">
+                            <ion-icon slot="icon-only" name="{{typeIcon}}" (press)="callSomethingElse">
+                          </ion-icon>
+                        </ion-button>
+                        </ion-card-content>
+                        <ion-card-content class="gridCell inline-self-aligned child-align">
+                          <ion-button size="large" type="button" (click)="dummyAlert()">
+                            <ion-icon slot="icon-only" name="{{typeIcon}}"></ion-icon>
+                          </ion-button>
+                        </ion-card-content>
+                      
                       </ion-card-content>
               </ion-card-content>
-            </ion-card-content>
 
+
+
+              -->
+             <!-- ************************************************************************** --> 
+            </ion-card-content>
             
           </ion-card-content>
         </ion-card-content>
@@ -50,26 +79,41 @@
       <ion-card>
         <ion-card-content class="whiteBorder flex-self-aligned">
           <ion-card-content class="bgLayer flex-self-aligned">
-
-
             <ion-card-content class="contentBack inline-self-aligned">
+             <!-- ************************************************************************** -->
+              
+
+             <!--
+            
               <ion-card-content class="contentSpliter inline-self-aligned child-align">
-
-
                 <ion-card-content class="gridFrame inline-self-aligned child-align">
-                  <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="" (press)="callSomethingElse"></ion-icon></ion-card-content>                  
-                  <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="{{typeIcon}}" (press)="openType()"></ion-icon></ion-card-content>
-                  <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="" (press)="callSomethingElse"></ion-icon></ion-card-content>
                   <ion-card-content class="gridCell inline-self-aligned child-align">
-                              <ion-thumbnail class="thumbFrame">
-                                @if (item && item.picture) {
-                                  <img class="offUnderSpace" (press)="editImage()" [src]="item.picture" alt="Item" />
-                                } @else {
-                                  <img class="offUnderSpace" (press)="editImage()" />
-                                }
-                              </ion-thumbnail>
+                    <ion-button size="large" (press)="callSomethingElse">
+                      <ion-icon slot="icon-only" name="{{typeIcon}}"></ion-icon>
+                    </ion-button>
+                  </ion-card-content>                  
+                  <ion-card-content class="gridCell inline-self-aligned child-align">
+                    <ion-button size="large" (press)="openType()">
+                      <ion-icon slot="icon-only" name="{{typeIcon}}"></ion-icon>
+                    </ion-button>
                   </ion-card-content>
-                  <ion-card-content class="gridCell inline-self-aligned child-align"><ion-icon class="thumbFrame offUnderSpace" name="" (press)="callSomethingElse"></ion-icon></ion-card-content>
+                  <ion-card-content class="gridCell inline-self-aligned child-align">
+                    <ion-button size="large" (press)="callSomethingElse">
+                      <ion-icon slot="icon-only" name="{{typeIcon}}"></ion-icon>
+                    </ion-button>
+                  </ion-card-content>
+                  <ion-card-content class="gridCell inline-self-aligned child-align">
+                    <ion-thumbnail class="thumbFrame">
+                      @if (item && item.picture) {
+                        <img class="offUnderSpace" (press)="editImage()" [src]="item.picture" alt="Item" />
+                      } @else {
+                        <img class="offUnderSpace" (press)="editImage()" />
+                      }
+                    </ion-thumbnail>
+                  </ion-card-content>
+                  <ion-card-content class="gridCell inline-self-aligned child-align">
+                    <ion-icon slot="icon-only" name="{{typeIcon}}"></ion-icon>
+                  </ion-card-content>
                 </ion-card-content>
                 <ion-card-content class="gridFrame inline-self-aligned child-align"></ion-card-content>
               </ion-card-content>
@@ -88,9 +132,14 @@
                   <ion-input id="input1" class="thingMaker" label="{{thingMaker}}" label-placement="floating" fill="outline" placeholder="{{thingMaker}}" blur=""></ion-input>
                 </ion-card-content>
               </ion-card-content>
+             --> 
+
+
+
+
+
             </ion-card-content>
-
-
+           <!-- ************************************************************************** --> 
           </ion-card-content>
         </ion-card-content>
       </ion-card>

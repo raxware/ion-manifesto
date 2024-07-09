@@ -1,14 +1,7 @@
-.altHeader {
-  background: transparent;
-  //background: #8080804e;
-  .header-image {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 1.75vh;
-    width: 15%;
-  }
+ion-content::part(background) {
+    background: transparent !important;
 }
+
 .scene {
     display: block;
     width: 100%;
@@ -40,8 +33,8 @@
         }
       }
     }
-}
-ion-card{
+  }
+  ion-card{
     display: flex;
     justify-content: center;
     background: linear-gradient(rgb(255, 204, 119), #ffeecc);
@@ -63,44 +56,60 @@ ion-card{
         background-position: center;
       }
     }
-}
+  }
   
-.inline-self-aligned{
+  .inline-self-aligned{
     display: inline-block;
     position: relative;
     justify-content: center;
     align-self: center;
     border-radius: 5px;
     padding: 0%;
-}
+  }
   
-.child-align{
+  .child-align{
     align-items: center;
     align-content: center;
     text-align: center;
-}
-/*------------------------------------------------------------------------------------------*/
-.topRel{
-  position: relative;
-  border-radius: 5px;
-  top:0%;
-  display:ruby-text !important;
-  text-align: center !important;
   }
-  .topAbs{
+ /*------------------------------------------------------------------------------------------*/
+
+ .headLeft{
     position: absolute;
-    border-radius: 5px;
     top:0%;
-    }
-  .headLeft{
-  position: relative;
-  top:0%;
-  width: 98%;
-  display:ruby-text !important;
-  text-align: left !important;
-}
+    width: 98%;
+    display:ruby-text !important;
+    text-align: left !important;
+  }
+  .headTop{
+    position: relative;
+    top:0%;
+  }
+  .bottomRight{
+    position: absolute; 
+    bottom: 0%; 
+    width: 98%;
+    display:ruby-text !important;
+    text-align: right !important;
+    //border:#ff00d9 dotted .5px;
+  }
   .decorated{
     color: #ff400090;
+  }
+  .diagonal{
+    transform: rotate(-30deg);
+  }
+  .border{
+    border: rgb(0, 0, 0) dotted .5px;
+  }
+  .borderR{
+    border: rgb(252, 0, 0) dotted .5px;
+  }
+  .borderG{
+    border: rgb(88, 252, 0) dotted .5px;
+  }
+  .borderB{
+    border: rgb(4, 0, 252) dotted .5px;
   }
   .upSized{
     font-size: 9.37vh;
@@ -109,32 +118,6 @@ ion-card{
   .downSized{
     font-size: 1.4vh;
   }
-  .rightPlace{
-    display: ruby-text-container;
-    text-align: right;
-    // border:#ff00d9 dotted .5px;
-  }
-  .bottomRight{
-    position: absolute; 
-    bottom: 0%; 
-    width: 100%;
-    display:ruby-text !important;
-    text-align: right !important;
-    //border:#ff00d9 dotted .5px;
-  }
-
-
-
-  .endOfLine{
-    position: relative;
-    display:ruby-text !important;
-    text-align: right !important;
-  }
-  .framing{
-    position: absolute;
-    //border: lawngreen dotted .5px;
-  }
-
   .quarterWidth{
     position: relative;
     display: inline-flex;
@@ -153,10 +136,10 @@ ion-card{
     padding: 0%;
     //  border:#00ff22 dotted .5px;
   }
-  .fitPlace{
-    position: relative;
-    display: inline;
-    //border:#ff00d9 dotted .5px;
+  .rightPlace{
+    display: ruby-text-container;
+    text-align: right;
+    border:#ff00d9 dotted .5px;
   }
   .hiddenContent{
     display: none !important;
@@ -176,9 +159,11 @@ ion-card{
   }
   ion-button{
     color: rgb(255, 255, 255);
+    width: 8vh;
+    height: 8vh;
   }
   ion-icon{
-    color: #ffcc77;
+    color: #ffffff !important ;
     font-size: 48px;
   }
   ion-img::part(image) {
@@ -186,31 +171,3 @@ ion-card{
     max-width: 374px;
     max-height: 374px;
   }
-
-  .border{
-    border: rgb(0, 0, 0) dotted .5px;
-  }
-  .borderR{
-    border: rgb(252, 0, 0) dotted .5px;
-  }
-  .borderG{
-    border: rgb(88, 252, 0) dotted .5px;
-  }
-  .borderB{
-    border: rgb(4, 0, 252) dotted .5px;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

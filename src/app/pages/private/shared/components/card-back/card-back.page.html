@@ -1,0 +1,52 @@
+<ion-content [fullscreen]="true">
+
+  <ion-card-content class="contentSpliter inline-self-aligned child-align">
+    <ion-card-content class="gridFrame inline-self-aligned child-align">
+      <ion-card-content class="gridCell inline-self-aligned child-align">
+        <ion-button size="large" (press)="callSomethingElse()">
+          <ion-icon slot="icon-only" name="{{typeIcon}}"></ion-icon>
+        </ion-button>
+      </ion-card-content>                  
+      <ion-card-content class="gridCell inline-self-aligned child-align">
+        <ion-button size="large" (press)="openType()">
+          <ion-icon slot="icon-only" name="{{typeIcon}}"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+      <ion-card-content class="gridCell inline-self-aligned child-align">
+        <ion-button size="large" (press)="callSomethingElse()">
+          <ion-icon slot="icon-only" name="{{typeIcon}}"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+      <ion-card-content class="gridCell inline-self-aligned child-align">
+        <ion-thumbnail class="thumbFrame">
+          @if (item && item.picture) {
+            <img class="offUnderSpace" (press)="editImage()" [src]="item.picture" alt="Item" />
+          } @else {
+            <img class="offUnderSpace" (press)="editImage()" />
+          }
+        </ion-thumbnail>
+      </ion-card-content>
+      <ion-card-content class="gridCell inline-self-aligned child-align">
+        <ion-icon slot="icon-only" name="{{typeIcon}}"></ion-icon>
+      </ion-card-content>
+    </ion-card-content>
+    <ion-card-content class="gridFrame inline-self-aligned child-align"></ion-card-content>
+  </ion-card-content>
+
+  <ion-card-content class="contentSpliter inline-self-aligned child-align">
+    <ion-card-content>
+      <ion-input id="input0" class="thingName" label="{{thingName}}" label-placement="floating" fill="outline" placeholder="{{item!.name}}" blur=""></ion-input>
+    </ion-card-content>
+  </ion-card-content>
+  <ion-card-content class="contentSpliter inline-self-aligned child-align">
+    <ion-card-content>
+      <ion-input id="input1" class="thingMaker" label="{{thingMaker}}" label-placement="floating" fill="outline" placeholder="{{item!.maker}}" blur=""></ion-input>
+    </ion-card-content>
+  </ion-card-content>
+  <ion-card-content class="contentSpliter inline-self-aligned child-align hiddenContent">
+    <ion-card-content>
+      <ion-input id="input1" class="thingMaker" label="{{thingMaker}}" label-placement="floating" fill="outline" placeholder="{{thingMaker}}" blur=""></ion-input>
+    </ion-card-content>
+  </ion-card-content>
+
+</ion-content>
