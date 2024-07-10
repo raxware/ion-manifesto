@@ -2,6 +2,7 @@ import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { albums, cube, archive, trash, create, eye } from 'ionicons/icons';
+import { PushService } from 'src/app/services/push.service';
 
 @Component({
   selector: 'app-tabs',
@@ -13,7 +14,9 @@ import { albums, cube, archive, trash, create, eye } from 'ionicons/icons';
 export class TabsPage {
   public environmentInjector = inject(EnvironmentInjector);
 
-  constructor() {
-    addIcons({ albums, cube, archive, trash, create, eye });
+  constructor(private pushService: PushService) {
+    addIcons({ albums, cube, archive });
+    this.pushService.registerNotifications();
+    this.pushService.addListeners();
   }
 }

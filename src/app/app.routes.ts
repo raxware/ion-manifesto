@@ -16,11 +16,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/public/login/login.page').then( m => m.LoginPage),
     ...canActivate(redirectLoggedInToHome)
   },
+  
+  /*
   {
     path: 'menu',
     loadComponent: () => import('./pages/private/buttons/menu/menu.page').then( m => m.MenuPage)
   },
-  /*
   {
     path: 'card-front',
     loadComponent: () => import('./pages/private/shared/components/card-front/card-front.page').then( m => m.CardFrontPage)
