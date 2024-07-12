@@ -1,0 +1,40 @@
+
+ion-item-option {
+    --background: transparent;
+    --ion-color-success: #afe056;
+    --ion-color-primary: #ffcc77;
+    --ion-color-danger: #ef475b;
+    --ion-color-primary-shade: transparent;
+    --color: #aaaaaa;
+}
+ion-thumbnail { 
+    --size: 7vh;
+    --border-radius: 5px; 
+}
+ion-list { --ion-item-background: #fffcf660;}
+ion-toolbar { 
+    --background: linear-gradient(#ffffff, #fffcf6, #fef8ec, #ffeecc); 
+    --color: #aaaaaa; 
+}
+ion-item{
+    --background: linear-gradient(135deg,rgba(255, 204, 119, 0) 14%, rgb(255, 233, 199, .4) 48%, rgb(255, 255, 255, .8) 100%);
+    --color: #aaaaaa;
+    //--border-color: transparent;
+}
+ion-content::part(ion-text-wrap){
+    --color: #ffcc77 !important;
+}
+h2{
+    color: #ffcc77 !important;
+}
+img{
+    height: 100%;
+}
+.noRipple{
+    --ripple-color: transparent !important;
+    --background-hover: transparent !important;
+}
+
+.customRipple {
+    color: #ffcc77;
+}

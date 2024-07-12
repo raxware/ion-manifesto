@@ -32,3 +32,22 @@ export interface Local {
   picture: string;
   tags: string[];
 }
+
+export interface Pin {
+  address: string;
+  title: string;
+  reference: string;
+  geoCoordinates: {lat: 0, lng: 0}
+}
+
+export interface UserOptions {
+  username: string;
+  password: string;
+}
+
+export interface Subjects {
+  id: number;
+  title: string;
+  description: string;
+  route: string;
+}

@@ -122,8 +122,14 @@ ion-card{
     text-align: right !important;
     //border:#ff00d9 dotted .5px;
   }
-
-
+  .bottomLeft{
+    position: absolute; 
+    bottom: 0%; 
+    width: 100%;
+    display:ruby-text !important;
+    text-align: left !important;
+    //border:#ff00d9 dotted .5px;
+  }
 
   .endOfLine{
     position: relative;

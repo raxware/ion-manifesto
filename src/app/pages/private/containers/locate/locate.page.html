@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Locations</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title size="large">Locations</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  @defer(when this.center.lat !== 0) {
+    <google-map
+      id="map"
+      width="100%"
+      height="100%"
+      [mapId]="'map-id'"
+      [center]="center"
+      [options]="options">
+      @for (m of pinFlags; track m.title) {
+        <map-advanced-marker
+          #marker="mapAdvancedMarker"
+          [position]="m.geoCoordinates"
+          (mapClick)="openInfoWindow(marker, infoWindow)" >
+        </map-advanced-marker>
+        <map-info-window
+          #infoWindow="mapInfoWindow"
+          >
+          <h3>{{m.title}}</h3>
+          <div>{{m.reference}}</div>
+        </map-info-window>
+      }
+    </google-map>
+  
+  } @placeholder {
+  
+    <!--<div>displayed until user.name is not equal to Angular</div>-->
+  
+  } @loading(after 10ms; minimum 1s) {
+  
+    <!--<mat-spinner></mat-spinner>-->
+  
+  } @error {
+  
+    <div>ERROR</div>
+  
+  }
+  <!--
+  <div>Latitude: {{display?.lat}}</div>
+  <div>Longitude: {{display?.lng}}</div>
+  -->
+
+
+</ion-content>

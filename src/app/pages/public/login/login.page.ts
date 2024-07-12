@@ -2,7 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonNote, IonButton, 
-	IonCardContent, IonCard, IonGrid, IonRow, IonCol, IonLabel, IonCheckbox, IonInput, IonImg } from '@ionic/angular/standalone';
+	IonCardContent, IonCard, IonGrid, IonRow, IonCol, IonLabel, IonCheckbox, IonInput, 
+	IonImg, IonInputPasswordToggle
+} from '@ionic/angular/standalone';
 import { AlertController, ToastController, LoadingController } from '@ionic/angular'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -16,7 +18,7 @@ import { AuthService } from 'src/app/services/auth.service';
 	IonGrid, IonCard, IonCardContent, IonButton, 
 	IonNote, IonItem, IonContent, IonHeader, 
 	IonTitle, IonToolbar, CommonModule, FormsModule, 
-	ReactiveFormsModule]
+	ReactiveFormsModule, IonInputPasswordToggle]
 })
 export class LoginPage implements OnInit {
 	credentials!: FormGroup;

@@ -16,8 +16,36 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/public/login/login.page').then( m => m.LoginPage),
     ...canActivate(redirectLoggedInToHome)
   },
-  
-  /*
+  {
+    path: "details/:id",
+    loadChildren: () =>
+      import("./shared/details/details.routes").then(m => m.DetailsPageRoutingModule)
+  },
+  {
+    path: 'locate',
+    loadComponent: () => import('./pages/private/containers/locate/locate.page').then( m => m.LocatePage)
+  },
+    /*
+  {
+    path: 'main',
+    loadComponent: () => import('./pages/private/containers/main/main.page').then( m => m.MainPage)
+  },
+  {
+    path: 'boxes',
+    loadComponent: () => import('./pages/private/containers/boxes/boxes.page').then( m => m.BoxesPage)
+  },
+  {
+    path: 'lists',
+    loadComponent: () => import('./pages/private/containers/lists/lists.page').then( m => m.ListsPage)
+  },
+  {
+    path: 'search',
+    loadComponent: () => import('./pages/private/containers/search/search.page').then( m => m.SearchPage)
+  },
+  {
+    path: 'people',
+    loadComponent: () => import('./pages/private/containers/people/people.page').then( m => m.PeoplePage)
+  },
   {
     path: 'menu',
     loadComponent: () => import('./pages/private/buttons/menu/menu.page').then( m => m.MenuPage)
