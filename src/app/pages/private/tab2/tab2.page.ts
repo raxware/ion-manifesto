@@ -12,7 +12,8 @@ import { book, brush, build, calculator, camera, chatbubbles,
   shirt, thumbsDown, thumbsUp, wine, cash, musicalNotes,
   person, logOut, logOutOutline, logOutSharp, helpCircle, 
   helpCircleOutline, send, informationCircleOutline,
-  informationCircle, settings, mail, mailOutline
+  informationCircle, settings, mail, mailOutline,
+  personCircleOutline, personCircleSharp, personCircle,
 } from 'ionicons/icons';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
@@ -48,7 +49,8 @@ export class Tab2Page implements OnInit{
       chatbubbles, medkit, images, extensionPuzzle, rocket, language, cube, gameController, 
       disc, thumbsUp, thumbsDown, home, checkmarkCircle, cash, musicalNotes, person, logOut, 
       logOutOutline, logOutSharp, helpCircle, helpCircleOutline, send, informationCircle, 
-      informationCircleOutline, settings, mail, mailOutline
+      informationCircleOutline, settings, mail, mailOutline, personCircleOutline, personCircleSharp, 
+      personCircle
     });
   }
 
