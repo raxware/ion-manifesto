@@ -67,7 +67,6 @@ export class MainPage implements OnInit {
   
   }
 
-
   anotherAction(){
     console.log('whatever');
   }

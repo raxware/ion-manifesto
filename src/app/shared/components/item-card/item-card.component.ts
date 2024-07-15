@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { IonIcon, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, 
   IonChip, IonLabel, IonCardSubtitle, IonAlert, IonButton, IonInput, IonItem, 
-  IonThumbnail, IonItemOption, IonSegment,
-} from "@ionic/angular/standalone";
+  IonThumbnail, IonItemOption, IonSegment, IonGrid, IonRow, IonCol } from "@ionic/angular/standalone";
 import { Item } from 'src/app/model/interfaces';
 import { PhotoService } from 'src/app/services/photo.service';
 import { AlertService } from 'src/app/services/alert-service.service';
@@ -21,7 +20,7 @@ import { CardBackPage } from "../../../pages/private/shared/components/card-back
     templateUrl: './item-card.component.html',
     styleUrls: ['./item-card.component.scss'],
     standalone: true,
-    imports: [IonButton, IonAlert, IonCardSubtitle, IonLabel,
+    imports: [IonCol, IonRow, IonGrid, IonButton, IonAlert, IonCardSubtitle, IonLabel,
         IonChip, IonCardContent, IonCardTitle, IonCardHeader,
         IonCard, IonImg, IonInput, IonIcon, IonItem, IonSegment, IonThumbnail,
         IonItemOption, CardFrontPage, CardBackPage]

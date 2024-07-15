@@ -1,31 +1,39 @@
 
 <ion-content [fullscreen]="true" (swipedown)="showHideTabs()">
-  <div class="altHeader">
-    <!--<div class="place-badge"><ion-badge style="position:absolute; z-index:100" color="success">5</ion-badge></div>-->
-    <ion-img class="header-image" src="../../assets/logo.png" alt="Header image"></ion-img>
-  </div>
-  <swiper-container pagination-type="fraction" keyboard-enabled="true" grab-Cursor="true" [allowSlideNext]="allowSlideCard" [allowSlidePrev]="allowSlideCard">
-    @for (slide of slides; track slide.id; let i = $index) {
-      <swiper-slide>
-        <app-item-card [item]="slide" [isFlipped]="currentCardFlipped" (flipCard)="flip($event)"></app-item-card>
-      </swiper-slide>
-    } @empty {
-      No slides.
-    }
-  </swiper-container>
+  <ion-grid [fixed]="true" class="noPadding">
+        <div class="altHeader">
+          <ion-img class="header-image" src="../../assets/logo.png"></ion-img>
+        </div>
+  </ion-grid>
+  <ion-grid [fixed]="true" style="height:85.5%" class="noPadding">
+       <swiper-container pagination-type="fraction" [allowSlideNext]="allowSlideCard" [allowSlidePrev]="allowSlideCard">
+          @for (slide of slides; track slide.id; let i = $index) {
+            <swiper-slide>
+              <app-item-card [item]="slide" [isFlipped]="currentCardFlipped" (flipCard)="flip($event)"></app-item-card>
+            </swiper-slide>
+          
+          } @empty {
+            No slides.
+          }
+        </swiper-container>
+  </ion-grid>
+  <ion-grid [fixed]="true" class="noPadding">
+    <ion-segment value="buttons">
+      <ion-segment-button value="default">
+        <ion-label>Default</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="segment">
+        <ion-label>Segment</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="buttons">
+        <ion-label>Button</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-grid>
 
 
-  <ion-segment value="buttons">
-    <ion-segment-button value="default">
-      <ion-label>Default</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="segment">
-      <ion-label>Segment</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="buttons">
-      <ion-label>Button</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-  
 </ion-content>
 
+<!--
+keyboard-enabled="true" grab-Cursor="true"
+-->

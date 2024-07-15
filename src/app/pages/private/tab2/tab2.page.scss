@@ -1,11 +1,11 @@
 .altHeader {
-  background: transparent;
+  //background: transparent;
   //background: #8080804e;
   .header-image {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 1.75vh;
+    margin-top: 0vh;
     width: 15%;
   }
 }
@@ -41,6 +41,7 @@
     }
   }
 }
+
 ion-card{
   display: flex;
   justify-content: center;
@@ -273,15 +274,19 @@ ion-img::part(image) {
 
 
 
+.noPadding{
+  padding: 0%;
+}
+
 .border{
-  border: rgb(0, 0, 0) dotted .5px;
+  border: rgb(0, 0, 0) dotted 1px;
 }
 .borderR{
-  border: rgb(252, 0, 0) dotted .5px;
+  border: rgb(252, 0, 0) dotted 1px;
 }
 .borderG{
-  border: rgb(88, 252, 0) dotted .5px;
+  border: rgb(88, 252, 0) dotted 1px;
 }
 .borderB{
-  border: rgb(4, 0, 252) dotted .5px;
+  border: rgb(4, 0, 252) dotted 1px;
 }

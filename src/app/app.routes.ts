@@ -12,11 +12,15 @@ export const routes: Routes = [
     ...canActivate(redirectUnauthorizedToLogin)
   },
   {
+    path: 'splash',
+    loadComponent: () => import('./pages/public/splash/splash.page').then( m => m.SplashPage)
+  },
+  {
     path: 'login',
     loadComponent: () => import('./pages/public/login/login.page').then( m => m.LoginPage),
     ...canActivate(redirectLoggedInToHome)
   },
-  {
+   {
     path: "details/:id",
     loadChildren: () =>
       import("./shared/details/details.routes").then(m => m.DetailsPageRoutingModule)
@@ -25,7 +29,7 @@ export const routes: Routes = [
     path: 'locate',
     loadComponent: () => import('./pages/private/containers/locate/locate.page').then( m => m.LocatePage)
   },
-    /*
+    /* 
   {
     path: 'main',
     loadComponent: () => import('./pages/private/containers/main/main.page').then( m => m.MainPage)

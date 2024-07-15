@@ -1,0 +1,60 @@
+body {
+    background-image: radial-gradient(rgba(255, 255, 255, .375) 0%, rgba(255, 255, 255, 1) 100%);
+    justify-content: center;
+    display: flex;
+    animation: fadeWhite 5s 1s forwards;
+  }
+  
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+
+/*  svg path {
+    stroke-dashoffset: 590;
+    stroke-dasharray: 590;
+    animation: drawIt 6s forwards;
+  }
+*/
+.svg-elem-1, .svg-elem-2, .svg-elem-3, .svg-elem-4 {
+    stroke-dashoffset: 590;
+    stroke-dasharray: 590;
+    animation: drawIt 5s forwards;
+  }
+
+  .svg-elem-5, .svg-elem-6, .svg-elem-7, .svg-elem-8, .svg-elem-9, .svg-elem-10, .svg-elem-11, .svg-elem-12, .svg-elem-13 {
+    stroke-dashoffset: 590;
+    stroke-dasharray: 590;
+    animation: drawIt 3.5s forwards;
+  }
+
+  .svg-elem-14, .svg-elem-15, .svg-elem-16, .svg-elem-17, .svg-elem-18, .svg-elem-19, .svg-elem-20, .svg-elem-21, .svg-elem-22, .svg-elem-23,
+  .svg-elem-24, .svg-elem-25, .svg-elem-26, .svg-elem-27, .svg-elem-28, .svg-elem-29, .svg-elem-30, .svg-elem-31, .svg-elem-32, .svg-elem-33,
+  .svg-elem-34, .svg-elem-35 {
+    stroke-dashoffset: 590;
+    stroke-dasharray: 590;
+    animation: drawIt 28s forwards;
+  }
+
+  svg g {
+    fill-opacity: 0;
+    animation: fillIt 2.5s 2.75s forwards;
+  }
+
+  @keyframes drawIt {
+    to {
+        stroke-dashoffset: 0;
+    }
+  }
+  @keyframes fillIt {
+    to {
+        fill-opacity: 1;
+    }
+  }
+
+  @keyframes fadeWhite {
+    to {
+        background-color: #ffcc77; 
+        background-image: radial-gradient(rgba(255, 255, 255, .375) 0%, rgba(255, 255, 255, 1) 100%);
+    }
+  }

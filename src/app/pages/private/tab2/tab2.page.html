@@ -1,100 +1,103 @@
 <ion-content [fullscreen]="true">
-  <div class="altHeader">
-    <ion-img class="header-image" src="../../assets/logo.png" alt="Header image"></ion-img>
-  </div>
-  
-  <div class="scene scene--card">
-    <div class="card" [class.is-flipped]="isFlipped">
-
-      <div class="card__face front">
-        <ion-card>
-          <ion-card-content class="whiteBorder inline-self-aligned child-align">
-            <ion-card-content class="bgLayer inline-self-aligned child-align">
-              <ion-card-content class="contentFull inline-self-aligned">
-
-                <ion-grid [fixed]="true" class="headTop">
-                  <ion-row><ion-col><h1>&nbsp;</h1></ion-col></ion-row>
-                  <ion-row>
-                    <ion-col>
-                      <p class="headLeft downSized">&nbsp;</p>
-                      <p class="text-custom upSized">manifesto</p>
-                      <p class="bottomRight downSized">Keeping Things Trackable</p>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              
-                <ion-grid [fixed]="true">
-                  <ion-row><ion-col>&nbsp;</ion-col></ion-row>
-                  <ion-row><ion-col>&nbsp;</ion-col></ion-row>
-                  <ion-row>
-                    <ion-col>
-                      <ion-button size="large" type="button" (click)="bindComponent('help')">
-                        <ion-icon slot="icon-only" name="help-circle"></ion-icon>
-                      </ion-button></ion-col>
-                    <ion-col>
-                      <ion-button size="large" type="button" (click)="bindComponent('info')">
-                        <ion-icon slot="icon-only" name="information-circle"></ion-icon>
-                      </ion-button>
-                    </ion-col>
-                    <ion-col>
-                      <ion-button size="large" type="button" (click)="bindComponent('feedback')">
-                        <ion-icon class="diagonal" slot="icon-only" name="mail"></ion-icon>
-                      </ion-button>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row><ion-col></ion-col></ion-row>
-                  <ion-row>
-                    <ion-col>
-                      <ion-button size="large" type="button" (click)="bindComponent('share')">
-                        <ion-icon slot="icon-only" name="cube"></ion-icon>
-                      </ion-button>
-                    </ion-col>
-                    <ion-col>
-                      <ion-button size="large" (click)="bindComponent('logout')">
-                        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
-                      </ion-button>
-                    </ion-col>
-                    <ion-col>
-                      <ion-button size="large" type="button" (click)="bindComponent('settings')">
-                        <ion-icon slot="icon-only" name="settings"></ion-icon>
-                      </ion-button>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-
-              </ion-card-content>
-            </ion-card-content>
-          </ion-card-content>
-        </ion-card>
-      </div>
-
-      <div class="card__face back">
-        <ion-card>
-          <ion-card-content class="whiteBorder inline-self-aligned child-align">
-            <ion-card-content class="bgLayer inline-self-aligned child-align">
-              <ion-card-content class="contentFull inline-self-aligned child-align">
-  
-                @if(backFace === 'help'){
-                  <app-help></app-help>
-                } @else if (backFace === 'info') {
-                  <app-info></app-info>
-                } @else if (backFace === 'feedback') {
-                  <app-feedback></app-feedback>
-                } @else if (backFace === 'settings') {
-                  <app-settings></app-settings>
-                } @else if (backFace === 'share') {
-                  <app-share></app-share>
-                } @else if (backFace === 'logout') {
-                  <app-logout></app-logout>
-                }
-  
-              <div class="bottomRight decorated" (click)="flip()"> Go back to front&nbsp;</div>
-              </ion-card-content>
-            </ion-card-content>
-          </ion-card-content>
-        </ion-card>
-      </div> 
+  <ion-grid [fixed]="true" class="noPadding">
+    <div class="altHeader">
+      <ion-img class="header-image" src="../../assets/logo.png"></ion-img>
     </div>
-  </div>
+  </ion-grid>
+  <ion-grid [fixed]="true" style="height:85.5%" class="noPadding">
 
+      <div class="scene scene--card">
+        <div class="card" [class.is-flipped]="isFlipped">
+
+          <div class="card__face front">
+            <ion-card>
+              <ion-card-content class="whiteBorder inline-self-aligned child-align">
+                <ion-card-content class="bgLayer inline-self-aligned child-align">
+                  <ion-card-content class="contentFull inline-self-aligned">
+
+                    <ion-grid [fixed]="true" class="headTop">
+                      <ion-row><ion-col><h1>&nbsp;</h1></ion-col></ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <p class="headLeft downSized">&nbsp;</p>
+                          <p class="text-custom upSized">manifesto</p>
+                          <p class="bottomRight downSized">Keeping Things Trackable</p>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  
+                    <ion-grid [fixed]="true">
+                      <ion-row><ion-col>&nbsp;</ion-col></ion-row>
+                      <ion-row><ion-col>&nbsp;</ion-col></ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <ion-button size="large" type="button" (click)="bindComponent('help')">
+                            <ion-icon slot="icon-only" name="help-circle"></ion-icon>
+                          </ion-button></ion-col>
+                        <ion-col>
+                          <ion-button size="large" type="button" (click)="bindComponent('info')">
+                            <ion-icon slot="icon-only" name="information-circle"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                        <ion-col>
+                          <ion-button size="large" type="button" (click)="bindComponent('feedback')">
+                            <ion-icon class="diagonal" slot="icon-only" name="mail"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row><ion-col></ion-col></ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <ion-button size="large" type="button" (click)="bindComponent('share')">
+                            <ion-icon slot="icon-only" name="cube"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                        <ion-col>
+                          <ion-button size="large" (click)="bindComponent('logout')">
+                            <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                        <ion-col>
+                          <ion-button size="large" type="button" (click)="bindComponent('settings')">
+                            <ion-icon slot="icon-only" name="settings"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+
+                  </ion-card-content>
+                </ion-card-content>
+              </ion-card-content>
+            </ion-card>
+          </div>
+
+          <div class="card__face back">
+            <ion-card>
+              <ion-card-content class="whiteBorder inline-self-aligned child-align">
+                <ion-card-content class="bgLayer inline-self-aligned child-align">
+                  <ion-card-content class="contentFull inline-self-aligned child-align">
+      
+                    @if(backFace === 'help'){
+                      <app-help></app-help>
+                    } @else if (backFace === 'info') {
+                      <app-info></app-info>
+                    } @else if (backFace === 'feedback') {
+                      <app-feedback></app-feedback>
+                    } @else if (backFace === 'settings') {
+                      <app-settings></app-settings>
+                    } @else if (backFace === 'share') {
+                      <app-share></app-share>
+                    } @else if (backFace === 'logout') {
+                      <app-logout></app-logout>
+                    }
+      
+                  <div class="bottomRight decorated" (click)="flip()"> Go back to front&nbsp;</div>
+                  </ion-card-content>
+                </ion-card-content>
+              </ion-card-content>
+            </ion-card>
+          </div> 
+        </div>
+      </div>
+  </ion-grid>
 </ion-content>

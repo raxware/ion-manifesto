@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
+import { IonApp, IonRouterOutlet, Platform } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,14 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
   imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private router : Router, private platform : Platform) {
+    this.initializeApp(); 
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.router.navigateByUrl('splash');
+    });
+  }
+
 }
