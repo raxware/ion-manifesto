@@ -1,11 +1,11 @@
 
-<ion-content [fullscreen]="true" (swipedown)="showHideTabs()">
-  <ion-grid [fixed]="true" class="noPadding">
+<ion-content [fullscreen]="true" (swipedown)="segmentShowHide()">
+  <ion-grid [fixed]="true">
         <div class="altHeader">
           <ion-img class="header-image" src="../../assets/logo.png"></ion-img>
         </div>
   </ion-grid>
-  <ion-grid [fixed]="true" style="height:85.5%" class="noPadding">
+  <ion-grid [fixed]="true" style="height:85.3%">
        <swiper-container pagination-type="fraction" [allowSlideNext]="allowSlideCard" [allowSlidePrev]="allowSlideCard">
           @for (slide of slides; track slide.id; let i = $index) {
             <swiper-slide>
@@ -17,23 +17,48 @@
           }
         </swiper-container>
   </ion-grid>
-  <ion-grid [fixed]="true" class="noPadding">
-    <ion-segment value="buttons">
-      <ion-segment-button value="default">
-        <ion-label>Default</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="segment">
-        <ion-label>Segment</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="buttons">
-        <ion-label>Button</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+  <ion-grid [fixed]="true">
+    <ion-toolbar id="dynToolbar" style="width: 100% !important; display:none;">
+      <ion-segment id="segButtons" value="all" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="all">
+          <ion-label>All</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="boxed">
+          <ion-label>Boxed</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="unboxed">
+          <ion-label>Unboxed</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  
   </ion-grid>
-
 
 </ion-content>
 
 <!--
 keyboard-enabled="true" grab-Cursor="true"
+-->
+
+<!-- TO 'tabs.service.ts'
+
+#dynTabBar id="dynTabBar"
+
+public hideTabs() {
+const tabBar = document.getElementById('dynTabBar');
+if (tabBar.style.display !== 'none') tabBar.style.display = 'none';
+}
+public showTabs() {
+const tabBar = document.getElementById('dynTabBar');
+if (tabBar.style.display !== 'flex') tabBar.style.display = 'flex';
+}
+
+
+
+
+
+
+
+
+
 -->

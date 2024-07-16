@@ -1,5 +1,6 @@
 <ion-tabs>
-  <ion-tab-bar slot="bottom" #dynTabBar id="dynTabBar">
+  <ion-tab-bar slot="bottom">
+
     <ion-tab-button tab="tab1" href="/tabs/tab1">
       <ion-icon class="rotated" aria-hidden="true" name="albums"></ion-icon>
       <ion-label>cards</ion-label>
@@ -18,15 +19,3 @@
 </ion-tabs>
 
 
-<!-- TO 'tabs.service.ts'
-
-public hideTabs() {
-const tabBar = document.getElementById('dynTabBar');
-if (tabBar.style.display !== 'none') tabBar.style.display = 'none';
-}
-public showTabs() {
-const tabBar = document.getElementById('dynTabBar');
-if (tabBar.style.display !== 'flex') tabBar.style.display = 'flex';
-}
-
--->

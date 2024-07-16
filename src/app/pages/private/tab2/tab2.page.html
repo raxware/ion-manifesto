@@ -4,7 +4,7 @@
       <ion-img class="header-image" src="../../assets/logo.png"></ion-img>
     </div>
   </ion-grid>
-  <ion-grid [fixed]="true" style="height:85.5%" class="noPadding">
+  <ion-grid [fixed]="true" style="height:85.3%" class="noPadding">
 
       <div class="scene scene--card">
         <div class="card" [class.is-flipped]="isFlipped">
@@ -16,7 +16,13 @@
                   <ion-card-content class="contentFull inline-self-aligned">
 
                     <ion-grid [fixed]="true" class="headTop">
-                      <ion-row><ion-col><h1>&nbsp;</h1></ion-col></ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <div class="altHeader">
+                            <ion-img class="header-image" src="../../assets/logo.png"></ion-img>
+                          </div>
+                        </ion-col>
+                      </ion-row>
                       <ion-row>
                         <ion-col>
                           <p class="headLeft downSized">&nbsp;</p>

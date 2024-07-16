@@ -16,9 +16,15 @@ ion-segment-button {
 }
 */
 
+ion-grid, ion-row, ion-col, ion-card-content, ion-img {
+  padding: 0%;
+}
+
 swiper-container {
   --swiper-pagination-bottom: 15px;
+  --swiper-pagination-fraction-color: #aaaaaa !important;
 }
+
 .noPadding{
   padding: 0%;
 }

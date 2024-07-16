@@ -24,6 +24,10 @@ import { NavController } from "@ionic/angular";
 import { Subjects } from "../../../../model/interfaces";
 import { SubjectsService } from "../../../../services/subjects.service";
 import { LocatePage } from '../locate/locate.page';
+import { CollectionsPage } from '../collections/collections.page';
+import { BoxesPage } from '../boxes/boxes.page';
+import { ListsPage } from '../lists/lists.page';
+import { PeoplePage } from '../people/people.page';
 
 
 @Component({
@@ -31,12 +35,12 @@ import { LocatePage } from '../locate/locate.page';
   templateUrl: './main.page.html',
   styleUrls: ['./main.page.scss'],
   standalone: true,
-  imports: [IonNav, IonSearchbar, IonFabList, IonFabButton, IonFab, IonListHeader, 
-    IonItemOption, IonItemOptions, IonItem, IonItemSliding, 
+  imports: [IonNav, IonSearchbar, IonFabList, IonFabButton, IonFab, 
+    IonListHeader, IonItemOption, IonItemOptions, IonItem, IonItemSliding, 
     IonLabel, IonItemDivider, IonItemGroup, IonList, IonIcon, 
     IonButton, IonSegmentButton, IonButtons, IonContent, IonHeader, 
     IonTitle, IonToolbar, CommonModule, FormsModule, IonMenuButton,
-    LocatePage, 
+    LocatePage, PeoplePage, ListsPage, BoxesPage, CollectionsPage,
   ]
 })
 export class MainPage implements OnInit {
@@ -58,11 +62,22 @@ export class MainPage implements OnInit {
   }
 
   public openSubject(subjectId: number): void {
-    if(subjectId === 5){
-      //
-      this.navCtrl.navigateForward(["locate"]);
+
+    /* 
+    if(subjectId === 1){
+      this.navCtrl.navigateForward(["collections"]);
     } else {
     this.navCtrl.navigateForward(["details", subjectId]);
+    }
+    */
+   console.log('selected: ', subjectId)
+    switch (subjectId){
+      case 1: this.navCtrl.navigateForward(["collections"]); break;
+      case 2: this.navCtrl.navigateForward(["boxes"]); break;
+      case 3: this.navCtrl.navigateForward(["lists"]); break;
+      case 4: this.navCtrl.navigateForward(["people"]); break;
+      case 5: this.navCtrl.navigateForward(["locate"]); break;
+      /*  this.navCtrl.navigateForward(["details", subjectId]); */
     }
   
   }

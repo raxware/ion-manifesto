@@ -1,29 +1,23 @@
-
-
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Outputs</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title>Outputs</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <ion-content class="ion-padding" [fullscreen]="true">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title>Outputs</ion-title>
-      </ion-toolbar>
-  </ion-header>
-
-  <ion-list lines="none">
-		<ion-item *ngFor="let subject of subjects" detail="true" (click)="openSubject(subject.id)">
-			<ion-label class="ion-text-wrap">
-				<h2>{{ subject.title }}</h2>
-				<p>{{ subject.description }}</p>
-			</ion-label>
-		</ion-item>
-	</ion-list>
+  <ion-list>
+    <ion-item *ngFor="let subject of subjects" detail="true" (click)="openSubject(subject.id)">
+      <ion-label class="ion-text-wrap">
+        <h2>{{ subject.title }}</h2>
+        <p>{{ subject.description }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
-
-
 
 <!--
 

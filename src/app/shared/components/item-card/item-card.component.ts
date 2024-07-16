@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { IonIcon, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, 
   IonChip, IonLabel, IonCardSubtitle, IonAlert, IonButton, IonInput, IonItem, 
-  IonThumbnail, IonItemOption, IonSegment, IonGrid, IonRow, IonCol } from "@ionic/angular/standalone";
+  IonThumbnail, IonItemOption, IonSegment, IonGrid, IonRow, IonCol, IonTitle } from "@ionic/angular/standalone";
 import { Item } from 'src/app/model/interfaces';
 import { PhotoService } from 'src/app/services/photo.service';
 import { AlertService } from 'src/app/services/alert-service.service';
@@ -20,7 +20,7 @@ import { CardBackPage } from "../../../pages/private/shared/components/card-back
     templateUrl: './item-card.component.html',
     styleUrls: ['./item-card.component.scss'],
     standalone: true,
-    imports: [IonCol, IonRow, IonGrid, IonButton, IonAlert, IonCardSubtitle, IonLabel,
+    imports: [IonTitle, IonCol, IonRow, IonGrid, IonButton, IonAlert, IonCardSubtitle, IonLabel,
         IonChip, IonCardContent, IonCardTitle, IonCardHeader,
         IonCard, IonImg, IonInput, IonIcon, IonItem, IonSegment, IonThumbnail,
         IonItemOption, CardFrontPage, CardBackPage]
@@ -35,6 +35,7 @@ export class ItemCardComponent implements OnInit{
   @Input() thingMaker?: string;
   @Input() thingName?: string;
   @Input() typeIcon?: string;
+  @Input() defaultIcon: string = 'cube';
   
   constructor(public photoService: PhotoService, public alertService: AlertService) {}
   ngOnInit(): void {
@@ -44,7 +45,7 @@ export class ItemCardComponent implements OnInit{
     this.item!.maker = 'Name';
 
     this.thingName = '';
-    this.typeIcon ='cube';
+    this.typeIcon = this.defaultIcon;
 
     addIcons({book, build, calculator, brush, shirt, wine, film, dice, diamond, camera, 
       chatbubbles, medkit, images, extensionPuzzle, rocket, language, cube, gameController, 
@@ -87,7 +88,7 @@ export class ItemCardComponent implements OnInit{
 
   alertLocked(){
     this.alertService.basicAlert(
-      'Meant to edit?', 'Double click the card!', 'Then, press the item\'s icon or its thumbnail',
+      'Meant to edit?', '', 'Double click the card to flip it and then click its thumbnail.',
       [{text: 'Ok'}]
     );
   }
@@ -99,6 +100,7 @@ export class ItemCardComponent implements OnInit{
       this.alertLocked();
     }
   }
+  
   openType(){
     this.alertService.inputAlert(
       'What kind of Item is this?',
@@ -133,17 +135,6 @@ export class ItemCardComponent implements OnInit{
 
   openMenu() {
     console.log(this.item?.id, 'swipedown');
-  }
-  
-  callSomethingElse(){
-    console.log(this.item?.id, 'smthng else');
-  }
-
-  dummyAlert(){
-    this.alertService.basicAlert(
-      'This is an alert', 'but it does nothing...', 'but a test',
-      {text: 'Ok'}
-    )
   }
 
   dummyToast(msg: string){

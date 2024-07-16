@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-lists',
-  templateUrl: './lists.page.html',
-  styleUrls: ['./lists.page.scss'],
+  selector: 'app-collections',
+  templateUrl: './collections.page.html',
+  styleUrls: ['./collections.page.scss'],
   standalone: true,
   imports: [IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
-export class ListsPage implements OnInit {
+export class CollectionsPage implements OnInit {
 
   constructor() { }
 
