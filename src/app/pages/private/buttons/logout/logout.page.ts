@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { AlertService } from 'src/app/services/alert-service.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
 import { book, brush, build, calculator, camera, chatbubbles, 
@@ -26,7 +26,7 @@ import { IonIcon, IonImg, IonCard, IonCardHeader, IonCardTitle,
   templateUrl: './logout.page.html',
   styleUrls: ['./logout.page.scss'],
   standalone: true,
-  imports: [IonIcon, IonButton, IonCol, IonRow, IonGrid, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonIcon, IonButton, IonCol, IonRow, IonGrid, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule]
 })
 export class LogoutPage implements OnInit{
   backFace: string= ''; 

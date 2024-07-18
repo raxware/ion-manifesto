@@ -2,141 +2,121 @@
 	<div class="altHeader">
 	  <ion-img class="header-image" src="../../assets/logo.png" alt="Header image"></ion-img>
 	</div>
-
 	@if (credentials !== undefined) {
 		<div class="scene scene--card">
 			<div class="card" [class.is-flipped]="isFlipped">
-
 			<div class="card__face front">
 				<ion-card>
-				<ion-card-content class="whiteBorder inline-self-aligned child-align">
-					<ion-card-content class="bgLayer inline-self-aligned child-align">
-						<ion-card-content class="contentFull inline-self-aligned">
-
-							<ion-grid [fixed]="true">
-								<ion-row class="topRel">
-									<h1>Welcome!</h1>
-								</ion-row>
-								<ion-row>
-									<ion-col>
-										<ion-card-content class="framing">
-										<div class="fitPlace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign in to</div>
-										</ion-card-content>
-										<p class="text-custom upSized">manifesto</p>
-								  	</ion-col>
-								</ion-row>
-								<form (ngSubmit)="login()" [formGroup]="credentials">
-									<ion-row>
-										<ion-col>
-											<ion-input type="email" formControlName="email" label="Email" label-placement="floating" fill="outline" placeholder="Enter email">
-											<!--<ion-note slot="error" *ngIf="(email!.dirty || email!.touched) && email!.errors">Email is invalid</ion-note>-->
-											</ion-input>
-										</ion-col>
-									</ion-row>
-									<ion-row><ion-col></ion-col></ion-row>
-									<ion-row>
-										<ion-col>
-											<ion-input type="password" formControlName="password" label="Password" label-placement="floating" fill="outline" placeholder="Enter password">
-											<!--<ion-note slot="error" *ngIf="(password!.dirty || password!.touched) && password!.errors">Password needs to be 6 characters</ion-note>-->
-											<ion-input-password-toggle slot="end"></ion-input-password-toggle>
-											</ion-input>
-										</ion-col>
-									</ion-row>
-									<ion-row class="endOfLine">
-										<ion-col><ion-label class="downSized decorated" (click)="doSmthng('reset pwd')">Forgot password?</ion-label></ion-col>
+					<ion-card-content class="whiteBorder inline-self-aligned child-align">
+						<ion-card-content class="bgLayer inline-self-aligned child-align">
+							<ion-card-content class="contentFull inline-self-aligned">
+								<ion-grid [fixed]="true">
+									<ion-row class="topRel">
+										<h1>Welcome!</h1>
 									</ion-row>
 									<ion-row>
 										<ion-col>
-											<ion-button type="submit" class="endOfLine">Sign in</ion-button>
+											<ion-card-content class="framing">
+											<div class="fitPlace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign in to</div>
+											</ion-card-content>
+											<p class="text-custom upSized">manifesto</p>
 										</ion-col>
 									</ion-row>
-								</form>
-							</ion-grid>
-							<ion-grid [fixed]="true" class="bottomLeft">
-								<ion-row>
-									<ion-col class="endOfLine downSized"><ion-label>No profile yet? &nbsp;&nbsp;</ion-label><ion-label class="decorated" (click)="flip('wentToBack')">Sign up for an account!</ion-label></ion-col>
-								</ion-row>
-							</ion-grid>
-			
+									<form (ngSubmit)="login()" [formGroup]="credentials">
+										<ion-row>
+											<ion-col>
+												<ion-input type="email" formControlName="email" label="Email" label-placement="floating" fill="outline" placeholder="Enter email">
+												</ion-input>
+											</ion-col>
+										</ion-row>
+										<ion-row><ion-col></ion-col></ion-row>
+										<ion-row>
+											<ion-col>
+												<ion-input type="password" formControlName="password" label="Password" label-placement="floating" fill="outline" placeholder="Enter password">
+												<ion-input-password-toggle slot="end"></ion-input-password-toggle>
+												</ion-input>
+											</ion-col>
+										</ion-row>
+										<ion-row class="endOfLine">
+											<ion-col><ion-label class="downSized decorated" (click)="doSmthng('reset pwd')">Forgot password?</ion-label></ion-col>
+										</ion-row>
+										<ion-row>
+											<ion-col>
+												<ion-button type="submit" class="endOfLine">Sign in</ion-button>
+											</ion-col>
+										</ion-row>
+									</form>
+								</ion-grid>
+								<ion-grid [fixed]="true" class="bottomLeft">
+									<ion-row>
+										<ion-col class="endOfLine downSized"><ion-label>No profile yet? &nbsp;&nbsp;</ion-label><ion-label class="decorated" (click)="flip('back')">Sign up for an account!</ion-label></ion-col>
+									</ion-row>
+								</ion-grid>
+							</ion-card-content>
 						</ion-card-content>
 					</ion-card-content>
-				</ion-card-content>
 				</ion-card>
 			</div>
-
 			<div class="card__face back">
 				<ion-card>
-				<ion-card-content class="whiteBorder inline-self-aligned child-align">
-					<ion-card-content class="bgLayer inline-self-aligned child-align">
-						<ion-card-content class="contentFull inline-self-aligned">
-
-							<ion-grid [fixed]="true">
-								<ion-row class="topRel">
-									<p><h1>New user?</h1>
-								</ion-row>
-								<ion-row>
-									<ion-col>
-										<ion-card-content class="framing">
-											<div class="fitPlace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign up to</div>
-										</ion-card-content>
-										<p class="text-custom upSized">manifesto</p>
-								  	</ion-col>
-								</ion-row>
-								<form [formGroup]="credentials">
-									<ion-row>
-										<ion-col>
-											<ion-input type="email" formControlName="email" label="Email" label-placement="floating" fill="outline" placeholder="Enter email">
-											<!--<ion-note slot="error" *ngIf="(email!.dirty || email!.touched) && email!.errors">Email is invalid</ion-note>-->
-											</ion-input>
-										</ion-col>
-									</ion-row>
-									<ion-row><ion-col></ion-col></ion-row>
-									<ion-row>
-										<ion-col>
-											<ion-input type="password" formControlName="password" label="Password" label-placement="floating" fill="outline" placeholder="Enter password">
-											<!--<ion-note slot="error" *ngIf="(password!.dirty || password!.touched) && password!.errors">Password needs to be 6 characters</ion-note>-->
-											<ion-input-password-toggle slot="end"></ion-input-password-toggle>
-											</ion-input>
-										</ion-col>
+					<ion-card-content class="whiteBorder inline-self-aligned child-align">
+						<ion-card-content class="bgLayer inline-self-aligned child-align">
+							<ion-card-content class="contentFull inline-self-aligned">
+								<ion-grid [fixed]="true">
+									<ion-row class="topRel">
+										<p><h1>New user?</h1>
 									</ion-row>
 									<ion-row>
 										<ion-col>
-											<ion-button type="button" class="endOfLine" (click)="register()">Sign up</ion-button>
+											<ion-card-content class="framing">
+												<div class="fitPlace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign up to</div>
+											</ion-card-content>
+											<p class="text-custom upSized">manifesto</p>
 										</ion-col>
 									</ion-row>
-								</form>
-							</ion-grid>
-
-							<ion-grid [fixed]="true" class="bottomLeft">
-								<ion-row>
-									<ion-col class="endOfLine downSized">
-										<ion-label>Already have a profile? &nbsp;&nbsp;</ion-label>
-										<ion-label class="decorated" (click)="flip('wentToFront')">Go back and Sign in!</ion-label>
-									</ion-col>
-								</ion-row>
-							</ion-grid>
+									<form [formGroup]="credentials">
+										<ion-row>
+											<ion-col>
+												<ion-input type="email" formControlName="email" label="Email" label-placement="floating" fill="outline" placeholder="Enter email">
+												</ion-input>
+											</ion-col>
+										</ion-row>
+										<ion-row><ion-col></ion-col></ion-row>
+										<ion-row>
+											<ion-col>
+												<ion-input type="password" formControlName="password" label="Password" label-placement="floating" fill="outline" placeholder="Enter password">
+												<ion-input-password-toggle slot="end"></ion-input-password-toggle>
+												</ion-input>
+											</ion-col>
+										</ion-row>
+										<ion-row>
+											<ion-col>
+												<ion-button type="button" class="endOfLine" (click)="register()">Sign up</ion-button>
+											</ion-col>
+										</ion-row>
+									</form>
+								</ion-grid>
+								<ion-grid [fixed]="true" class="bottomLeft">
+									<ion-row>
+										<ion-col class="endOfLine downSized">
+											<ion-label>Already have a profile? &nbsp;&nbsp;</ion-label>
+											<ion-label class="decorated" (click)="flip('front')">Go back and Sign in!</ion-label>
+										</ion-col>
+									</ion-row>
+								</ion-grid>
+							</ion-card-content>
 						</ion-card-content>
 					</ion-card-content>
-				</ion-card-content>
 				</ion-card>
 			</div>
 			</div>
 		</div>
-
 	}
-
 </ion-content>
 
 <!--
-										<ion-card-content class="framing borderR">
-										<div class="fitPlace borderB">Sign in to</div>
-										</ion-card-content>
-										<p class="text-custom sized border">manifesto</p>
-
-<ion-col><ion-checkbox class="endOfLine" justify="end" (ionChange)="togglePasswordMode(password?.value)">{{pwdSatusLabel}}</ion-checkbox></ion-col>
-
-<ion-row>
-	<ion-col><ion-checkbox class="endOfLine" justify="end" (ionChange)="togglePasswordMode(password?.value)">{{pwdSatusLabel}}</ion-checkbox></ion-col>
-</ion-row>
-
+<ion-col>
+	<ion-note slot="error" *ngIf="(email!.dirty || email!.touched) && email!.errors">Email is invalid</ion-note>
+	<ion-note slot="error" *ngIf="(password!.dirty || password!.touched) && password!.errors">Password needs to be 6 characters</ion-note>
+</ion-col>
 -->

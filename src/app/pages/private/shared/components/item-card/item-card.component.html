@@ -81,7 +81,7 @@
               <!---->
               <!-- ************************************************************************** --> 
             </ion-card-content>
-            
+          
           </ion-card-content>
         </ion-card-content>
       </ion-card>
@@ -108,10 +108,12 @@
                 </ion-row>
               </ion-grid>
               <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
-              <ion-grid [fixed]="true">
+              @if (thingPrototype) {
+<form [formGroup]="thingPrototype">
+              <ion-grid [fixed]="true">         
                 <ion-row>
                   <ion-col class="centerMiddle">
-                    <ion-input id="input0" class="thingName" label="{{thingName}}" label-placement="floating" fill="outline" placeholder="{{item!.name}}" blur=""></ion-input>
+<ion-input id="name" type="text" formControlName="name" label="{{thingName}}" label-placement="floating" fill="outline" placeholder="{{item!.name}}" blur=""></ion-input>
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -119,7 +121,7 @@
               <ion-grid [fixed]="true">
                 <ion-row>
                   <ion-col class="centerMiddle">
-                    <ion-input id="input1" class="thingMaker" label="{{thingMaker}}" label-placement="floating" fill="outline" placeholder="{{item!.maker}}" blur=""></ion-input>
+<ion-input id="maker" type="text" formControlName="maker" label="{{thingMaker}}" label-placement="floating" fill="outline" placeholder="{{thingMaker}}" blur=""></ion-input>
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -127,7 +129,18 @@
               <ion-grid [fixed]="true">
                 <ion-row>
                   <ion-col class="centerMiddle">
-                    <ion-input id="input2" class="thingMaker" label="{{thingMaker}}" label-placement="floating" fill="outline" placeholder="{{thingMaker}}" blur=""></ion-input>
+<ion-select id="status" formControlName="status" label="{{thingStatus}}" label-placement="floating" fill="outline" placeholder="{{item!.status}}">
+                      <ion-select-option value="mint">Mint</ion-select-option>
+                      <ion-select-option value="nearM">Near Mint</ion-select-option>
+                      <ion-select-option value="vgPlus">Very Good+</ion-select-option>
+                      <ion-select-option value="vGood">Very Good</ion-select-option>
+                      <ion-select-option value="gPlus">Good+</ion-select-option>
+                      <ion-select-option value="good">Good</ion-select-option>
+</ion-select>
+                  </ion-col>
+                  <ion-row><ion-col>&nbsp;</ion-col></ion-row>
+                  <ion-col class="centerMiddle">
+<ion-input id="quantity" type="number" min="1" max="100" formControlName="quantity" label="{{thingQuantity}}" label-placement="floating" fill="outline" placeholder="{{item!.quantity}}"></ion-input>
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -135,18 +148,15 @@
               <ion-grid [fixed]="true">
                 <ion-row>
                   <ion-col class="centerMiddle">
-                    <ion-input id="input0" class="thingName" label="{{thingName}}" label-placement="floating" fill="outline" placeholder="{{item!.name}}" blur=""></ion-input>
+<ion-textarea id="notes" [autoGrow]="true" [counter]="true" maxlength="300" type="text" formControlName="notes" label="{{thingNotes}}" label-placement="floating" fill="outline" placeholder="Add notes on this item"></ion-textarea>
                   </ion-col>
                 </ion-row>
               </ion-grid>
-              <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
-              <ion-grid [fixed]="true">
-                <ion-row>
-                  <ion-col class="centerMiddle">
-                    <ion-input id="input0" class="thingName" label="{{thingName}}" label-placement="floating" fill="outline" placeholder="{{item!.name}}" blur=""></ion-input>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
+<!--              <div class="saveForm"><button type="button" (click)=thingTagger()>{{buttonName}}</button></div>-->
+<!--              <div class="clearForm"><button type="button" (click)=auxButtonSelector(auxButton)>{{auxButton}}</button></div>-->
+
+</form>
+}
               <!-- ************************************************************************** -->
               <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
               <ion-grid [fixed]="true" class="toBotton">
@@ -172,7 +182,7 @@
                     </ion-button>
                   </ion-col>
                   <ion-col class="centerMiddle">
-                    <ion-button size="large" (click)="dummyToast('btn5')">
+                    <ion-button size="large" (click)=thingTagger()>
                       <ion-icon slot="icon-only" name="{{defaultIcon}}"></ion-icon>
                     </ion-button>
                   </ion-col>

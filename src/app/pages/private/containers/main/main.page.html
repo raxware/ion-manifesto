@@ -10,12 +10,14 @@
     </ion-toolbar>
   </ion-header>
   <ion-list>
-    <ion-item *ngFor="let subject of subjects" detail="true" (click)="openSubject(subject.id)">
+    @for (subject of subjects; track subject) {
+<ion-item detail="true" (click)="openSubject(subject.id)">
       <ion-label class="ion-text-wrap">
         <h2>{{ subject.title }}</h2>
         <p>{{ subject.description }}</p>
       </ion-label>
     </ion-item>
+}
   </ion-list>
 </ion-content>
 

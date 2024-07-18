@@ -12,8 +12,8 @@ export class AlertService {
 
   constructor(private alertCtrlr: AlertController, private toastCtrlr: ToastController, private loadingCtrlr: LoadingController) { }
 
-  async basicAlert(header: string, subHeader: string, message: string, buttons: any){
-    const confirm = await this.alertCtrlr.create({ header, subHeader, message, buttons });
+  async basicAlert(header: string, subHeader: string, message: string, buttons: any, cssClass: string){
+    const confirm = await this.alertCtrlr.create({ header, subHeader, message, buttons, cssClass});
     confirm.present();
   }
 

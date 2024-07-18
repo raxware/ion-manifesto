@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonNote, IonButton, 
 	IonCardContent, IonCard, IonGrid, IonRow, IonCol, IonLabel, IonCheckbox, IonInput, 
 	IonImg, IonInputPasswordToggle
 } from '@ionic/angular/standalone';
-import { AlertController, ToastController, LoadingController } from '@ionic/angular'
+import { AlertService } from 'src/app/services/alert-service.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -14,11 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonImg, IonInput, IonCheckbox, IonLabel, IonCol, IonRow, 
-	IonGrid, IonCard, IonCardContent, IonButton, 
-	IonNote, IonItem, IonContent, IonHeader, 
-	IonTitle, IonToolbar, CommonModule, FormsModule, 
-	ReactiveFormsModule, IonInputPasswordToggle]
+  imports: [IonImg, IonInput, IonCheckbox, IonLabel, IonCol, IonRow, IonGrid, IonCard, IonCardContent, IonButton, IonNote, IonItem, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, ReactiveFormsModule, IonInputPasswordToggle]
 })
 export class LoginPage implements OnInit {
 	credentials!: FormGroup;
@@ -31,9 +27,8 @@ export class LoginPage implements OnInit {
 	@Output() showPwd = new EventEmitter<boolean>();
 
 	constructor(
+		public alertService: AlertService,
 		private fb: FormBuilder,
-		private loadingController: LoadingController,
-		private alertController: AlertController,
 		private authService: AuthService,
 		private router: Router,
 	) {}
@@ -57,7 +52,7 @@ export class LoginPage implements OnInit {
 
 	async register() {
 
-		console.log('registreing')
+		console.log('registering')
 
 		//const loading = await this.loadingController.create();
 		//	await loading.present();
@@ -72,8 +67,8 @@ export class LoginPage implements OnInit {
 			this.router.navigateByUrl('/', { replaceUrl: true });
 			//this.router.navigateByUrl('/home', { replaceUrl: true });
 		} else {
-			//this.showAlert('Registration failed', 'Please try again!');
-			console.log('Registration failed', 'Please try again!');
+			this.alertDummy('Login failed', '', 'Please try again!', 'Ok', '');
+			//console.log('Registration failed', 'Please try again!');
 		}
 	}
 
@@ -92,8 +87,8 @@ export class LoginPage implements OnInit {
 			this.router.navigateByUrl('/', { replaceUrl: true });
 			//this.router.navigateByUrl('/home', { replaceUrl: true });
 		} else {
-			//this.showAlert('Login failed', 'Please try again!');
-			console.log('Login failed', 'Please try again!');
+			this.alertDummy('Login failed', '', 'Please try again!', 'Ok', '');
+			//console.log('Login failed', 'Please try again!');
 		}
 
 	}
@@ -111,31 +106,26 @@ export class LoginPage implements OnInit {
 	flip(face: string) {
 		let cardFace = face;
 		console.log(cardFace);
+		if(cardFace === 'back'){
+			this.alertDummy('DISCLAIMER', 
+				'', 
+				'Please provide a valid email address to make sure your profile is recoverable. All your data may become unreachable, otherwise.', 
+				'Ack',
+				''
+			);
+		}
 		this.isFlipped = !this.isFlipped;
 		this.flipCard.emit(this.isFlipped);
 	}
-	
+
+	alertDummy(ttl: string, subttl: string, msg: string, btn: string, cascade: any){
+		setTimeout(() => {
+			this.alertService.basicAlert(ttl, subttl, msg, [{text: btn}], cascade);
+		}, 500);
+	}
+
 	doSmthng(direction: any){
 		console.log(direction)
-		/*
-		if(direction === 'up'){
-		  console.log('Smthng', direction);
-		} else if(direction === 'down'){
-		  console.log('Smthng', direction);
-		}
-		*/
+		
 	}
-
-	togglePasswordMode(pwd: string){
-		this.isHidden = !this.isHidden;
-		this.showPwd.emit(this.isHidden);
-		if (!this.isHidden){
-			this.pwdSatusLabel = 'Hide password';
-
-		} else{
-			this.pwdSatusLabel = 'Show password';
-		}
-		console.log(pwd)
-	}
-
 }

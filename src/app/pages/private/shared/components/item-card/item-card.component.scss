@@ -169,6 +169,13 @@ ion-img::part(image) {
 ion-grid, ion-row, ion-col, ion-card-content, ion-img {
   padding: 0%;
 }
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+ opacity: 1 !important;
+ margin: 0;
+ width: 15px;
+ height: 35px;
+}
 
 /*------------------------------------------------------------------------------------------*/
 .borded{

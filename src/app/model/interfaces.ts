@@ -1,12 +1,46 @@
-export interface Item {
+export interface itemData {
   id: number;
   name: string;
-  maker: string;
   type: string;
+  maker: string;
   picture: string;
-  tags: string[];
   quantity: number;
+  status: string;
+  tags: string[];
+  barcode: string;
+  notes: string;
 }
+
+/*
+  data: Book | Music | Comic | Cloth | Wine | Currency ;
+*/
+
+export interface Book {
+  isbn: string;
+  asin: string;
+}
+
+export interface Music {
+  asin: string;
+}
+
+export interface Comic {
+  asin: string;
+}
+
+export interface Tools {
+}
+
+export interface Cloth {
+}
+
+export interface Wine {
+}
+
+export interface Currency {
+country: string;
+}
+
 
 export interface Box {
   id: number;
@@ -14,6 +48,8 @@ export interface Box {
   type: string;
   picture: string;
   tags: string[];
+  qr: string;
+  nfc: string;
 }
 
 export interface Person {

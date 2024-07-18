@@ -1,19 +1,11 @@
 
-/*
-ion-content::part(background) {
-  background: transparent !important;
-}
-*/
-
 :root {
     --building-color: #FF9800;
     --house-color: #0288D1;
     --shop-color: #7B1FA2;
     --warehouse-color: #558B2F;
   }
-  /*
-   * Optional: Makes the sample page fill the window.
-   */
+  //Optional: Makes the sample page fill the window.
   html,
   body {
     height: 80%;
@@ -21,18 +13,14 @@ ion-content::part(background) {
     padding: 0;
   }
   
-  /*
-   * Always set the map height explicitly to define the size of the div element
-   * that contains the map.
-   */
+  // Always set the map height explicitly to define the size of the div element that contains the map.
   #map {
     height: 100%;
     width: 100%;
   }
   
-  /*
-   * Property styles in unhighlighted state.
-   */
+  //Property styles in unhighlighted state.
+
   .pinFlags {
     align-items: center;
     background-color: #FFFFFF;
@@ -108,9 +96,7 @@ ion-content::part(background) {
     padding: 5px;
   }
   
-  /*
-   * Property styles in highlighted state.
-   */
+  //Property styles in highlighted state.
   .pinFlags.highlight {
     background-color: #FFFFFF;
     border-radius: 8px;
@@ -132,22 +118,8 @@ ion-content::part(background) {
     width: 50px;
     height: 50px;
   }
-  
-  .pinFlags .bed {
-    color: #FFA000;
-  }
-  
-  .pinFlags .bath {
-    color: #03A9F4;
-  }
-  
-  .pinFlags .size {
-    color: #388E3C;
-  }
-  
-  /*
-   * House icon colors.
-   */
+
+  //House icon colors.
   .pinFlags.highlight:has(.fa-house) .icon {
     color: var(--house-color);
   }
@@ -160,9 +132,7 @@ ion-content::part(background) {
     border-top: 9px solid var(--house-color);
   }
   
-  /*
-   * Building icon colors.
-   */
+  //Building icon colors.
   .pinFlags.highlight:has(.fa-building) .icon {
     color: var(--building-color);
   }
@@ -175,9 +145,7 @@ ion-content::part(background) {
     border-top: 9px solid var(--building-color);
   }
   
-  /*
-   * Warehouse icon colors.
-   */
+  //Warehouse icon colors.
   .pinFlags.highlight:has(.fa-warehouse) .icon {
     color: var(--warehouse-color);
   }
@@ -190,9 +158,7 @@ ion-content::part(background) {
     border-top: 9px solid var(--warehouse-color);
   }
   
-  /*
-   * Shop icon colors.
-   */
+  //Shop icon colors.
   .pinFlags.highlight:has(.fa-shop) .icon {
     color: var(--shop-color);
   }
@@ -205,39 +171,7 @@ ion-content::part(background) {
     border-top: 9px solid var(--shop-color);
   }
 
-
-
-ion-item-option {
-  --background: transparent;
-  --ion-color-success: #afe056;
-  --ion-color-primary: #ffcc77;
-  --ion-color-danger: #ef475b;
-  --ion-color-primary-shade: transparent;
-  --color: #aaaaaa;
-}
-ion-thumbnail { 
-  --size: 7vh;
-  --border-radius: 5px; 
-}
-ion-list { --ion-item-background: #fffcf660;}
 ion-toolbar { 
   --background: linear-gradient(#ffffff, #fffcf6, #fef8ec, #ffeecc); 
   --color: #aaaaaa; 
-}
-ion-item{
-  --background: linear-gradient(135deg, rgba(255,255,255,0) 12%, rgba(255,204,119,0.35) 48%, rgba(255,204,119,1) 70%);
-  --color: #aaaaaa;
-  --border-color: transparent;
-}
-img{
-  height: 100%;
-}
-
-.noRipple{
-  --ripple-color: transparent !important;
-  --background-hover: transparent !important;
-}
-
-.customRipple {
-  color: #ffcc77;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { AlertService } from 'src/app/services/alert-service.service';
 import { addIcons } from 'ionicons';
@@ -24,12 +24,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonGrid,
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
   standalone: true,
-  imports: [IonItemDivider, IonSegmentButton, IonSegment, IonCheckbox, 
-    IonRange, IonIcon, IonNote, IonLabel, IonInput, IonItem, IonList, 
-    IonToggle, IonCol, IonRow, IonImg, IonGrid, IonContent, IonHeader, 
-    IonTitle, IonToolbar, CommonModule, FormsModule, IonSelect, 
-    IonSelectOption, IonAlert, 
-  ]
+  imports: [IonItemDivider, IonSegmentButton, IonSegment, IonCheckbox, IonRange, IonIcon, IonNote, IonLabel, IonInput, IonItem, IonList, IonToggle, IonCol, IonRow, IonImg, IonGrid, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, IonSelect, IonSelectOption, IonAlert]
 })
 export class SettingsPage implements OnInit {
 

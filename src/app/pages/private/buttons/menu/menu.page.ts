@@ -23,7 +23,7 @@ import { FeedbackPage } from '../../buttons/feedback/feedback.page';
 import { SharePage } from '../../buttons/share/share.page';
 import { LogoutPage } from '../../buttons/logout/logout.page';
 
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -31,7 +31,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './menu.page.html',
   styleUrls: ['./menu.page.scss'],
   standalone: true,
-  imports: [IonIcon, IonButton, IonGrid, IonCol, IonRow, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonIcon, IonButton, IonGrid, IonCol, IonRow, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule]
 })
 export class MenuPage implements OnInit{
 

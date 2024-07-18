@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardContent, IonImg, IonCardHeader, IonCardTitle, IonButton, IonIcon } from '@ionic/angular/standalone';
-import { Item } from 'src/app/model/interfaces';
+import { itemData } from 'src/app/model/interfaces';
 import { PhotoService } from 'src/app/services/photo.service';
 import { AlertService } from 'src/app/services/alert-service.service';
 import { book, brush, build, calculator, camera, chatbubbles, 
@@ -18,12 +18,12 @@ import { addIcons } from 'ionicons';
   templateUrl: './card-front.page.html',
   styleUrls: ['./card-front.page.scss'],
   standalone: true,
-  imports: [IonIcon, IonButton, IonCardTitle, IonCardHeader, IonImg, IonCardContent, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonIcon, IonButton, IonCardTitle, IonCardHeader, IonImg, IonCardContent, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule]
 })
 export class CardFrontPage implements OnInit{
  
   @Input() isFlipped: boolean = false;
-  @Input() item?: Item;
+  @Input() item?: itemData;
  
   @Output() flipCard = new EventEmitter<boolean>();
 
@@ -64,7 +64,8 @@ export class CardFrontPage implements OnInit{
       'Image Source', '', '',
       [{text: 'Photo Gallery', handler: () => { this.openCamera('gallery');  }},
       {text: 'Camera', handler: () => { this.openCamera('camera'); }},
-      {text: 'Cancel', role: 'cancel', handler: (alertData: any) => { console.log('addImg cancel', alertData); }}]
+      {text: 'Cancel', role: 'cancel', handler: (alertData: any) => { console.log('addImg cancel', alertData); }}],
+      ''
     );
   }
   
@@ -84,7 +85,8 @@ export class CardFrontPage implements OnInit{
   alertLocked(){
     this.alertService.basicAlert(
       'Meant to edit?', 'Double click the card!', 'Then, press the item\'s icon or its thumbnail',
-      [{text: 'Ok'}]
+      [{text: 'Ok'}],
+      ''
     );
   }
 
@@ -143,7 +145,8 @@ export class CardFrontPage implements OnInit{
   dummyAlert(){
     this.alertService.basicAlert(
       'This is an alert', 'but it does nothing...', 'but a test',
-      {text: 'Ok'}
+      {text: 'Ok'},
+      ''
     )
   }
 

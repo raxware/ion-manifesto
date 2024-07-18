@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { Geolocation } from '@capacitor/geolocation'
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton } from '@ionic/angular/standalone';
@@ -10,10 +10,7 @@ import {GoogleMap, MapAdvancedMarker, MapInfoWindow} from "@angular/google-maps"
   templateUrl: './locate.page.html',
   styleUrls: ['./locate.page.scss'],
   standalone: true,
-  imports: [IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, 
-    IonToolbar, CommonModule, FormsModule,
-    MapInfoWindow, GoogleMap, MapAdvancedMarker,
-  ],
+  imports: [IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, MapInfoWindow, GoogleMap, MapAdvancedMarker],
 })
 
 export class LocatePage implements OnInit{
