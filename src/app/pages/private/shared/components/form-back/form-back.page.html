@@ -1,0 +1,103 @@
+<ion-content [fullscreen]="true">
+
+         <!-- ************************************************************************** -->
+<!---->   <ion-grid [fixed]="true">
+            <ion-row>
+              <ion-col class="centerMiddle">
+                <ion-thumbnail class="thumbFrame">
+                  @if (item && thingPicture) {
+                    <ion-img (click)="editImage()" [src]="thingPicture" class="thumbShadow"></ion-img>
+                  } @else {
+                    <ion-img (click)="editImage()" src="../../assets/plus2.jpg" class="thumbShadow coated"></ion-img>
+                  }
+                </ion-thumbnail>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
+          @if (thingPrototype) {
+<form [formGroup]="thingPrototype">
+          <ion-grid [fixed]="true">         
+            <ion-row>
+              <ion-col class="centerMiddle">
+<ion-input id="name" type="text" formControlName="name" label="Nombre" label-placement="floating" fill="outline" placeholder="Nombre"></ion-input>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
+          <ion-grid [fixed]="true">
+            <ion-row>
+              <ion-col class="centerMiddle">
+<ion-input id="maker" type="text" formControlName="maker" label="Creador" label-placement="floating" fill="outline" placeholder="Creador"></ion-input>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
+          <ion-grid [fixed]="true">
+            <ion-row>
+              <ion-col class="centerMiddle">
+<ion-select id="status" formControlName="status" label="Estado" label-placement="floating" fill="outline" placeholder="Estado">
+                  <ion-select-option value="mint">Mint</ion-select-option>
+                  <ion-select-option value="nearM">Near Mint</ion-select-option>
+                  <ion-select-option value="vgPlus">Very Good+</ion-select-option>
+                  <ion-select-option value="vGood">Very Good</ion-select-option>
+                  <ion-select-option value="gPlus">Good+</ion-select-option>
+                  <ion-select-option value="good">Good</ion-select-option>
+</ion-select>
+              </ion-col>
+              <ion-row><ion-col>&nbsp;</ion-col></ion-row>
+              <ion-col class="centerMiddle">
+<ion-input id="quantity" type="number" min="1" max="100" formControlName="quantity" label="Cantidad" label-placement="floating" fill="outline" placeholder="1"></ion-input>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
+          <ion-grid [fixed]="true">
+            <ion-row>
+              <ion-col class="centerMiddle">
+<ion-textarea id="notes" [autoGrow]="true" [counter]="true" maxlength="300" type="text" formControlName="notes" label="Notas" label-placement="floating" fill="outline" placeholder="Escribe tus notas aqui"></ion-textarea>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+              <div class="saveForm"><button type="button" (click)=thingTagger()> SAVE </button></div>
+<!--              <div class="clearForm"><button type="button" (click)=auxButtonSelector(auxButton)>{{auxButton}}</button></div>-->
+
+
+</form>
+}
+
+          <!-- ************************************************************************** 
+          <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
+          <ion-grid [fixed]="true" class="toBotton">
+            <ion-row>
+              <ion-col class="centerMiddle">
+                <ion-button size="large" (click)="openType()">
+                  <ion-icon slot="icon-only" name=""></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col class="centerMiddle">
+                <ion-button size="large">
+                  <ion-icon slot="icon-only" name=""></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col class="centerMiddle">
+                <ion-button size="large">
+                  <ion-icon slot="icon-only" name=""></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col class="centerMiddle">
+                <ion-button size="large">
+                  <ion-icon slot="icon-only" name=""></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col class="centerMiddle">
+                <ion-button size="large" (click)=thingTagger()>
+                  <ion-icon slot="icon-only" name="box"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>-->
+          <!---->
+          <!-- ************************************************************************** --> 
+          <!-- ************************************************************************** -->
+</ion-content>

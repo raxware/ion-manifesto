@@ -1,5 +1,7 @@
+import { Photo } from "@capacitor/camera";
+
 export interface itemData {
-  id: number;
+  id?: number;
   name: string;
   type: string;
   maker: string;
@@ -7,7 +9,7 @@ export interface itemData {
   quantity: number;
   status: string;
   tags: string[];
-  barcode: string;
+  barcode?: string;
   notes: string;
 }
 

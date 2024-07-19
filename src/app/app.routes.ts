@@ -45,6 +45,20 @@ export const routes: Routes = [
     path: 'search',
     loadComponent: () => import('./pages/private/containers/search/search.page').then( m => m.SearchPage)
   },
+
+  {
+    path: 'card-front',
+    loadComponent: () => import('./pages/private/shared/components/card-front/card-front.page').then( m => m.CardFrontPage)
+  },
+  {
+    path: 'card-back',
+    loadComponent: () => import('./pages/private/shared/components/card-back/card-back.page').then( m => m.CardBackPage)
+  },
+  {
+    path: 'form-back',
+    loadComponent: () => import('./pages/private/shared/components/form-back/form-back.page').then( m => m.FormBackPage)
+  },
+
   /*
   {
     path: 'details/:id',
@@ -59,14 +73,7 @@ export const routes: Routes = [
     path: 'menu',
     loadComponent: () => import('./pages/private/buttons/menu/menu.page').then( m => m.MenuPage)
   },
-  {
-    path: 'card-front',
-    loadComponent: () => import('./pages/private/shared/components/card-front/card-front.page').then( m => m.CardFrontPage)
-  },
-  {
-    path: 'card-back',
-    loadComponent: () => import('./pages/private/shared/components/card-back/card-back.page').then( m => m.CardBackPage)
-  },
+  
   {
     path: 'info',
     loadComponent: () => import('./pages/private/buttons/info/info.page').then( m => m.InfoPage)

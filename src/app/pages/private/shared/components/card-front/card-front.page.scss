@@ -1,40 +1,6 @@
-ion-content::part(background) {
+ion-content::part(background){
     background: transparent !important;
-}
-
-.scene {
-    display: block;
-    width: 100%;
-    height: 80vh;
-    perspective: 600px;
-    .card {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-      transform-origin: center right;
-      transition: transform .4s;
-      background: transparent;
-      &.is-flipped {
-        transform: translateX(-100%) rotateY(-180deg);
-      }
-      .card__face {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        &.front {
-          background: transparent;
-        }
-        &.back {
-          background: transparent;
-          transform: rotateY(180deg);
-        }
-      }
-    }
-  }
-  
+}  
   ion-card{
     display: flex;
     justify-content: center;
@@ -58,7 +24,6 @@ ion-content::part(background) {
       }
     }
   }
-  
   .flex-self-aligned{
     position: absolute;
     display: flex;
@@ -67,7 +32,6 @@ ion-content::part(background) {
     border-radius: 5px;
     padding: 0%;
   }
-  
   .inline-self-aligned{
     display: inline-block;
     position: relative;
@@ -76,61 +40,57 @@ ion-content::part(background) {
     border-radius: 5px;
     padding: 0%;
   }
-  
   .child-align{
     align-items: center;
     align-content: center;
     text-align: center;
   }
+  .contentFront{
+    width: 97.5%;
+    height: 98.5%;
+      //border:#ff00d9 dotted .5px;
+  }
+  .imgFrame{
+    display: inline-block;
+    position: absolute;
+    justify-content: center;
+    align-self: center;
+    border-radius: 5px;
+    padding: 0%;
+    width: 100%;
+    height: 100%;
+    //    background-color: #ffcc7744;
+          background-color: rgba(255, 255, 255, 0.65);
+  }
   
+  /*---------------------------------------------NO MORE CHANGE UP FROM HERE ---------------------------------------------*/
+
   .offUnderSpace{
     display:inline-block !important;
     vertical-align: middle;
     line-height:20px;
     margin: 0;
   }
-  
-  .imgFrame {
-    width: 100%;
-    height: fit-content;
-    min-height: 362px;
-    max-height: 374px;
-    //max-height: 374px;
-    background-color: #ffcc7744;
-  } // FRONT CARD IMG ------------ DO NOT CHANGE!!!
-  
-  /*---------------------------------------------NO MORE CHANGE UP FROM HERE ---------------------------------------------*/
-  
+
   .hiddenContent{
     display: none !important;
   }
-  .contentFront, .contentBack{
-    width: 97.5%;
-    height: 98.5%;
-      //border:#ff00d9 dotted .5px;
-  }
+
   .contentSpliter{
     width: 100%;
     height: auto;
       //height: 41.5%;
       //border:#0000ff dotted .5px;
   }
-  .gridFrame{
-    width: 100%;
-    height: 28.5%;
-      //border:#00eeff dotted .5px;
-  }
-  .gridCell{
-    width: 19.5%;
-    height: 7svh;
-      //border:#dc15ff dotted .8px;
-    margin: .2%;
-  }
   .thumbFrame{
       height: 10vh;
       width: 10vh;
   }
   
+  .shadow{
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4); 
+}
+
   /*------------------------------------------------------------------------------------------*/
   img{
     border-radius: 5px;
@@ -154,3 +114,20 @@ ion-content::part(background) {
     max-width: 374px;
     max-height: 374px;
   }
+  /*------------------------------------------------------------------------------------------*/
+.borded{
+  border: #aaaaaa solid .5px;
+  border-radius: 5px;
+}
+.borderR{
+  border: rgb(252, 0, 0) dotted 1px;
+}
+.borderG{
+  border: rgb(88, 252, 0) dotted 1px;
+}
+.borderB{
+  border: rgb(4, 0, 252) dotted 1px;
+}
+.noPadding{
+  padding: 0%;
+}

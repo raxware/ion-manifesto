@@ -1,26 +1,40 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, inject, Input, OnInit, Output,  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonInput, IonContent, IonHeader, IonTitle, IonToolbar, IonCardContent, IonImg, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonThumbnail } from '@ionic/angular/standalone';
-import { itemData } from 'src/app/model/interfaces';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardContent, 
+  IonImg, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonCard, 
+  IonGrid, IonRow, IonCol, IonLabel 
+} from '@ionic/angular/standalone';
+
 import { PhotoService } from 'src/app/services/photo.service';
 import { AlertService } from 'src/app/services/alert-service.service';
 import { book, brush, build, calculator, camera, chatbubbles, 
   checkmarkCircle, cube, diamond, dice, disc, extensionPuzzle, 
   film, gameController, home, images, language, medkit, rocket, 
   shirt, thumbsDown, thumbsUp, wine, cash, musicalNotes,
-  person, 
+  person, trash, trashBin, pencil
 } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
+import { ItemService } from 'src/app/services/item.service';
+import { itemData } from 'src/app/model/interfaces';
+import { FormBackPage } from './../form-back/form-back.page'
 
 @Component({
   selector: 'app-card-back',
   templateUrl: './card-back.page.html',
   styleUrls: ['./card-back.page.scss'],
   standalone: true,
-  imports: [IonInput, IonButton, IonCardContent, IonIcon, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, IonThumbnail]
+  imports: [IonLabel, IonCol, IonRow, IonGrid, 
+    IonCard, IonIcon, IonButton, IonCardTitle, 
+    IonCardHeader, IonImg, IonCardContent, 
+    IonContent, IonHeader, IonTitle, IonToolbar, 
+    FormsModule, FormBackPage
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CardBackPage implements OnInit{
+
+  myThingsService = inject(ItemService);
+  myThingsList: itemData[]=[];
  
   @Input() isFlipped: boolean = false;
   @Input() item?: itemData;
@@ -30,28 +44,48 @@ export class CardBackPage implements OnInit{
   @Input() thingMaker?: string;
   @Input() thingName?: string;
   @Input() typeIcon?: string;
-  
+
   constructor(public photoService: PhotoService, public alertService: AlertService) {}
+
+  slides: itemData[] = [
+    {
+      id: 1,
+      name: '',
+      maker: '',
+      picture: '',
+      type: '',
+      quantity: 1,
+      status: '',
+      tags: ['#unboxed', '#audio'],
+      barcode: '',
+      notes: '',
+    },
+  ];
+
   ngOnInit(): void {
-    this.item!.name = 'Name';
-    this.item!.type = 'Type';
-    this.item?.picture;
-    this.item!.maker = 'Name';
+    this.getThings();
+    /*    this.item!.name = 'Name';
+      this.item!.type = 'Type';
+      this.item?.picture;
+      this.item!.maker = 'Name';
 
-    this.thingName = '';
-    this.typeIcon ='cube';
-
-    addIcons({book, build, calculator, brush, shirt, wine, film, dice, diamond, camera, 
-      chatbubbles, medkit, images, extensionPuzzle, rocket, language, cube, gameController, 
-      disc, thumbsUp, thumbsDown, home, checkmarkCircle, cash, musicalNotes, person}
-    );
+      this.thingName = '';
+      this.typeIcon ='cube';
+    */
+    addIcons({book, build, calculator, brush, shirt, 
+      wine, film, dice, diamond, camera, chatbubbles, 
+      medkit, images, extensionPuzzle, rocket, language, 
+      cube, gameController, disc, thumbsUp, thumbsDown, 
+      home, checkmarkCircle, cash, musicalNotes, person,
+      trash, trashBin, pencil
+    });
   }
 
   flip() {
     this.isFlipped = !this.isFlipped;
     this.flipCard.emit(this.isFlipped);
   }
-
+  
   addImage(){
     if (!(this.item!.picture =='')){
       this.alertLocked();
@@ -152,6 +186,35 @@ export class CardBackPage implements OnInit{
 
   dummyToast(msg: string){
     this.alertService.presentToast(msg);
+  }
+  /** 
+   ****************** CRUD LOGIC ********************************************************************************** 
+  */
+
+  getThings() {
+    this.myThingsList = this.myThingsService.getThings();
+  }
+  saveThing(yetTaggedThing: itemData) {
+    this.myThingsService.setThing(yetTaggedThing);
+    this.getThings();
+  }
+  thingIndexer(index: number) {
+    const selectedThing = this.myThingsService.thingPicker(index);
+    //this.route.navigate(['/private/edit', index]);
+  }
+
+  removeItem(index: number) {
+    /*  const dialogRef = this.dialog.open(BasicDialogComponent, {
+      data: {message: 'Are you sure you want to delete this thing for ever?'},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      //console.log('The dialog was closed', result);
+      if(result) {
+      */
+        this.myThingsService.thingKicker(index);
+        this.getThings();
+    //  }
+    //});
   }
 
 }

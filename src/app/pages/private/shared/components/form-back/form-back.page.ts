@@ -3,12 +3,12 @@ import { Component, EventEmitter, Input, Output, OnInit, inject } from '@angular
 import { IonIcon, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, 
   IonChip, IonLabel, IonCardSubtitle, IonAlert, IonButton, IonInput, IonItem, 
   IonThumbnail, IonItemOption, IonSegment, IonGrid, IonRow, IonCol, IonTitle, 
-  IonTextarea, IonSelect, IonSelectOption, 
-} from "@ionic/angular/standalone";
+  IonTextarea, IonSelect, IonSelectOption, IonHeader, IonToolbar, IonContent } from "@ionic/angular/standalone";
 import { itemData } from 'src/app/model/interfaces';
-import { ItemService } from 'src/app/services/item.service';
+
 import { PhotoService } from 'src/app/services/photo.service';
 import { AlertService } from 'src/app/services/alert-service.service';
+
 import { addIcons } from 'ionicons';
 import { book, brush, build, calculator, camera, chatbubbles, 
   checkmarkCircle, cube, diamond, dice, disc, extensionPuzzle, 
@@ -16,53 +16,51 @@ import { book, brush, build, calculator, camera, chatbubbles,
   shirt, thumbsDown, thumbsUp, wine, cash, musicalNotes,
   person, 
 } from 'ionicons/icons';
+import { ItemService } from 'src/app/services/item.service';
 
 @Component({
-    selector: 'app-item-card',
-    templateUrl: './item-card.component.html',
-    styleUrls: ['./item-card.component.scss'],
-    standalone: true,
-    imports: [IonTextarea, FormsModule, ReactiveFormsModule, 
-      IonTitle, IonCol, IonRow, IonGrid, IonButton, IonAlert, 
-      IonCardSubtitle, IonLabel, IonChip, IonCardContent, 
-      IonCardTitle, IonCardHeader, IonCard, IonImg, IonInput, 
-      IonIcon, IonItem, IonSegment, IonThumbnail, IonItemOption,
-      IonSelect, IonSelectOption
-    ]
+  selector: 'app-form-back',
+  templateUrl: './form-back.page.html',
+  styleUrls: ['./form-back.page.scss'],
+  standalone: true,
+  imports: [IonContent, IonToolbar, IonHeader, IonTextarea, FormsModule, ReactiveFormsModule, 
+    IonTitle, IonCol, IonRow, IonGrid, IonButton, IonAlert, 
+    IonCardSubtitle, IonLabel, IonChip, IonCardContent, 
+    IonCardTitle, IonCardHeader, IonCard, IonImg, IonInput, 
+    IonIcon, IonItem, IonSegment, IonThumbnail, IonItemOption,
+    IonSelect, IonSelectOption
+  ]
 })
-export class ItemCardComponent implements OnInit{
+export class FormBackPage implements OnInit{
   myThingsService = inject(ItemService);
-  @Input() defaultIcon: string = 'cube';
-  @Input() typeIcon?: string;
-
   @Input() isFlipped: boolean = false;
-  @Input() item?: itemData;
-
+  @Input() item!: itemData;
   @Output() flipCard = new EventEmitter<boolean>();
+
   @Output() outputtingThing = new EventEmitter<itemData>();
 
   thingPicture!: string;
   @Input() thingType: string = 'Type';
 
-  @Input() thingMaker?: string;
-  @Input() thingName?: string;
-  @Input() thingQuantity?: string;
-  @Input() thingStatus?: string;
-  @Input() thingNotes?: string;
-  
   @Input () set thingUnit(thingToEdit: itemData){
     this.unit = thingToEdit;
     this.editFormFiller(thingToEdit);
-  };
-  get thingUnit (){
+  }; get thingUnit (){
     return this.unit;
   }
-    
+      
   thingPrototype!: FormGroup;
   unit!: itemData;
 
   constructor(public photoService: PhotoService, public alertService: AlertService) {
     this.emptyFormBuilder();
+  }
+
+  ngOnInit(): void {
+    addIcons({book, build, calculator, brush, shirt, wine, film, dice, diamond, camera, 
+      chatbubbles, medkit, images, extensionPuzzle, rocket, language, cube, gameController, 
+      disc, thumbsUp, thumbsDown, home, checkmarkCircle, cash, musicalNotes, person}
+    );
   }
 
   emptyFormBuilder() {
@@ -78,17 +76,20 @@ export class ItemCardComponent implements OnInit{
     });
   }
 
-  updatePrototype() {
-    this.thingPrototype.patchValue({
-      type: this.thingType, 
-      picture: this.thingPicture,
-    });
-    //this.thingPrototype.patchValue({picture: this.thingPicture,});
+  updatePrototype(field: string) {
+    if(field === 'type'){
+      this.thingPrototype.patchValue({
+        type: this.thingType,
+      });
+    } else if(field === 'picture'){
+      this.thingPrototype.patchValue({
+        picture: this.thingPicture,
+      });
+    }
   }
 
   thingTagger() {
     if (this.thingPrototype.valid){
-      this.updatePrototype();
       const justTaggedThing: itemData = {
         name: this.thingPrototype.get('name')!.value,
         type: this.thingPrototype.get('type')!.value,
@@ -99,49 +100,29 @@ export class ItemCardComponent implements OnInit{
         notes: this.thingPrototype.get('notes')?.value,
         tags: this.thingPrototype.get('tags')?.value,
       }
-
       //this.outputtingThing.emit(justTaggedThing);
       this.saveThing(justTaggedThing);
-      console.log('@output emits: ', justTaggedThing);
     }
     else {
         console.log('thingPrototype is INVALID!!!');
     }
   }
   
-  saveThing(yetTaggedThing: itemData) {
-    this.myThingsService.setThing(yetTaggedThing);
-  }
-
   editFormFiller(thingToEdit: itemData){
     this.thingPrototype.patchValue({
       name: thingToEdit.name,
+      type: thingToEdit.type,
       maker: thingToEdit.maker,
+      picture: thingToEdit.picture,
       quantity: thingToEdit.quantity,
       status: thingToEdit.status,
       notes: thingToEdit.notes,
-      id: thingToEdit.id,
-      type: thingToEdit.type,
-      picture: thingToEdit.picture,
       tags: thingToEdit.tags,
-      barcode: thingToEdit.barcode,
     })
   }
 
-  ngOnInit(): void {
-    this.item!.name = '';
-    this.thingType = 'Type';
-    //this.item!.picture = '';
-    this.item!.maker = '';
-    this.item!.status = '';
-
-    this.thingName = '';
-    this.typeIcon = this.defaultIcon;
-
-    addIcons({book, build, calculator, brush, shirt, wine, film, dice, diamond, camera, 
-      chatbubbles, medkit, images, extensionPuzzle, rocket, language, cube, gameController, 
-      disc, thumbsUp, thumbsDown, home, checkmarkCircle, cash, musicalNotes, person}
-    );
+  saveThing(yetTaggedThing: itemData) {
+    this.myThingsService.setThing(yetTaggedThing);
   }
 
   flip() {
@@ -150,7 +131,7 @@ export class ItemCardComponent implements OnInit{
   }
   
   addImage(){
-    if (!(this.item!.picture ==='')){
+    if (!(this.item!.picture =='')){
       this.alertLocked();
     }else{
       this.editImage();
@@ -167,13 +148,21 @@ export class ItemCardComponent implements OnInit{
   }
   
   openCamera(imgSource: string) {
+    console.log(this.item!);
     this.photoService.addItemPicture(imgSource).then((value) => {
-      if (value.webviewPath && this.item) {
-        this.thingPicture = this.item.picture = value.webviewPath;
+      if (value.webviewPath) {
+        this.thingPicture = this.item!.picture = value.webviewPath;
+        console.log(this.item!);
+        console.log(this.thingPicture);
         if ((this.thingType === 'Type')){
           this.addType();
+           
         }
+        console.log('blob: ', this.item!.picture);   
+      } else{
+        console.log('no asigna imagen porque no cumple el "if"...');
       }
+
     });
   }
 
@@ -196,7 +185,7 @@ export class ItemCardComponent implements OnInit{
   openType(){
     this.alertService.inputAlert(
       'What kind of Item is this?',
-      [{ label: 'Disc', type: 'radio', value: 'Album' },
+      [{ label: 'Disc', type: 'radio', value: 'Disc' },
        { label: 'Book', type: 'radio', value: 'Book' }, 
        { label: 'Tools', type: 'radio', value: 'Tools' },
        { label: 'Cloth', type: 'radio', value: 'Cloth' },
@@ -205,27 +194,9 @@ export class ItemCardComponent implements OnInit{
        { label: 'Currency', type: 'radio', value: 'Currency'},
       ],
       [{text: 'Cancel', role: 'cancel', handler: (alertData: string) => { this.item!.type = 'undefined'; console.log('addType cancel', alertData); }}, 
-       {text: 'Ok', handler: (alertData: string) => { this.thingType = this.item!.type = alertData; this.typeSelector(this.thingType);}}
+       {text: 'Ok', handler: (alertData: string) => { this.thingType = alertData; this.updatePrototype('type')}}
       ]
     )
-  }
-  typeSelector(sellectedType: string){
-    switch (sellectedType){
-      case "Album": this.typeIcon = 'disc'; this.thingMaker = 'Artist'; this.thingName = sellectedType; 
-      this.thingStatus = 'Status'; this.thingQuantity = "Quantity"; this.thingNotes = "Notes"; break;
-      case "Book": this.typeIcon = 'book'; this.thingMaker = 'Author'; this.thingName = sellectedType; 
-      this.thingStatus = 'Status'; this.thingQuantity = "Quantity"; this.thingNotes = "Notes"; break;
-      case "Tools": this.typeIcon = 'build'; this.thingMaker = 'Brand'; this.thingName = sellectedType; 
-      this.thingStatus = 'Status'; this.thingQuantity = "Quantity"; this.thingNotes = "Notes"; break;
-      case "Cloth": this.typeIcon = 'shirt'; this.thingMaker = "Brand"; this.thingName = sellectedType; 
-      this.thingStatus = 'Status'; this.thingQuantity = "Quantity"; this.thingNotes = "Notes"; break;
-      case "Comic": this.typeIcon = 'chatbubbles'; this.thingMaker = "Author"; this.thingName = sellectedType; 
-      this.thingStatus = 'Status'; this.thingQuantity = "Quantity"; this.thingNotes = "Notes"; break;
-      case "Wine": this.typeIcon = 'wine'; this.thingMaker = "Producer"; this.thingName = sellectedType; 
-      this.thingStatus = 'Status'; this.thingQuantity = "Quantity"; this.thingNotes = "Notes"; break;
-      case "Currency": this.typeIcon = 'cash'; this.thingMaker = "Country"; this.thingName = sellectedType; 
-      this.thingStatus = 'Status'; this.thingQuantity = "Quantity"; this.thingNotes = "Notes"; break;
-    }
   }
 
   addToContainer() {
@@ -241,7 +212,3 @@ export class ItemCardComponent implements OnInit{
   }
 
 }
-
-
-
-
