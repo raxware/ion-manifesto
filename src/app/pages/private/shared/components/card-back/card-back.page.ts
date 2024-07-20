@@ -99,7 +99,6 @@ export class CardBackPage implements OnInit{
       [{text: 'Photo Gallery', handler: () => { this.openCamera('gallery');  }},
       {text: 'Camera', handler: () => { this.openCamera('camera'); }},
       {text: 'Cancel', role: 'cancel', handler: (alertData: any) => { console.log('addImg cancel', alertData); }}],
-      ''
     );
   }
   
@@ -120,7 +119,6 @@ export class CardBackPage implements OnInit{
     this.alertService.basicAlert(
       'Meant to edit?', 'Double click the card!', 'Then, press the item\'s icon or its thumbnail',
       [{text: 'Ok'}],
-      ''
     );
   }
 
@@ -178,9 +176,8 @@ export class CardBackPage implements OnInit{
 
   dummyAlert(){
     this.alertService.basicAlert(
-      'This is an alert', 'but it does nothing...', 'but a test',
+      'This is an alert', '', 'but it does nothing... but a test', 
       {text: 'Ok'},
-      ''
     )
   }
 

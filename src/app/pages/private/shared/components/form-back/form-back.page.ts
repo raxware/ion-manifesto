@@ -14,7 +14,7 @@ import { book, brush, build, calculator, camera, chatbubbles,
   checkmarkCircle, cube, diamond, dice, disc, extensionPuzzle, 
   film, gameController, home, images, language, medkit, rocket, 
   shirt, thumbsDown, thumbsUp, wine, cash, musicalNotes,
-  person, 
+  person, grid, gridOutline, gridSharp
 } from 'ionicons/icons';
 import { ItemService } from 'src/app/services/item.service';
 
@@ -59,8 +59,9 @@ export class FormBackPage implements OnInit{
   ngOnInit(): void {
     addIcons({book, build, calculator, brush, shirt, wine, film, dice, diamond, camera, 
       chatbubbles, medkit, images, extensionPuzzle, rocket, language, cube, gameController, 
-      disc, thumbsUp, thumbsDown, home, checkmarkCircle, cash, musicalNotes, person}
-    );
+      disc, thumbsUp, thumbsDown, home, checkmarkCircle, cash, musicalNotes, person, grid, 
+      gridOutline, gridSharp
+    });
   }
 
   emptyFormBuilder() {
@@ -139,7 +140,6 @@ export class FormBackPage implements OnInit{
       [{text: 'Photo Gallery', handler: () => { this.openCamera('gallery');  }},
       {text: 'Camera', handler: () => { this.openCamera('camera'); }},
       {text: 'Cancel', role: 'cancel', handler: (alertData: any) => { console.log('addImg cancel', alertData); }}],
-      ''
     );
   }
   
@@ -167,7 +167,6 @@ export class FormBackPage implements OnInit{
     this.alertService.basicAlert(
       'Meant to edit?', '', 'Double click the card to flip it and then click its thumbnail.',
       [{text: 'Ok'}],
-      ''
     );
   }
 

@@ -137,7 +137,6 @@ export class ItemCardComponent implements OnInit{
       [{text: 'Photo Gallery', handler: () => { this.openCamera('gallery');  }},
       {text: 'Camera', handler: () => { this.openCamera('camera'); }},
       {text: 'Cancel', role: 'cancel', handler: (alertData: any) => { console.log('addImg cancel', alertData); }}],
-      ''
     );
   }
   
@@ -156,7 +155,6 @@ export class ItemCardComponent implements OnInit{
     this.alertService.basicAlert(
       'Meant to edit?', '', 'Double click the card to flip it and then click its thumbnail.',
       [{text: 'Ok'}],
-      ''
     );
   }
 

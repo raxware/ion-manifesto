@@ -67,7 +67,7 @@ export class LoginPage implements OnInit {
 			this.router.navigateByUrl('/', { replaceUrl: true });
 			//this.router.navigateByUrl('/home', { replaceUrl: true });
 		} else {
-			this.alertDummy('Login failed', '', 'Please try again!', 'Ok', '');
+			this.alertDummy('Login failed', '', 'Please try again!', 'Ok');
 			//console.log('Registration failed', 'Please try again!');
 		}
 	}
@@ -87,7 +87,7 @@ export class LoginPage implements OnInit {
 			this.router.navigateByUrl('/', { replaceUrl: true });
 			//this.router.navigateByUrl('/home', { replaceUrl: true });
 		} else {
-			this.alertDummy('Login failed', '', 'Please try again!', 'Ok', '');
+			this.alertDummy('Login failed', '', 'Please try again!', 'Ok');
 			//console.log('Login failed', 'Please try again!');
 		}
 
@@ -111,16 +111,15 @@ export class LoginPage implements OnInit {
 				'', 
 				'Please provide a valid email address to make sure your profile is recoverable. All your data may become unreachable, otherwise.', 
 				'Ack',
-				''
 			);
 		}
 		this.isFlipped = !this.isFlipped;
 		this.flipCard.emit(this.isFlipped);
 	}
 
-	alertDummy(ttl: string, subttl: string, msg: string, btn: string, cascade: any){
+	alertDummy(ttl: string, subttl: string, msg: string, btn: string){
 		setTimeout(() => {
-			this.alertService.basicAlert(ttl, subttl, msg, [{text: btn}], cascade);
+			this.alertService.basicAlert(ttl, subttl, msg, [{text: btn}]);
 		}, 500);
 	}
 

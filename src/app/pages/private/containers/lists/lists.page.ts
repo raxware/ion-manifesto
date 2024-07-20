@@ -11,7 +11,7 @@ import { book, brush, build, calculator, camera, chatbubbles,
   checkmarkCircle, cube, diamond, dice, disc, extensionPuzzle, 
   film, gameController, home, images, language, medkit, rocket, 
   shirt, thumbsDown, thumbsUp, wine, cash, musicalNotes,
-  person, trash, trashBin, pencil
+  person, trash, trashBin, pencil, create, eye
 } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 
@@ -62,7 +62,7 @@ export class ListsPage implements OnInit {
       medkit, images, extensionPuzzle, rocket, language, 
       cube, gameController, disc, thumbsUp, thumbsDown, 
       home, checkmarkCircle, cash, musicalNotes, person,
-      trash, trashBin, pencil
+      trash, trashBin, pencil, create, eye
     });
   }
 

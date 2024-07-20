@@ -24,6 +24,7 @@ import { FeedbackPage } from '../buttons/feedback/feedback.page';
 import { SharePage } from '../buttons/share/share.page';
 import { LogoutPage } from '../buttons/logout/logout.page';
 import { MenuPage } from '../buttons/menu/menu.page';
+import { concat } from 'rxjs';
 
 @Component({
   selector: 'app-tab2',
@@ -42,6 +43,8 @@ export class Tab2Page implements OnInit{
   backFace: string= ''; 
   @Input() isFlipped: boolean = false;
   @Output() flipCard = new EventEmitter<boolean>();
+  count: number = 0;
+  witness: boolean = false;
 
   constructor(public alertService: AlertService, private authService: AuthService, private router: Router) {}
   ngOnInit(): void {
@@ -80,4 +83,41 @@ export class Tab2Page implements OnInit{
     }
     */
   }
+
+  dummyToast(msg: string){
+    this.alertService.presentToast(msg);
+  }
+
+  dummyAlert(head: string, sub: string, msg: string, btn: any){
+    this.alertService.basicAlert(
+      head, sub, msg,
+      [{text: btn}],
+    )
+  }
+    
+  easterEgg(): void{
+    if(this.witness !== true){
+    this.count++;
+      if(this.count === 21 ){
+        console.log('contador: ', this.count);
+        const id1 = Math.floor((Math.random() * (9999 - 1000 + 1)) + 1000);
+        const id2 = Math.floor((Math.random() * (9999 - 1000 + 1)) + 1000);
+        //window.crypto.randomUUID()
+        let now: Date = new Date(); let year: number = now.getFullYear(); 
+        let code: string = 'mnf-'; code = (code.concat(year.toString()));
+        code = (code.concat('-')); code =(code.concat(id1.toString())); 
+        code = (code.concat('-')); code = (code.concat(id2.toString()));
+        console.log(code);
+        this.dummyAlert('Ostara has a gift for you!', 'Save this code to redeem it:', code, 'Ok');
+        this.count = 0; this.witness = true;
+        console.log('contador/testigo: ', this.count, this.witness);
+      }
+    }
+  }
+
+  
+
+
+
+
 }
