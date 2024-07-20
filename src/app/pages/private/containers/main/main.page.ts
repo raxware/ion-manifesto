@@ -28,7 +28,13 @@ import { SubjectsService } from "../../../../services/subjects.service";
   templateUrl: './main.page.html',
   styleUrls: ['./main.page.scss'],
   standalone: true,
-  imports: [IonNav, IonSearchbar, IonFabList, IonFabButton, IonFab, IonListHeader, IonItemOption, IonItemOptions, IonItem, IonItemSliding, IonLabel, IonItemDivider, IonItemGroup, IonList, IonIcon, IonButton, IonSegmentButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, IonMenuButton]
+  imports: [IonNav, IonSearchbar, IonFabList, IonFabButton, 
+    IonFab, IonListHeader, IonItemOption, IonItemOptions, IonItem, 
+    IonItemSliding, IonLabel, IonItemDivider, IonItemGroup, 
+    IonList, IonIcon, IonButton, IonSegmentButton, IonButtons, 
+    IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, 
+    IonMenuButton, 
+  ]
 })
 export class MainPage implements OnInit {
   public subjects!: Array <Subjects>;
@@ -51,9 +57,9 @@ export class MainPage implements OnInit {
   public openSubject(subjectId: number): void {
    console.log('selected: ', subjectId)
     switch (subjectId){
-      case 1: this.navCtrl.navigateForward(["collections"]); break;
+      case 1: this.navCtrl.navigateForward(["lists"]); break;
       case 2: this.navCtrl.navigateForward(["boxes"]); break;
-      case 3: this.navCtrl.navigateForward(["lists"]); break;
+      case 3: this.navCtrl.navigateForward(["collections"]); break;
       case 4: this.navCtrl.navigateForward(["people"]); break;
       case 5: this.navCtrl.navigateForward(["locate"]); break;
       /*  this.navCtrl.navigateForward(["details", subjectId]); */

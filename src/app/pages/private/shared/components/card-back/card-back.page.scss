@@ -1,7 +1,18 @@
-ion-content::part(background) {
+/*ion-content::part(background) {
     background: transparent !important;
-}
+}*/
 
+.altHeader {
+  //background: transparent;
+  //background: #8080804e;
+  .header-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0vh;
+    width: 15%;
+  }
+}
 .scene {
     display: block;
     width: 100%;
@@ -154,3 +165,45 @@ ion-content::part(background) {
     max-width: 374px;
     max-height: 374px;
   }
+
+  .borderR{
+    border: solid red .3px;
+  }
+
+
+  ion-item-option {
+    --background: transparent;
+    --ion-color-success: #afe056;
+    --ion-color-primary: #ffcc77;
+    --ion-color-danger: #ef475b;
+    --ion-color-primary-shade: transparent;
+    --color: #aaaaaa;
+}
+ion-thumbnail { 
+    --size: 7vh;
+    --border-radius: 5px; 
+}
+ion-list { --ion-item-background: #fffcf660;}
+ion-toolbar { 
+    --background: linear-gradient(#ffffff, #fffcf6, #fef8ec, #ffeecc); 
+    --color: #aaaaaa; 
+}
+ion-item{
+//    --background: linear-gradient(135deg, rgba(255,255,255,0) 12%, rgba(255,204,119,0.35) 48%, rgba(255,204,119,1) 70%);
+    --background: linear-gradient(135deg,rgba(255, 204, 119, 0) 14%, rgb(255, 233, 199, .4) 48%, rgb(255, 255, 255, 1) 71%);
+    --color: #aaaaaa;
+    --border-color: transparent;
+}
+
+img{
+    height: 100%;
+}
+
+.noRipple{
+    --ripple-color: transparent !important;
+    --background-hover: transparent !important;
+}
+
+.customRipple {
+    color: #ffcc77;
+}

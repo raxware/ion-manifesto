@@ -2,7 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, inject, Input, OnInit,
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardContent, 
   IonImg, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonCard, 
-  IonGrid, IonRow, IonCol, IonLabel 
+  IonGrid, IonRow, IonCol, IonLabel, IonBackButton
 } from '@ionic/angular/standalone';
 
 import { PhotoService } from 'src/app/services/photo.service';
@@ -27,7 +27,7 @@ import { FormBackPage } from './../form-back/form-back.page'
     IonCard, IonIcon, IonButton, IonCardTitle, 
     IonCardHeader, IonImg, IonCardContent, 
     IonContent, IonHeader, IonTitle, IonToolbar, 
-    FormsModule, FormBackPage
+    FormsModule, FormBackPage, IonBackButton, 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

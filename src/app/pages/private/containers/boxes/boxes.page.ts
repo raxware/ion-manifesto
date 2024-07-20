@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, 
   IonItemSliding, IonItem, IonLabel, IonItemOptions, IonItemOption, 
-  IonIcon, IonThumbnail, IonRippleEffect, IonImg, IonButtons, IonBackButton } from '@ionic/angular/standalone';
+  IonIcon, IonThumbnail, IonRippleEffect, IonImg, IonButtons, IonBackButton, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { book, brush, build, calculator, camera, chatbubbles, 
   checkmarkCircle, cube, diamond, dice, disc, extensionPuzzle, 
@@ -18,7 +18,7 @@ import { book, brush, build, calculator, camera, chatbubbles,
   templateUrl: './boxes.page.html',
   styleUrls: ['./boxes.page.scss'],
   standalone: true,
-  imports: [IonBackButton, IonButtons, IonImg, IonRippleEffect, IonIcon,
+  imports: [IonCol, IonRow, IonGrid, IonBackButton, IonButtons, IonImg, IonRippleEffect, IonIcon,
     IonThumbnail, IonItemOption, IonItemOptions,
     IonLabel, IonItem, IonItemSliding, IonList,
     IonHeader, IonToolbar, IonTitle, IonContent,

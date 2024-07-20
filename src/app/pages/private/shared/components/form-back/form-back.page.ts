@@ -39,7 +39,7 @@ export class FormBackPage implements OnInit{
 
   @Output() outputtingThing = new EventEmitter<itemData>();
 
-  thingPicture!: string;
+  thingPicture: string = '';
   @Input() thingType: string = 'Type';
 
   @Input () set thingUnit(thingToEdit: itemData){
@@ -76,20 +76,16 @@ export class FormBackPage implements OnInit{
     });
   }
 
-  updatePrototype(field: string) {
-    if(field === 'type'){
-      this.thingPrototype.patchValue({
-        type: this.thingType,
-      });
-    } else if(field === 'picture'){
-      this.thingPrototype.patchValue({
-        picture: this.thingPicture,
-      });
-    }
+  updatePrototype() {
+    this.thingPrototype.patchValue({
+      type: this.thingType, 
+      picture: this.thingPicture,
+    });
   }
 
   thingTagger() {
     if (this.thingPrototype.valid){
+      this.updatePrototype();
       const justTaggedThing: itemData = {
         name: this.thingPrototype.get('name')!.value,
         type: this.thingPrototype.get('type')!.value,
@@ -151,14 +147,15 @@ export class FormBackPage implements OnInit{
     console.log(this.item!);
     this.photoService.addItemPicture(imgSource).then((value) => {
       if (value.webviewPath) {
-        this.thingPicture = this.item!.picture = value.webviewPath;
+       //this.item!.picture = 
+       this.thingPicture =  value.webviewPath;
         console.log(this.item!);
         console.log(this.thingPicture);
         if ((this.thingType === 'Type')){
           this.addType();
            
         }
-        console.log('blob: ', this.item!.picture);   
+        console.log('blob: ', this.thingPicture);   
       } else{
         console.log('no asigna imagen porque no cumple el "if"...');
       }
@@ -194,7 +191,7 @@ export class FormBackPage implements OnInit{
        { label: 'Currency', type: 'radio', value: 'Currency'},
       ],
       [{text: 'Cancel', role: 'cancel', handler: (alertData: string) => { this.item!.type = 'undefined'; console.log('addType cancel', alertData); }}, 
-       {text: 'Ok', handler: (alertData: string) => { this.thingType = alertData; this.updatePrototype('type')}}
+       {text: 'Ok', handler: (alertData: string) => { this.thingType = alertData; }}
       ]
     )
   }
@@ -212,3 +209,4 @@ export class FormBackPage implements OnInit{
   }
 
 }
+

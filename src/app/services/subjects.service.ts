@@ -9,33 +9,28 @@ export class SubjectsService {
   private subjects = [
     {
       id: 1,
-      title: "Collections",
-      description: "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.",
-      route: "",
+      title: "Lists",
+      description: "All your itens in sight as lists filtered 'by type'",
     },
     {
       id: 2,
       title: "Boxes",
-      description: "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.",
-      route: "",
+      description: "Create and manage boxes for all-around purposes",
     },
     {
       id: 3,
-      title: "Lists",
+      title: "Collections",
       description: "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.",
-      route: "",
     },
     {
       id: 4,
       title: "People",
       description: "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.",
-      route: "",
     },
     {
       id: 5,
       title: "Locations",
-      description: "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.",
-      route: "",
+      description: "Where in the world did you leave those things?",
     },
   ];
 

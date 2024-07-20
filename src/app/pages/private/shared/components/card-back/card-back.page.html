@@ -1,97 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button></ion-back-button></ion-buttons>
+    <ion-title>Editor</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content [fullscreen]="true">
-  <app-form-back></app-form-back>
-<!--<ion-card>
-<ion-card-content class="whiteBorder flex-self-aligned">
-<ion-card-content class="bgLayer flex-self-aligned">
-  <ion-card-content class="contentFront inline-self-aligned borded">-->
-    <!-- ************************************************************************** -->
-    <!--<ion-label> CARD FACE FRONT: RESIZE IT </ion-label>
-      (click)="thingIndexer(i)"
-      (click)="removeItem(i)"
-
-    <ion-grid class="borderG noPadding" [fixed]="true">-->
-    <!--  <ion-card-content class="imgFrame child-align border R">
-
-        <div class="thingsFrame">
-          <div class="thingsHead"><div class="headTitle">Things list</div>
-        </div>
-          <div class="things">
-              <ul>
-                    @for(thing of myThingsList; track thing){ 
-                      <li class="borderB">
-                      <div class="thingDescription">{{thing.name}}</div>
-                      <div class="editIcon"><ion-icon aria-hidden="false" naame="pencil" ></ion-icon></div>
-                      <div class="deleteIcon"><ion-icon aria-hidden="false" name="trashBin"></ion-icon></div>
-                      </li>
-                    }
-              </ul>
-          </div>
-        </div>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-buttons slot="start"><ion-back-button></ion-back-button></ion-buttons>
+      <ion-title size="large">Editor</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid [fixed]="true" class=""><ion-row><ion-col><div class="altHeader"><ion-img class="header-image" src="../../assets/logo.png"></ion-img></div></ion-col></ion-row>
+  </ion-grid>
+  <ion-card>
+    <ion-card-content class="whiteBorder flex-self-aligned">
+      <ion-card-content class="bgLayer flex-self-aligned">
+        <ion-card-content class="contentFront inline-self-aligned borded">
+          <app-form-back></app-form-back>
+        </ion-card-content>
       </ion-card-content>
-    </ion-grid>
-    <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
-     ************************************************************************** -->
-    <!--<ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>-->
-    <!-- ************************************************************************** -->
-    <!--  <ion-grid [fixed]="true">
-      <ion-row>
-        <ion-col class="centerMiddle">
-          <ion-label class="formShaper centerMiddle" (press)="dummyToast('Name')"><h1>LABEL H1</h1></ion-label>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
-    <ion-grid [fixed]="true">
-      <ion-row>
-        <ion-label class="formShaper centerMiddle"><h3>LABEL H3</h3></ion-label>
-      </ion-row>
-    </ion-grid>
-    <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
-    <ion-grid [fixed]="true">
-      <ion-row>
-        <ion-col class="centerMiddle">
-          <ion-label class="formShaper centerMiddle hiddenText"><h1>whatever hidden</h1></ion-label>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-     ************************************************************************** -->
-    <!--<ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;">&nbsp;</ion-col></ion-row></ion-grid>-->
-    <!-- ************************************************************************** -->
-  <!--  <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
-    <ion-grid [fixed]="true" class="toBotton">
-      <ion-row>
-        <ion-col class="centerMiddle">
-          <ion-button size="large" (click)="dummyToast('btn1')">
-            <ion-icon slot="icon-only" name="box"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col class="centerMiddle">
-          <ion-button size="large" (click)="dummyToast('btn2')">
-            <ion-icon slot="icon-only" name="box"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col class="centerMiddle">
-          <ion-button size="large" (click)="dummyToast('btn3')">
-            <ion-icon slot="icon-only" name="box"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col class="centerMiddle">
-          <ion-button size="large" (click)="dummyToast('btn4')">
-            <ion-icon slot="icon-only" name="box"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col class="centerMiddle">
-          <ion-button size="large" (click)="dummyToast('btn5')">
-            <ion-icon slot="icon-only" name="box"></ion-icon>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>-->
-    <!---->
-    <!-- ************************************************************************** --> 
-  <!--</ion-card-content>
-
-</ion-card-content>
-</ion-card-content>
-</ion-card>-->
+    </ion-card-content>
+  </ion-card>
 </ion-content>

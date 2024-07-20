@@ -39,7 +39,7 @@ export class ItemCardComponent implements OnInit{
   @Input() item?: itemData;
 
   @Output() flipCard = new EventEmitter<boolean>();
-  @Output() outputtingThing = new EventEmitter<itemData>();
+  //@Output() outputtingThing = new EventEmitter<itemData>();
 
   thingPicture!: string;
   @Input() thingType: string = 'Type';
@@ -49,14 +49,6 @@ export class ItemCardComponent implements OnInit{
   @Input() thingQuantity?: string;
   @Input() thingStatus?: string;
   @Input() thingNotes?: string;
-  
-  @Input () set thingUnit(thingToEdit: itemData){
-    this.unit = thingToEdit;
-    this.editFormFiller(thingToEdit);
-  };
-  get thingUnit (){
-    return this.unit;
-  }
     
   thingPrototype!: FormGroup;
   unit!: itemData;
@@ -99,10 +91,8 @@ export class ItemCardComponent implements OnInit{
         notes: this.thingPrototype.get('notes')?.value,
         tags: this.thingPrototype.get('tags')?.value,
       }
-
       //this.outputtingThing.emit(justTaggedThing);
       this.saveThing(justTaggedThing);
-      console.log('@output emits: ', justTaggedThing);
     }
     else {
         console.log('thingPrototype is INVALID!!!');
@@ -111,21 +101,6 @@ export class ItemCardComponent implements OnInit{
   
   saveThing(yetTaggedThing: itemData) {
     this.myThingsService.setThing(yetTaggedThing);
-  }
-
-  editFormFiller(thingToEdit: itemData){
-    this.thingPrototype.patchValue({
-      name: thingToEdit.name,
-      maker: thingToEdit.maker,
-      quantity: thingToEdit.quantity,
-      status: thingToEdit.status,
-      notes: thingToEdit.notes,
-      id: thingToEdit.id,
-      type: thingToEdit.type,
-      picture: thingToEdit.picture,
-      tags: thingToEdit.tags,
-      barcode: thingToEdit.barcode,
-    })
   }
 
   ngOnInit(): void {
@@ -198,7 +173,7 @@ export class ItemCardComponent implements OnInit{
       'What kind of Item is this?',
       [{ label: 'Disc', type: 'radio', value: 'Album' },
        { label: 'Book', type: 'radio', value: 'Book' }, 
-       { label: 'Tools', type: 'radio', value: 'Tools' },
+       { label: 'Tool', type: 'radio', value: 'Tool' },
        { label: 'Cloth', type: 'radio', value: 'Cloth' },
        { label: 'Comic', type: 'radio', value: 'Comic' },
        { label: 'Wine', type: 'radio', value: 'Wine'},
@@ -215,7 +190,7 @@ export class ItemCardComponent implements OnInit{
       this.thingStatus = 'Status'; this.thingQuantity = "Quantity"; this.thingNotes = "Notes"; break;
       case "Book": this.typeIcon = 'book'; this.thingMaker = 'Author'; this.thingName = sellectedType; 
       this.thingStatus = 'Status'; this.thingQuantity = "Quantity"; this.thingNotes = "Notes"; break;
-      case "Tools": this.typeIcon = 'build'; this.thingMaker = 'Brand'; this.thingName = sellectedType; 
+      case "Tool": this.typeIcon = 'build'; this.thingMaker = 'Brand'; this.thingName = sellectedType; 
       this.thingStatus = 'Status'; this.thingQuantity = "Quantity"; this.thingNotes = "Notes"; break;
       case "Cloth": this.typeIcon = 'shirt'; this.thingMaker = "Brand"; this.thingName = sellectedType; 
       this.thingStatus = 'Status'; this.thingQuantity = "Quantity"; this.thingNotes = "Notes"; break;

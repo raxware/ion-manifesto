@@ -87,5 +87,4 @@ export interface Subjects {
   id: number;
   title: string;
   description: string;
-  route: string;
 }

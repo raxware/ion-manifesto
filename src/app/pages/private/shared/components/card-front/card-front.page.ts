@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, inject, Input, OnInit, Output,  } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardContent, 
   IonImg, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonCard, 
   IonGrid, IonRow, IonCol, IonLabel 
@@ -35,13 +35,23 @@ import { CardBackPage } from "../card-back/card-back.page";
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CardFrontPage implements OnInit{
-  @Input({ required: true }) index!: number; 
   myThingsService = inject(ItemService);
   myThingsList: itemData[] = [];
-  outputtingThing!: itemData;
-  thing!: itemData;
-  
+  //outputtingThing!: itemData;
+  thingPrototype!: FormGroup;
+  //thing!: itemData;
+  unit!: itemData;
 
+  @Input({ required: true }) index!: number; 
+
+  @Input () set thingUnit(thingToEdit: itemData){
+    this.unit = thingToEdit;
+    this.editFormFiller(thingToEdit);
+  };
+  get thingUnit (){
+    return this.unit;
+  }
+  
   constructor(public photoService: PhotoService, public alertService: AlertService) {
   }
 
@@ -72,10 +82,28 @@ export class CardFrontPage implements OnInit{
     this.myThingsService.setThing(yetTaggedThing);
     this.getThings();
   }
+
+  editFormFiller(thingToEdit: itemData){
+    this.thingPrototype.patchValue({
+      name: thingToEdit.name,
+      maker: thingToEdit.maker,
+      quantity: thingToEdit.quantity,
+      status: thingToEdit.status,
+      notes: thingToEdit.notes,
+      id: thingToEdit.id,
+      type: thingToEdit.type,
+      picture: thingToEdit.picture,
+      tags: thingToEdit.tags,
+      barcode: thingToEdit.barcode,
+    })
+  }
+
   thingIndexer(index?: number) {
     console.log(index!);
-    this.myThingsService.thingPicker(index!);
+    const thing = this.myThingsService.thingPicker(index!);
+    console.log(index!);
   //  this.route.navigate(['/private/edit', index]);
+    console.log('editor: ', thing );
   }
 
   removeItem(index?: number) {
