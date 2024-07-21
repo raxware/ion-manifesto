@@ -1,20 +1,32 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+  <ion-toolbar class="tollbarCustom">
+    <ion-buttons slot="start"><ion-back-button></ion-back-button></ion-buttons>
+    <ion-title>Places</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toolbarShowHide('searchToolbar')"><ion-icon slot="icon-only" name="search"></ion-icon></ion-button>
+      <ion-button (click)="toolbarShowHide('segToolbar')"><ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon></ion-button>
     </ion-buttons>
-    <ion-title>Locations</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
-      </ion-buttons>
-      <ion-title size="large">Locations</ion-title>
+    <ion-toolbar class="tollbarCustom">
+      <ion-buttons slot="start"><ion-back-button></ion-back-button></ion-buttons>
+      <ion-title size="large">Places</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-grid [fixed]="true" class="noPadding">
+    <ion-toolbar id="searchToolbar" class="noPadding alignCenter" style="width: 100% !important; display:none;">
+      <ion-searchbar id="searchBar" class="noPadding alignCenter" show-clear-button="always" animated="true" placeholder="Search" value=""></ion-searchbar>
+    </ion-toolbar>
+    <ion-toolbar id="segToolbar" class="noPadding alignCenter" style="width: 100% !important; display:none;">
+      <ion-segment id="segButtons" class="noPadding alignCenter" [scrollable]="true" value="all" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="all"><ion-label>All</ion-label></ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </ion-grid>
 
   @defer(when this.center.lat !== 0) {
     <google-map
@@ -28,6 +40,7 @@
         <map-advanced-marker
           #marker="mapAdvancedMarker"
           [position]="m.geoCoordinates"
+          [content]="getPinElement()"
           (mapClick)="openInfoWindow(marker, infoWindow)" >
         </map-advanced-marker>
         <map-info-window
@@ -56,6 +69,15 @@
   <div>Latitude: {{display?.lat}}</div>
   <div>Longitude: {{display?.lng}}</div>
   -->
-
+  <ion-fab #fab slot="fixed" vertical="bottom" horizontal="center">
+    <ion-fab-button>
+      <ion-icon style="color: #ffffff; font-size: xx-large;" name="add" size="large"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="medium" (click)="dummyToast('Add a place')">
+        <ion-icon style="color: #ffffff; font-size: xx-large;" class="iconCustom" name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 
 </ion-content>

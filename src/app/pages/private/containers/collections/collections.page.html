@@ -1,22 +1,85 @@
+
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
+  <ion-toolbar class="tollbarCustom">
+    <ion-buttons slot="start"><ion-back-button></ion-back-button></ion-buttons>
     <ion-title>Collections</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toolbarShowHide('searchToolbar')"><ion-icon slot="icon-only" name="search"></ion-icon></ion-button>
+      <ion-button (click)="toolbarShowHide('segToolbar')"><ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
-      </ion-buttons>
+    <ion-toolbar class="tollbarCustom">
+      <ion-buttons slot="start"><ion-back-button></ion-back-button></ion-buttons>
       <ion-title size="large">Collections</ion-title>
     </ion-toolbar>
   </ion-header>
 
+  <ion-grid [fixed]="true" class="noPadding">
+    <ion-toolbar id="searchToolbar" class="noPadding alignCenter" style="width: 100% !important; display:none;">
+      <ion-searchbar id="searchBar" class="noPadding alignCenter" show-clear-button="always" animated="true" placeholder="Search" value=""></ion-searchbar>
+    </ion-toolbar>
+    <ion-toolbar id="segToolbar" class="noPadding alignCenter" style="width: 100% !important; display:none;">
+      <ion-segment id="segButtons" class="noPadding alignCenter" [scrollable]="true" value="all" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="all"><ion-label>All</ion-label></ion-segment-button>
+        <ion-segment-button value="disc"><ion-icon name="disc"></ion-icon></ion-segment-button>
+        <ion-segment-button value="library"><ion-icon name="library"></ion-icon></ion-segment-button>
+        <ion-segment-button value="film"><ion-icon name="film"></ion-icon></ion-segment-button>
+        <ion-segment-button value="images"><ion-icon name="images"></ion-icon></ion-segment-button>
+        <ion-segment-button value="id-card"><ion-icon name="id-card"></ion-icon></ion-segment-button>
+        <ion-segment-button value="cash"><ion-icon name="cash"></ion-icon></ion-segment-button>
+        <ion-segment-button value="bug"><ion-icon name="bug"></ion-icon></ion-segment-button>
 
-<h1>Collections</h1>
+      </ion-segment>
+    </ion-toolbar>
+  </ion-grid>
 
+  <ion-item-divider class="removeCustomStyle noPadding">
+    <ion-item class="removeCustomStyle" style="width: 100% !important;">
+      <ion-label class="removeCustomStyle">List of collections</ion-label></ion-item>
+  </ion-item-divider>
+
+  <ion-grid [fixed]="true" class="noPadding">
+    <ion-list>
+      @for (i of containersArray; track i) {
+        <ion-item-sliding>
+          <ion-item-options side="start">
+            <ion-item-option class="customRipple" ><ion-icon slot="icon-only" name="trash" color="danger"></ion-icon></ion-item-option>
+          </ion-item-options>
+          <ion-item detail="true" class="noRipple">
+              <ion-thumbnail slot="start" class="thumbFrame"><img class="thumbShadow coated" src="../../assets/plus2.jpg" /></ion-thumbnail>
+            <ion-label class="noRipple" style="font-size: medium; --color: #aaaaaa; font-weight: bold;">{{containerName}}</ion-label>
+          </ion-item>
+          <ion-item-options>
+            <ion-item-option class="customRipple" side="end"><ion-icon slot="icon-only" name="pencil" color="primary"></ion-icon></ion-item-option>
+            <!--<ion-item-option class="customRipple"><ion-icon slot="icon-only" name="eye" color="success"></ion-icon></ion-item-option>-->
+          </ion-item-options>
+        </ion-item-sliding>
+      }@empty {
+        <ion-grid >
+          <ion-row class="noPadding">
+            <ion-col class="noPadding alignCenter" size="auto"><ion-icon name="code" color="primary" size="large"></ion-icon></ion-col>
+            <ion-col><ion-row><ion-col class="noPadding">
+              <ion-item class="removeCustomStyle">
+                <ion-label class="noPadding"><p>No items yet...</p><p>Try again after filling some cards in!</p></ion-label>
+              </ion-item></ion-col></ion-row></ion-col>
+            <ion-col class="noPadding alignCenter" size="auto"><ion-icon name="code" color="primary" size="large"></ion-icon></ion-col>
+          </ion-row>
+        </ion-grid>
+      }
+    </ion-list>
+  </ion-grid>
+  <ion-fab #fab class="coated" slot="fixed" vertical="bottom" horizontal="center">
+    <ion-fab-button>
+      <ion-icon style="color: #ffffff; font-size: xx-large;" name="add" size="large"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="medium" (click)="dummyToast('Create Collection')">
+        <ion-icon style="color: #ffffff; font-size: xx-large;" class="iconCustom" name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

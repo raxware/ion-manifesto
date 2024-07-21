@@ -22,6 +22,7 @@ import { NavController } from "@ionic/angular";
 
 import { Subjects } from "../../../../model/interfaces";
 import { SubjectsService } from "../../../../services/subjects.service";
+import { AlertService } from 'src/app/services/alert-service.service';
 
 @Component({
   selector: 'app-main',
@@ -41,7 +42,8 @@ export class MainPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private subjectsService: SubjectsService
+    private subjectsService: SubjectsService,
+    public alertService: AlertService,
   ) {}
 
   ngOnInit() {
@@ -58,16 +60,16 @@ export class MainPage implements OnInit {
    console.log('selected: ', subjectId)
     switch (subjectId){
       case 1: this.navCtrl.navigateForward(["lists"]); break;
-      case 2: this.navCtrl.navigateForward(["boxes"]); break;
+      case 2: this.navCtrl.navigateForward(["repositories"]); break;
       case 3: this.navCtrl.navigateForward(["collections"]); break;
       case 4: this.navCtrl.navigateForward(["people"]); break;
-      case 5: this.navCtrl.navigateForward(["locate"]); break;
+      case 5: this.navCtrl.navigateForward(["places"]); break;
       /*  this.navCtrl.navigateForward(["details", subjectId]); */
     }
   }
 
-  anotherAction(){
-    console.log('whatever');
+  dummyToast(msg: string){
+    this.alertService.presentToast(msg);
   }
 }
 

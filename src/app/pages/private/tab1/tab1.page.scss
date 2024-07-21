@@ -9,12 +9,10 @@
     width: 15%;
   }
 }
-
-/*
-ion-segment-button {
-  --background: linear-gradient(#ffeecc, #fff2d8, #fef8ec, #fffcf6, #ffffff, #ffffff);
+ion-segment-button{
+  --color-selected: #ffcc77;
+  --color: #aaaaaa;
 }
-*/
 
 ion-grid, ion-row, ion-col, ion-card-content, ion-img {
   padding: 0%;

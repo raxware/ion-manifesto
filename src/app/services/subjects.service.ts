@@ -10,27 +10,29 @@ export class SubjectsService {
     {
       id: 1,
       title: "Lists",
-      description: "All your itens in sight as lists filtered 'by type'",
+      description: "All your items listed or filtered 'by type'",
     },
     {
       id: 2,
-      title: "Boxes",
-      description: "Create and manage boxes for all-around purposes",
+      title: "Repositories",
+      description: "Set your own repositories for all-around purposes",
     },
     {
       id: 3,
       title: "Collections",
-      description: "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.",
+      description: "A place for everything, everything in its place",
+      //"Order is repetition of units. Chaos is multiplicity without rhythm.",
+
     },
     {
       id: 4,
       title: "People",
-      description: "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.",
+      description: "Lending to friends severely damages their memory",
     },
     {
       id: 5,
-      title: "Locations",
-      description: "Where in the world did you leave those things?",
+      title: "Places",
+      description: "Where in the world did you leave that damn thing?",
     },
   ];
 

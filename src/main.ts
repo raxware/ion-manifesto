@@ -40,7 +40,8 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(),
     importProvidersFrom(HammerModule),
     { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig }, 
-    provideFirebaseApp(() => initializeApp({"projectId":"manifesto-268c5","appId":"1:167271764279:web:a156eaed7b7723d6d58ab2","storageBucket":"manifesto-268c5.appspot.com","apiKey":"AIzaSyB8ISzWHB4YBy6S4QX6apmeal6tpdI6q4E","authDomain":"manifesto-268c5.firebaseapp.com","messagingSenderId":"167271764279","measurementId":"G-XVJEEQW56C"})), 
+    provideFirebaseApp(() => initializeApp({"projectId":"manifesto-268c5","appId":"1:167271764279:web:a156eaed7b7723d6d58ab2","storageBucket":"manifesto-268c5.appspot.com",
+      "apiKey":"AIzaSyB8ISzWHB4YBy6S4QX6apmeal6tpdI6q4E","authDomain":"manifesto-268c5.firebaseapp.com","messagingSenderId":"167271764279","measurementId":"G-XVJEEQW56C"})), 
     provideAuth(() => getAuth())
   ],
 });

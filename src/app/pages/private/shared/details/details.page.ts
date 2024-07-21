@@ -14,7 +14,7 @@ import { SubjectsService } from "../../../../services/subjects.service";
   imports: [IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule]
 })
 export class DetailsPage implements OnInit {
-  public subjects: { id: number; title: string; description: string, route: string } | undefined;
+  public subjects: { id: number; title: string; description: string} | undefined;
 
   constructor(
     private route: ActivatedRoute,

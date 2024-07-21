@@ -68,14 +68,14 @@ export class Tab1Page {
     this.alertService.presentToast('' + msg);
   }
 
-  public segmentShowHide() {
+  segmentShowHide() {
     const segToolbar = document.getElementById('dynToolbar');
       if (segToolbar!.style.display == 'none') {
         segToolbar!.style.display = 'flex';
       } else if (segToolbar!.style.display == 'flex') {
         segToolbar!.style.display = 'none';
       }
-    }
+  }
 
 }
 
