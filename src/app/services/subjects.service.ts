@@ -15,7 +15,7 @@ export class SubjectsService {
     {
       id: 2,
       title: "Repositories",
-      description: "Set your own repositories for all-around purposes",
+      description: "Set repositories for all-around purposes",
     },
     {
       id: 3,
@@ -27,12 +27,12 @@ export class SubjectsService {
     {
       id: 4,
       title: "People",
-      description: "Lending to friends severely damages their memory",
+      description: "Lend to friends badly damages their memory",
     },
     {
       id: 5,
       title: "Places",
-      description: "Where in the world did you leave that damn thing?",
+      description: "Where in the world is that damn thing?",
     },
   ];
 

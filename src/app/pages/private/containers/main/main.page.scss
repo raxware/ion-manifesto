@@ -34,7 +34,12 @@ img{
     --ripple-color: transparent !important;
     --background-hover: transparent !important;
 }
-
+.noPadding{
+    padding: 0%;
+}
+.removeCustomStyle{
+    --background: transparent !important;
+}
 .customRipple {
     color: #ffcc77;
 }

@@ -37,7 +37,7 @@ import { NavController, IonSearchbar, IonSegment, IonSegmentButton,
 })
 
 export class CollectionsPage implements OnInit {
-  public containersArray = new Array(4);
+  public containersArray = new Array(0);
   @Input() containerName: string = ('Collection');
     
   constructor(public photoService: PhotoService, public alertService: AlertService, private navCtrl: NavController,) {
