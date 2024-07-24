@@ -1,22 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start"><ion-back-button></ion-back-button></ion-buttons>
+    <ion-buttons slot="start"><ion-back-button ></ion-back-button></ion-buttons>
     <ion-title>Editor</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-buttons slot="start"><ion-back-button></ion-back-button></ion-buttons>
+      <ion-buttons slot="start"><ion-back-button ></ion-back-button></ion-buttons>
       <ion-title size="large">Editor</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-grid [fixed]="true" class=""><ion-row><ion-col><div class="altHeader"><ion-img class="header-image" src="../../assets/logo.png"></ion-img></div></ion-col></ion-row>
+  <ion-grid [fixed]="true" class=""><ion-row><ion-col>
+    <div class="altHeader"><ion-img class="header-image" src="../../assets/logo.png"></ion-img></div></ion-col></ion-row>
   </ion-grid>
   <ion-card>
     <ion-card-content class="whiteBorder flex-self-aligned">
       <ion-card-content class="bgLayer flex-self-aligned">
         <ion-card-content class="contentFront inline-self-aligned borded">
+          
           <app-form-back></app-form-back>
         </ion-card-content>
       </ion-card-content>

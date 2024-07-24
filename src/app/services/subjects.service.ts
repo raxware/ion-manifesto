@@ -15,7 +15,7 @@ export class SubjectsService {
     {
       id: 2,
       title: "Repositories",
-      description: "Set repositories for all-around purposes",
+      description: "Set containers for your all-around purposes",
     },
     {
       id: 3,
@@ -32,7 +32,7 @@ export class SubjectsService {
     {
       id: 5,
       title: "Places",
-      description: "Where in the world is that damn thing?",
+      description: "Where in the world did you left that damn thing?",
     },
   ];
 

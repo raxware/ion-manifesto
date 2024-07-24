@@ -19,7 +19,9 @@
             </ion-segment>
           </ion-item>
           <ion-item><ion-icon aria-hidden="true" color="primary" name="bulb" slot="start"></ion-icon>
-            <ion-range label-placement="start"><ion-note color="medium" slot="label">Range</ion-note></ion-range>
+            <ion-range aria-label="Range with ticks" [ticks]="true" [snaps]="true" [min]="1" [max]="5" label-placement="start">
+              <ion-note color="medium" slot="label">Range</ion-note>
+            </ion-range>
           </ion-item>
         </ion-label>
       </ion-item>

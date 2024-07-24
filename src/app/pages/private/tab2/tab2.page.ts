@@ -46,8 +46,7 @@ export class Tab2Page implements OnInit{
   count: number = 0;
   witness: boolean = false;
 
-  constructor(public alertService: AlertService, private authService: AuthService, private router: Router) {}
-  ngOnInit(): void {
+  constructor(public alertService: AlertService, private authService: AuthService, private router: Router) {
     addIcons({book, build, calculator, brush, shirt, wine, film, dice, diamond, camera, 
       chatbubbles, medkit, images, extensionPuzzle, rocket, language, cube, gameController, 
       disc, thumbsUp, thumbsDown, home, checkmarkCircle, cash, musicalNotes, person, logOut, 
@@ -55,6 +54,8 @@ export class Tab2Page implements OnInit{
       informationCircleOutline, settings, mail, mailOutline, personCircleOutline, personCircleSharp, 
       personCircle
     });
+  }
+  ngOnInit(): void {
   }
 
   flip() {

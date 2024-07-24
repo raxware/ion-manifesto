@@ -115,7 +115,7 @@ opacity: 50%;
 }
 .fullWidth{
   width: 100%;
-  height: auto;
+//  height: auto;
 }
 .formShaper{
   width: 100%;
@@ -130,12 +130,21 @@ opacity: 50%;
   justify-content: center !important;
   vertical-align: middle !important;
 }
+.endOfLine{
+  position: relative;
+  display:ruby-text !important;
+  text-align: right !important;
+}
 .toBotton{
   position: absolute;
   bottom: 0%;
 }
 .noPadding{
   padding: 0%;
+}
+.buttonSize{
+  width: 7.1vh;
+  height: 7.1vh;
 }
 
 /*------------------------------------------------------------------------------------------*/
@@ -148,9 +157,8 @@ ion-card-header{
 }
 ion-button{
   color: rgb(255, 255, 255) !important;
-  width: 7.1vh;
-  height: 7.1vh;
 }
+
 ion-icon{
   color: #ffffff;
   font-size: 48px;

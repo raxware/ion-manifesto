@@ -11,6 +11,9 @@
       <ion-button (click)="toolbarShowHide('segToolbar')">        
         <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
       </ion-button>
+      <ion-button id="shareBtn" style="display: none;" (click)="shareElement()">        
+        <ion-icon slot="icon-only" name="share-outline"></ion-icon>
+      </ion-button>
   </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -31,34 +34,53 @@
     </ion-toolbar>
     <ion-toolbar id="segToolbar" class="noPadding alignCenter" style="width: 100% !important; display:none;">
       <ion-segment id="segButtons" class="noPadding alignCenter" [scrollable]="true" value="all" (ionChange)="segmentChanged($event)">
-        <ion-segment-button value="all"><ion-label>All</ion-label></ion-segment-button>
-        <ion-segment-button value="disc"><ion-icon name="disc"></ion-icon></ion-segment-button>
-        <ion-segment-button value="book"><ion-icon name="book"></ion-icon></ion-segment-button>
-        <ion-segment-button value="tool"><ion-icon name="build"></ion-icon></ion-segment-button>
-        <ion-segment-button value="cloth"><ion-icon name="shirt"></ion-icon></ion-segment-button>
-        <ion-segment-button value="comic"><ion-icon name="chatbubbles"></ion-icon></ion-segment-button>
-        <ion-segment-button value="wine"><ion-icon name="wine"></ion-icon></ion-segment-button>
-        <ion-segment-button value="currency"><ion-icon name="cash"></ion-icon></ion-segment-button>
+        <ion-segment-button value="All"><ion-label>All</ion-label></ion-segment-button>
+        <ion-segment-button value="Discs"><ion-icon name="disc"></ion-icon></ion-segment-button>
+        <ion-segment-button value="Books"><ion-icon name="book"></ion-icon></ion-segment-button>
+        <ion-segment-button value="Comics"><ion-icon name="chatbubbles"></ion-icon></ion-segment-button>
+        <ion-segment-button value="Cloths"><ion-icon name="shirt"></ion-icon></ion-segment-button>
+        <ion-segment-button value="Tools"><ion-icon name="build"></ion-icon></ion-segment-button>
+        <ion-segment-button value="Wines"><ion-icon name="wine"></ion-icon></ion-segment-button>
+        <ion-segment-button value="Currency"><ion-icon name="cash"></ion-icon></ion-segment-button>
+        <ion-segment-button value="Custom"><ion-label>Custom</ion-label></ion-segment-button>
       </ion-segment>
     </ion-toolbar>
   </ion-grid>
 
   <ion-item-divider class="removeCustomStyle noPadding">
     <ion-item class="removeCustomStyle" style="width: 100% !important;">
-      <ion-label class="removeCustomStyle">List of items</ion-label></ion-item>
+      <ion-label id="headerAll" style="display: flex;" class="removeCustomStyle">{{segValue}}</ion-label>
+    </ion-item>
   </ion-item-divider>
   <ion-grid [fixed]="true" class="noPadding">
     <ion-list>
       @for(thing of myThingsList; track thing.id; let index = $index; let count = $count ){
-        <ion-item-sliding>
+        <ion-item-sliding >
           <ion-item-options side="start">
             <ion-item-option class="customRipple" (click)="removeItem(index)"><ion-icon slot="icon-only" name="trash" color="danger"></ion-icon></ion-item-option>
           </ion-item-options>
-          <ion-item detail="true">
-            @if (thing.picture !== '') {<ion-thumbnail slot="start" class="thumbFrame"><img class="thumbShadow" src={{thing.picture}}/></ion-thumbnail>}
-            @else {<ion-thumbnail slot="start" class="thumbFrame"><img class="thumbShadow coated" src="../../assets/plus2.jpg" /></ion-thumbnail>}
-            <ion-label class="noRipple labelCustom">{{thing.name}}</ion-label>
-          </ion-item>
+          <ion-grid [fixed]="true" class="noPadding">
+            <ion-row class="noPadding">
+                <ion-item detail="true" class="noRipple fullWidth">
+                  @if (thing.picture !== '') {<ion-thumbnail slot="start" class="thumbFrame"><img class="thumbShadow" src={{thing.picture}}/></ion-thumbnail>}
+                  @else {<ion-thumbnail slot="start" class="thumbFrame"><img class="thumbShadow coated" src="../../assets/plus2.jpg" /></ion-thumbnail>}
+                  <ion-col size="auto" class="noPadding fullWidth">
+                    <ion-item id="chkBox" mode="ios" class="hiddenItem noRipple removeCustomStyle" style="display: none;"><ion-checkbox></ion-checkbox></ion-item>
+                  </ion-col>
+                  <ion-col class="noPadding fullWidth">
+                    <ion-row class="noPadding fullWidth">
+                      <ion-col size="auto" class="noPadding fullWidth">
+                        <ion-icon style="font-size: 16px; padding-right: 8px; padding-top: 3px;" name="book"></ion-icon>
+                      </ion-col>
+                      <ion-label class="noRipple labelCustom" >{{thing.name}}</ion-label>
+                    </ion-row>
+                    <ion-row class="noPadding fullWidth">
+                      <ion-col size="auto" class="noPadding fullWidth"></ion-col>
+                      <ion-label class="noRipple labelCustom downSized decorated">{{thing.maker}}</ion-label></ion-row>
+                  </ion-col>
+                </ion-item>
+            </ion-row>
+          </ion-grid>
           <ion-item-options>
             <ion-item-option class="customRipple" side="end" (click)="openEditor(index)"><ion-icon slot="icon-only" name="pencil" color="primary"></ion-icon></ion-item-option>
             <!--<ion-item-option class="customRipple"><ion-icon slot="icon-only" name="eye" color="success"></ion-icon></ion-item-option>-->

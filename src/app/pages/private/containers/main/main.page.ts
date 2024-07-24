@@ -57,7 +57,7 @@ export class MainPage implements OnInit {
   }
 
   public openSubject(subjectId: number): void {
-   console.log('selected: ', subjectId)
+   //console.log('selected: ', subjectId)
     switch (subjectId){
       case 1: this.navCtrl.navigateForward(["lists"]); break;
       case 2: this.navCtrl.navigateForward(["repositories"]); break;

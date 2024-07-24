@@ -1,5 +1,5 @@
 <ion-content [fullscreen]="true">
-         <!-- ************************************************************************** --><!---->   
+         <!-- ************************************************************************** --> <!-- -->   
   <ion-grid [fixed]="true"><ion-row>
     <ion-col class="centerMiddle">
       <ion-thumbnail class="thumbFrame">
@@ -11,9 +11,10 @@
       </ion-thumbnail>
     </ion-col>
     <ion-col class="centerMiddle">
-      <ion-button size="large" (click)="openType()"><ion-icon slot="icon-only" name="grid-outline"></ion-icon></ion-button>
+      <ion-button size="large" (click)="editType()"><ion-icon slot="icon-only" name="grid-outline"></ion-icon></ion-button>
     </ion-col></ion-row>
   </ion-grid>
+        <!-- ************************************************************************** --> <!-- -->  
   <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
   @if (thingPrototype) {
     <form [formGroup]="thingPrototype">
@@ -42,44 +43,50 @@
       <ion-grid [fixed]="true"><ion-row><ion-col class="centerMiddle">
         <ion-textarea id="notes" [autoGrow]="true" [counter]="true" maxlength="300" type="text" formControlName="notes" label="Notas" label-placement="floating" fill="outline" placeholder="Escribe tus notas aqui"></ion-textarea>
       </ion-col></ion-row></ion-grid>
-        <div class="saveForm"><button type="button" (click)=thingTagger()> SAVE </button></div>
-        <!--<div class="clearForm"><button type="button" (click)=auxButtonSelector(auxButton)>{{auxButton}}</button></div>-->
+        <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
+        <ion-grid [fixed]="true" class="">
+          <ion-row>
+            <ion-col class="centerMiddle">
+              <ion-button type="button" class="endOfLine fullWidth" (click)="updateTrigger()">UPDATE</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+<!--        <ion-grid [fixed]="true" class="ToBotton">
+          <ion-row>
+            <ion-col class="centerMiddle">
+              <ion-button size="large" (click)="thingTagger()">
+                <ion-label>Updt</ion-label>
+              </ion-button>
+            </ion-col>-->
+            <!--<ion-col class="centerMiddle">
+              <ion-button size="large">
+                <ion-icon slot="icon-only" name=""></ion-icon>
+              </ion-button>
+            </ion-col>-->
+            <!--<ion-col class="centerMiddle">
+              <ion-button size="large">
+                <ion-icon slot="icon-only" name=""></ion-icon>
+              </ion-button>
+            </ion-col>-->
+            <!--<ion-col class="centerMiddle">
+              <ion-button size="large">
+                <ion-icon slot="icon-only" name=""></ion-icon>
+              </ion-button>
+            </ion-col>-->
+            <!--<ion-col class="centerMiddle">
+              <ion-button size="large">
+                <ion-icon slot="icon-only" name="box"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>-->
     </form>
   }
 </ion-content>
 
 
-<!-- ************************************************************************** 
-<ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
-<ion-grid [fixed]="true" class="toBotton">
-  <ion-row>
-    <ion-col class="centerMiddle">
-      <ion-button size="large" (click)="openType()">
-        <ion-icon slot="icon-only" name=""></ion-icon>
-      </ion-button>
-        </ion-col>
-        <ion-col class="centerMiddle">
-      <ion-button size="large">
-        <ion-icon slot="icon-only" name=""></ion-icon>
-      </ion-button>
-        </ion-col>
-        <ion-col class="centerMiddle">
-      <ion-button size="large">
-        <ion-icon slot="icon-only" name=""></ion-icon>
-      </ion-button>
-        </ion-col>
-        <ion-col class="centerMiddle">
-      <ion-button size="large">
-        <ion-icon slot="icon-only" name=""></ion-icon>
-      </ion-button>
-        </ion-col>
-        <ion-col class="centerMiddle">
-      <ion-button size="large" (click)=thingTagger()>
-        <ion-icon slot="icon-only" name="box"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row>
-</ion-grid>-->
+<!-- ************************************************************************** --> 
+
     <!---->
     <!-- ************************************************************************** --> 
 <!-- ************************************************************************** -->

@@ -25,6 +25,10 @@ ion-segment-button{
 img{
     height: 100%;
 }
+.iconCustom{
+    color:#aaaaaa; font-size: 32px;
+    //--ionicon-stroke-width: 32px;
+}
 .imgFrame {
     width: 100%;
     height: fit-content;
@@ -67,9 +71,42 @@ img{
 .customRipple {
     color: #ffcc77;
 }
+.fullWidth{
+    width: 100%;
+    height: auto;
+  }
+  .decorated{
+    color: #ff400090;
+  }
+  .upSized{
+    font-size: 9.37vh;
+    color: #ffcc77;
+  }
+  .downSized{
+    font-size: 1.4vh;
+  }
+
+
+
+
+
 .borderG{
     border: green solid .5px;
 }
 .borderR{
     border: red solid .5px;
+}
+.borderB{
+    border: blue solid .5px;
+}
+.borderC{
+    border: cyan solid .5px;
+}
+
+
+.gapRemover{
+    display:inline-block !important;
+    vertical-align: middle;
+    line-height:20px;
+    margin: 0;
 }

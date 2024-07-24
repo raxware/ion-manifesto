@@ -1,10 +1,13 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, inject, Input, OnInit, Output,  } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, OnInit, } from '@angular/core';
 import { FormGroup, FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardContent, 
   IonImg, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonCard, 
   IonGrid, IonRow, IonCol, IonLabel, IonBackButton, IonSearchbar
 } from '@ionic/angular/standalone';
-import { NavController } from "@ionic/angular/standalone";
+import {Injectable} from '@angular/core';
+import {NavController} from '@ionic/angular/standalone';
+import {Router} from '@angular/router';
+import { SharingService } from 'src/app/services/sharing.service'
 import { PhotoService } from 'src/app/services/photo.service';
 import { AlertService } from 'src/app/services/alert-service.service';
 import { book, brush, build, calculator, camera, chatbubbles, 
@@ -16,16 +19,18 @@ import { book, brush, build, calculator, camera, chatbubbles,
   ellipseOutline, ellipsisVerticalCircleOutline, ellipsisVerticalCircleSharp,
   ellipsisHorizontal, ellipsisHorizontalSharp, ellipsisHorizontalOutline, 
   ellipsisHorizontalCircle, ellipsisHorizontalCircleOutline,
-  ellipsisHorizontalCircleSharp, ellipse, search, add,
+  ellipsisHorizontalCircleSharp, ellipse, search, add, shareOutline
 } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { ItemService } from 'src/app/services/item.service';
 import { itemData } from 'src/app/model/interfaces';
+import { ActivatedRoute } from '@angular/router';
+import { ParamsService } from "src/app/services/params.service";
 //import { filter } from 'rxjs';
 
-//import { FormBackPage } from './../form-back/form-back.page'
-//import { ItemCardComponent } from "../item-card/item-card.component";
-//import { CardBackPage } from "../card-back/card-back.page";
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-lists',
@@ -47,8 +52,12 @@ export class ListsPage implements OnInit {
   thingPrototype!: FormGroup;
   //thing!: itemData;
   unit!: itemData;
+  segElement!: string;
+  status: boolean = false;
 
-  @Input({ required: true }) index!: number; 
+  @Input () segValue: string = 'All items';
+
+  @Input({ required: true }) index!: number;
 
   @Input () set thingUnit(thingToEdit: itemData){
     this.unit = thingToEdit;
@@ -58,7 +67,14 @@ export class ListsPage implements OnInit {
     return this.unit;
   }
   
-  constructor(public photoService: PhotoService, public alertService: AlertService, private navCtrl: NavController,) {
+  constructor(
+    public paramS: ParamsService,
+    public photoService: PhotoService, 
+    public alertService: AlertService, 
+    private navCtrl: NavController,
+    public route: ActivatedRoute,
+    public sharingService: SharingService, 
+    private router: Router,) {
     addIcons({book, build, calculator, brush, shirt, 
       wine, film, dice, diamond, camera, chatbubbles, 
       medkit, images, extensionPuzzle, rocket, language, 
@@ -70,9 +86,10 @@ export class ListsPage implements OnInit {
       ellipsisVerticalCircleSharp,ellipsisHorizontal, 
       ellipsisHorizontalSharp, ellipsisHorizontalOutline, 
       ellipsisHorizontalCircle, ellipsisHorizontalCircleOutline,
-      ellipsisHorizontalCircleSharp, search, add
+      ellipsisHorizontalCircleSharp, search, add, shareOutline
     });
   }
+
   ngOnInit(): void {
     this.getThings();
   }
@@ -82,20 +99,43 @@ export class ListsPage implements OnInit {
     const segToolbar = document.getElementById('segToolbar');
     if (tbarToggle === 'searchToolbar'){
       if (segToolbar!.style.display === 'flex'){segToolbar!.style.display = 'none';}
-      if (searchToolbar!.style.display === 'none') {searchToolbar!.style.display = 'flex';
-      } else if (searchToolbar!.style.display === 'flex') {searchToolbar!.style.display = 'none';}
+      if (searchToolbar!.style.display === 'none') {searchToolbar!.style.display = 'flex';} 
+      else if (searchToolbar!.style.display === 'flex') {searchToolbar!.style.display = 'none';}
     } 
     else if(tbarToggle === 'segToolbar') {
+      const shareBtn = document.getElementById('shareBtn');
       if (searchToolbar!.style.display === 'flex'){searchToolbar!.style.display = 'none';}
-      if (segToolbar!.style.display === 'none') {segToolbar!.style.display = 'flex';
-      } else if (segToolbar!.style.display === 'flex') {segToolbar!.style.display = 'none';}
+      if (segToolbar!.style.display === 'none') {segToolbar!.style.display = 'flex'; shareBtn!.style.display = 'flex'; /* whatever else actions*/} 
+      else if (segToolbar!.style.display === 'flex') {segToolbar!.style.display = 'none'; shareBtn!.style.display = 'none'; /* whatever else actions*/}
     }
   }
 
   segmentChanged(event: CustomEvent){
-    let activeSegment = event.detail.value;
-    this.dummyToast('Segment ' + activeSegment)
-    //console.log('msg: ');
+    this.segElement = event.detail.value;
+    if(event.detail.value !== 'All'){
+      if(event.detail.value === 'Custom'){this.segValue = ('Select items at your discretion to customize a list'); 
+        this.chkBoxToggle(true);
+      } else if (event.detail.value !== 'Custom'){
+        this.chkBoxToggle(false); 
+        this.segValue = ('List of '.concat(event.detail.value)); /*whatever else actions*/}
+    }else{this.segValue = 'All items'; 
+      this.chkBoxToggle(false); 
+      /* whatever else actions*/};
+  }
+
+  chkBoxToggle(status: boolean){
+    const chkBoxArray = document.querySelectorAll<HTMLElement>('.hiddenItem');
+    if (status){ for (let index = 0; index < chkBoxArray.length; index++) {chkBoxArray[index].style.display = 'flex'; }} 
+    else { for (let index = 0; index < chkBoxArray.length; index++) {chkBoxArray[index].style.display = 'none'; }}
+  };
+
+  shareElement(){
+    this.segElement;
+    let toBeImproved: string = 'This is it for the moment... \n\n';
+    toBeImproved = (toBeImproved.concat('Soon it will be improved \n and I\'ll share a List of \n'));
+    toBeImproved = (toBeImproved.concat(this.segElement, ' with you.'));
+    toBeImproved = (toBeImproved.concat('\n\n See you soon!!'));
+    this.sharingService.shareText(toBeImproved);
   }
 
   dummyToast(msg: string){
@@ -107,14 +147,11 @@ export class ListsPage implements OnInit {
   */
   getThings() {
     this.myThingsList = this.myThingsService.getThings();
-    console.log(this.myThingsList);
   }
-  
   saveThing(yetTaggedThing: itemData) {
     this.myThingsService.setThing(yetTaggedThing);
     this.getThings();
   }
-
   editFormFiller(thingToEdit: itemData){
     this.thingPrototype.patchValue({
       name: thingToEdit.name,
@@ -129,21 +166,18 @@ export class ListsPage implements OnInit {
       barcode: thingToEdit.barcode,
     })
   }
-
-  thingIndexer(index?: number) {
-    console.log(index!);
-    const thing = this.myThingsService.thingPicker(index!);
+  thingIndexer(index: number) {
+    console.log(index);
+    const thing = this.myThingsService.thingPicker(index);
     console.log(index!);
   //  this.route.navigate(['/private/edit', index]);
     console.log('editor: ', thing );
   }
-
-  removeItem(index?: number) {
-    console.log(index!);
-    this.myThingsService.thingKicker(index!);
+  removeItem(index: number) {
+    console.log(index);
+    this.myThingsService.thingKicker(index);
     this.getThings();
   }
-
   /* ----- Full version, with confirmation message: 
   removeItem(index: number) {
       const dialogRef = this.dialog.open(BasicDialogComponent, {
@@ -157,23 +191,9 @@ export class ListsPage implements OnInit {
         this.getThings();
       }
     });
-    
   }*/
-
-  openEditor(subjectId: number): void {
-    this.navCtrl.navigateForward(["card-back"]);
-    /*this.navCtrl.navigateForward(["details", subjectId]); */
+  openEditor(index: number): void {
+    this.navCtrl.navigateForward("card-back");
+    this.paramS.changeData(index);
   }
-
-
-
-
-
-
-
-
-
-
-
-
 }

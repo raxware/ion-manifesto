@@ -1,14 +1,12 @@
 import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component, EventEmitter, Input, Output, OnInit, inject } from '@angular/core';
+import { Component, Input, Output, OnInit, inject } from '@angular/core';
 import { IonIcon, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, 
   IonChip, IonLabel, IonCardSubtitle, IonAlert, IonButton, IonInput, IonItem, 
   IonThumbnail, IonItemOption, IonSegment, IonGrid, IonRow, IonCol, IonTitle, 
   IonTextarea, IonSelect, IonSelectOption, IonHeader, IonToolbar, IonContent } from "@ionic/angular/standalone";
 import { itemData } from 'src/app/model/interfaces';
-
 import { PhotoService } from 'src/app/services/photo.service';
 import { AlertService } from 'src/app/services/alert-service.service';
-
 import { addIcons } from 'ionicons';
 import { book, brush, build, calculator, camera, chatbubbles, 
   checkmarkCircle, cube, diamond, dice, disc, extensionPuzzle, 
@@ -17,6 +15,9 @@ import { book, brush, build, calculator, camera, chatbubbles,
   person, grid, gridOutline, gridSharp
 } from 'ionicons/icons';
 import { ItemService } from 'src/app/services/item.service';
+import { ActivatedRoute } from '@angular/router';
+import { NavController } from "@ionic/angular/standalone";
+import { ParamsService } from "src/app/services/params.service";
 
 @Component({
   selector: 'app-form-back',
@@ -33,37 +34,52 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class FormBackPage implements OnInit{
   myThingsService = inject(ItemService);
-  @Input() isFlipped: boolean = false;
+  myThingsList: itemData[] = [];
+  thingPrototype!: FormGroup;
+  unit!: itemData;
+  index!: number;
+  
   @Input() item!: itemData;
-  @Output() flipCard = new EventEmitter<boolean>();
-
-  @Output() outputtingThing = new EventEmitter<itemData>();
-
-  thingPicture: string = '';
+  @Input() thingPicture!: string;
   @Input() thingType: string = 'Type';
-
+  
   @Input () set thingUnit(thingToEdit: itemData){
     this.unit = thingToEdit;
-    this.editFormFiller(thingToEdit);
+    this.thingPicture = this.myThingsList[this.index].picture;
+    this.formFiller(thingToEdit);
   }; get thingUnit (){
     return this.unit;
   }
-      
-  thingPrototype!: FormGroup;
-  unit!: itemData;
 
-  constructor(public photoService: PhotoService, public alertService: AlertService) {
+  constructor(
+    public paramS: ParamsService,
+    public photoService: PhotoService, 
+    public alertService: AlertService,
+    private navCtrl: NavController,
+    public route: ActivatedRoute, )
+  {
     this.emptyFormBuilder();
-  }
-
-  ngOnInit(): void {
     addIcons({book, build, calculator, brush, shirt, wine, film, dice, diamond, camera, 
       chatbubbles, medkit, images, extensionPuzzle, rocket, language, cube, gameController, 
       disc, thumbsUp, thumbsDown, home, checkmarkCircle, cash, musicalNotes, person, grid, 
       gridOutline, gridSharp
     });
   }
-
+  ngOnInit(): void {
+    this.bringItBack();
+                          //console.log('onINit: ', this.thingPicture);
+  }
+  /* --------------------------------------------------------------------*/
+  bringItBack() {
+    this.index = this.getThingId();
+    this.myThingsList = this.myThingsService.getThings();
+    this.formFiller(this.myThingsList[this.index]);
+  } 
+  getThingId(){
+    let params: any;
+    this.paramS.serviceData.subscribe(data => (params = data));
+    return params;
+  }
   emptyFormBuilder() {
     this.thingPrototype = new FormGroup({
       name: new FormControl(''),
@@ -76,14 +92,18 @@ export class FormBackPage implements OnInit{
       tags: new FormControl(''),
     });
   }
-
-  updatePrototype() {
+  formFiller(thingToEdit: itemData){
     this.thingPrototype.patchValue({
-      type: this.thingType, 
-      picture: this.thingPicture,
-    });
+      name: thingToEdit.name,
+      type: thingToEdit.type,
+      maker: thingToEdit.maker,
+      picture: thingToEdit.picture,
+      quantity: thingToEdit.quantity,
+      status: thingToEdit.status,
+      notes: thingToEdit.notes,
+      tags: thingToEdit.tags,
+    })
   }
-
   thingTagger() {
     if (this.thingPrototype.valid){
       this.updatePrototype();
@@ -97,43 +117,19 @@ export class FormBackPage implements OnInit{
         notes: this.thingPrototype.get('notes')?.value,
         tags: this.thingPrototype.get('tags')?.value,
       }
-      //this.outputtingThing.emit(justTaggedThing);
-      this.saveThing(justTaggedThing);
-    }
-    else {
-        console.log('thingPrototype is INVALID!!!');
-    }
+      this.saveChanges(justTaggedThing);
+    } else {console.log('thingPrototype is INVALID!!!');}
   }
-  
-  editFormFiller(thingToEdit: itemData){
+  updatePrototype() {
     this.thingPrototype.patchValue({
-      name: thingToEdit.name,
-      type: thingToEdit.type,
-      maker: thingToEdit.maker,
-      picture: thingToEdit.picture,
-      quantity: thingToEdit.quantity,
-      status: thingToEdit.status,
-      notes: thingToEdit.notes,
-      tags: thingToEdit.tags,
-    })
+      type: this.thingType, 
+      picture: this.thingPicture,
+    });
   }
-
-  saveThing(yetTaggedThing: itemData) {
-    this.myThingsService.setThing(yetTaggedThing);
+  saveChanges(yetTaggedThing: itemData) {
+    this.myThingsService.editThing(this.index, yetTaggedThing);
   }
-
-  flip() {
-    this.isFlipped = !this.isFlipped;
-    this.flipCard.emit(this.isFlipped);
-  }
-  
-  addImage(){
-    if (!(this.item!.picture =='')){
-      this.alertLocked();
-    }else{
-      this.editImage();
-    }
-  }
+  /* --------------------------------------------------------------------*/
   editImage(){
     this.alertService.basicAlert(
       'Image Source', '', '',
@@ -142,43 +138,18 @@ export class FormBackPage implements OnInit{
       {text: 'Cancel', role: 'cancel', handler: (alertData: any) => { console.log('addImg cancel', alertData); }}],
     );
   }
-  
   openCamera(imgSource: string) {
     console.log(this.item!);
     this.photoService.addItemPicture(imgSource).then((value) => {
       if (value.webviewPath) {
-       //this.item!.picture = 
-       this.thingPicture =  value.webviewPath;
+       this.thingPicture = value.webviewPath;
         console.log(this.item!);
         console.log(this.thingPicture);
-        if ((this.thingType === 'Type')){
-          this.addType();
-           
-        }
-        console.log('blob: ', this.thingPicture);   
-      } else{
-        console.log('no asigna imagen porque no cumple el "if"...');
-      }
-
+        if ((this.thingType === 'Type')){this.editType();} // console.log('blob: ', this.thingPicture);   
+      } else{console.log('no asigna imagen porque no cumple el "if"...'); }
     });
   }
-
-  alertLocked(){
-    this.alertService.basicAlert(
-      'Meant to edit?', '', 'Double click the card to flip it and then click its thumbnail.',
-      [{text: 'Ok'}],
-    );
-  }
-
-  addType(){
-    if ((this.thingType === 'Type')){
-      this.openType();
-    } else{
-      this.alertLocked();
-    }
-  }
-  
-  openType(){
+  editType(){
     this.alertService.inputAlert(
       'What kind of Item is this?',
       [{ label: 'Disc', type: 'radio', value: 'Disc' },
@@ -194,18 +165,15 @@ export class FormBackPage implements OnInit{
       ]
     )
   }
-
-  addToContainer() {
-    console.log(this.item?.id, 'swipeup');
+  /* --------------------------------------------------------------------*/
+  updateTrigger(){
+    this.thingTagger();
+    //this.navCtrl.navigateBack("lists-page");
   }
 
-  openMenu() {
-    console.log(this.item?.id, 'swipedown');
-  }
-
+  /* --------------------------------------------------------------------*/
   dummyToast(msg: string){
     this.alertService.presentToast(msg);
   }
-
+  /* --------------------------------------------------------------------*/
 }
-
