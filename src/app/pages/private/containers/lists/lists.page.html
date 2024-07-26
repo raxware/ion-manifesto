@@ -57,7 +57,7 @@
       @for(thing of myThingsList; track thing.id; let index = $index; let count = $count ){
         <ion-item-sliding >
           <ion-item-options side="start">
-            <ion-item-option class="customRipple" (click)="removeItem(index)"><ion-icon slot="icon-only" name="trash" color="danger"></ion-icon></ion-item-option>
+            <ion-item-option class="customRipple" (click)="removeItem(thing.id)"><ion-icon slot="icon-only" name="trash" color="danger"></ion-icon></ion-item-option>
           </ion-item-options>
           <ion-grid [fixed]="true" class="noPadding">
             <ion-row class="noPadding">
@@ -82,7 +82,7 @@
             </ion-row>
           </ion-grid>
           <ion-item-options>
-            <ion-item-option class="customRipple" side="end" (click)="openEditor(index)"><ion-icon slot="icon-only" name="pencil" color="primary"></ion-icon></ion-item-option>
+            <ion-item-option class="customRipple" side="end" (click)="openEditor(thing.id)"><ion-icon slot="icon-only" name="pencil" color="primary"></ion-icon></ion-item-option>
             <!--<ion-item-option class="customRipple"><ion-icon slot="icon-only" name="eye" color="success"></ion-icon></ion-item-option>-->
           </ion-item-options>
         </ion-item-sliding>

@@ -28,9 +28,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ParamsService } from "src/app/services/params.service";
 //import { filter } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 
 @Component({
   selector: 'app-lists',
@@ -48,25 +46,13 @@ import { ParamsService } from "src/app/services/params.service";
 export class ListsPage implements OnInit {
   myThingsService = inject(ItemService);
   myThingsList: itemData[] = [];
-  //outputtingThing!: itemData;
   thingPrototype!: FormGroup;
-  //thing!: itemData;
   unit!: itemData;
   segElement!: string;
   status: boolean = false;
 
   @Input () segValue: string = 'All items';
 
-  @Input({ required: true }) index!: number;
-
-  @Input () set thingUnit(thingToEdit: itemData){
-    this.unit = thingToEdit;
-    this.editFormFiller(thingToEdit);
-  };
-  get thingUnit (){
-    return this.unit;
-  }
-  
   constructor(
     public paramS: ParamsService,
     public photoService: PhotoService, 
@@ -109,26 +95,24 @@ export class ListsPage implements OnInit {
       else if (segToolbar!.style.display === 'flex') {segToolbar!.style.display = 'none'; shareBtn!.style.display = 'none'; /* whatever else actions*/}
     }
   }
-
   segmentChanged(event: CustomEvent){
     this.segElement = event.detail.value;
     if(event.detail.value !== 'All'){
-      if(event.detail.value === 'Custom'){this.segValue = ('Select items at your discretion to customize a list'); 
+      if(event.detail.value === 'Custom'){this.segValue = ('Get a list of checked items'); 
         this.chkBoxToggle(true);
       } else if (event.detail.value !== 'Custom'){
         this.chkBoxToggle(false); 
         this.segValue = ('List of '.concat(event.detail.value)); /*whatever else actions*/}
-    }else{this.segValue = 'All items'; 
+    } else {this.segValue = 'All items'; 
       this.chkBoxToggle(false); 
-      /* whatever else actions*/};
+      /* whatever else actions*/
+    };
   }
-
   chkBoxToggle(status: boolean){
     const chkBoxArray = document.querySelectorAll<HTMLElement>('.hiddenItem');
     if (status){ for (let index = 0; index < chkBoxArray.length; index++) {chkBoxArray[index].style.display = 'flex'; }} 
     else { for (let index = 0; index < chkBoxArray.length; index++) {chkBoxArray[index].style.display = 'none'; }}
   };
-
   shareElement(){
     this.segElement;
     let toBeImproved: string = 'This is it for the moment... \n\n';
@@ -137,62 +121,27 @@ export class ListsPage implements OnInit {
     toBeImproved = (toBeImproved.concat('\n\n See you soon!!'));
     this.sharingService.shareText(toBeImproved);
   }
-
   dummyToast(msg: string){
     this.alertService.presentToast(msg);
   }
 
-    /** 
+  /** 
    ****************** CRUD LOGIC ********************************************************************************** 
   */
+
   getThings() {
-    this.myThingsList = this.myThingsService.getThings();
+     this.myThingsService.getThings().subscribe((items: itemData[]) => {
+      this.myThingsList = items;
+     });
   }
-  saveThing(yetTaggedThing: itemData) {
-    this.myThingsService.setThing(yetTaggedThing);
-    this.getThings();
+  removeItem(index: string) {
+    this.alertService.basicAlert(
+      'CAUTION!!', '', 'Are you sure you want to delete this thing for ever?',
+      [{text: 'Yes, go ahead!', handler: () => { this.myThingsService.thingKicker(index); this.getThings();}},
+      {text: 'Cancel', role: 'cancel', handler: (alertData: any) => { console.log('The dialog was closed'); }}],
+    );
   }
-  editFormFiller(thingToEdit: itemData){
-    this.thingPrototype.patchValue({
-      name: thingToEdit.name,
-      maker: thingToEdit.maker,
-      quantity: thingToEdit.quantity,
-      status: thingToEdit.status,
-      notes: thingToEdit.notes,
-      id: thingToEdit.id,
-      type: thingToEdit.type,
-      picture: thingToEdit.picture,
-      tags: thingToEdit.tags,
-      barcode: thingToEdit.barcode,
-    })
-  }
-  thingIndexer(index: number) {
-    console.log(index);
-    const thing = this.myThingsService.thingPicker(index);
-    console.log(index!);
-  //  this.route.navigate(['/private/edit', index]);
-    console.log('editor: ', thing );
-  }
-  removeItem(index: number) {
-    console.log(index);
-    this.myThingsService.thingKicker(index);
-    this.getThings();
-  }
-  /* ----- Full version, with confirmation message: 
-  removeItem(index: number) {
-      const dialogRef = this.dialog.open(BasicDialogComponent, {
-      data: {message: 'Are you sure you want to delete this thing for ever?'},
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      //console.log('The dialog was closed', result);
-      if(result) {
-      
-        this.myThingsService.thingKicker(index);
-        this.getThings();
-      }
-    });
-  }*/
-  openEditor(index: number): void {
+  openEditor(index: string): void {
     this.navCtrl.navigateForward("card-back");
     this.paramS.changeData(index);
   }

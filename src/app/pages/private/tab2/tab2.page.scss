@@ -186,10 +186,11 @@ ion-img::part(image) {
 */
 /*------------------------------------------------------------------------------------------*/
 
+
 .headLeft{
   position: absolute;
   top:0%;
-  width: 98%;
+  width: 100%;
   display:ruby-text !important;
   text-align: left !important;
 }
@@ -200,7 +201,7 @@ ion-img::part(image) {
 .bottomRight{
   position: absolute; 
   bottom: 0%; 
-  width: 99%;
+  width: 100%;
   display:ruby-text !important;
   text-align: right !important;
   //border:#ff00d9 dotted .5px;
@@ -249,6 +250,7 @@ ion-img::part(image) {
   height: 98.5%;
     //border:#ff00d9 dotted .5px;
 }
+
 /*------------------------------------------------------------------------------------------*/
 img{
   border-radius: 5px;

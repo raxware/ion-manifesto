@@ -1,7 +1,7 @@
 import { Photo } from "@capacitor/camera";
 
 export interface itemData {
-  id?: number;
+  id?: any;
   name: string;
   type: string;
   maker: string;
@@ -11,6 +11,7 @@ export interface itemData {
   tags: string[];
   barcode?: string;
   notes: string;
+  user?: string;
 }
 
 /*
@@ -78,13 +79,15 @@ export interface Pin {
   geoCoordinates: {lat: 0, lng: 0}
 }
 
-export interface UserOptions {
-  username: string;
-  password: string;
-}
-
 export interface Subjects {
   id: number;
   title: string;
   description: string;
+}
+
+export interface userData {
+  id?: string;
+  email: string;
+  pushToken: string;
+  avatarImg?: string;
 }

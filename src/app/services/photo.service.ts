@@ -14,6 +14,18 @@ export class PhotoService {
     this.platform = platform;
   }
 
+  public async getBase64(imgSource: string):Promise<Photo> {
+    let source: CameraSource = CameraSource.Camera;
+    if (imgSource === 'gallery') { source= CameraSource.Photos;      
+    } 
+    const capturedPhoto = await Camera.getPhoto({
+    resultType: CameraResultType.Base64,
+    source,
+    quality: 90,
+    allowEditing: false,
+    }); return capturedPhoto;
+  }
+
   public async addItemPicture(imgSource: string):Promise<UserPhoto> {
     // Take a photo or select it from photo gallery
     let source: CameraSource = CameraSource.Camera;

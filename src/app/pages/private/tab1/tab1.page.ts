@@ -6,6 +6,7 @@ import { itemData } from 'src/app/model/interfaces';
 import { ItemCardComponent } from 'src/app/pages/private/shared/components/item-card/item-card.component';
 import { HeaderComponent } from 'src/app/pages/private/shared/header/header.component';
 import { AlertService } from 'src/app/services/alert-service.service';
+import { ItemService } from 'src/app/services/item.service';
 
 @Component({
   selector: 'app-tab1',
@@ -23,38 +24,34 @@ export class Tab1Page {
   allowSlideCard: boolean = true;
   tabBarElement: any;
   segmentValue: any;
+  slides: itemData[] = [];
 
-  constructor(public alertService: AlertService) {}
+  constructor(public alertService: AlertService, public myThingsService: ItemService) {}
 
-  slides: itemData[] = [
-    {
-      id: 1,
-      name: '',
-      maker: '',
-      picture: '',
-      type: '',
-      quantity: 1,
-      status: '',
-      tags: ['test1', 'test2'],
-      barcode: '',
-      notes: '',
-    },
-    {
-      id: 2,
-      name: '',
-      maker: '',
-      picture: '',
-      type: '',
-      quantity: 2,
-      status: '',
-      tags: ['test1', 'test2', 'test3'],
-      barcode: '',
-      notes: '',
-    },
-  ];
+
+  ionViewDidEnter() { 
+    this.myThingsService.getThings().subscribe((items: itemData[]) => {
+      const extra: itemData = {
+        id: '',
+        name: 'DEFAULT Name',
+        maker: 'DEFAULT Maker',
+        picture: '',
+        type: '',
+        quantity: 0,
+        status: '',
+        tags: [],
+        barcode: '',
+        notes: 'DEFAULT Notes',
+        user: ''
+      }
+      items.unshift(extra);
+      this.slides = items;
+    }); 
+  }
 
   flip(isFlipped: boolean) {
     this.currentCardFlipped = isFlipped;
+    if(isFlipped === true){ console.log('went to back', this.slides);};
     this.allowSlideCard = !isFlipped;
   }
 

@@ -1,94 +1,224 @@
 <ion-content [fullscreen]="true">
-    <ion-card>
-    <ion-card-content class="whiteBorder flex-self-aligned">
-      <ion-card-content class="bgLayer flex-self-aligned">
-        <ion-card-content class="contentFront inline-self-aligned borded">
-          <!-- ************************************************************************** -->
-          <!---->
-            <ion-grid style="bottom: 0%; padding: 0%" class="borderB">
-                <ion-card-content>
-                        <ion-grid>
-                            <ion-row>Things list</ion-row>
-                            @for(thing of myThingsList; track thing.id; let index = $index; let count = $count ){
-                                <ion-row class="borderR padding: 0%">
-                                    <ion-col class="borderG padding: 0%" size="auto"><ion-label>{{index+1}}</ion-label></ion-col>
-                                    <ion-col class="borderG padding: 0%"><ion-label>{{thing.name}}</ion-label></ion-col>
-                                    <ion-col class="borderG padding: 0%" size="auto"><button (click)="thingIndexer(index)"> EDIT </button></ion-col>
-                                    <ion-col class="borderG padding: 0%" size="auto"><button (click)="removeItem(index)"> DELETE </button></ion-col>
-                                </ion-row>
-                            }@empty {
-                              <ion-row class="borderR padding: 0%">
-                                <ion-col class="borderG padding: 0%"><ion-label>No elements on this list yet... </ion-label></ion-col>
-                            </ion-row>
-                            }
-                        </ion-grid>
-                </ion-card-content>
-            </ion-grid>
-          <!--<ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
-           ************************************************************************** -->
-          <!--<ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>-->
-          <!-- ************************************************************************** -->
-          <!--  <ion-grid [fixed]="true">
-            <ion-row>
-              <ion-col class="centerMiddle">
-                <ion-label class="formShaper centerMiddle"><h1>LABEL H1</h1></ion-label>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-          <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
-          <ion-grid [fixed]="true">
-            <ion-row>
-              <ion-label class="formShaper centerMiddle"><h3>LABEL H3</h3></ion-label>
-            </ion-row>
-          </ion-grid>
-          <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
-          <ion-grid [fixed]="true">
-            <ion-row>
-              <ion-col class="centerMiddle">
-                <ion-label class="formShaper centerMiddle hiddenText"><h1>whatever hidden</h1></ion-label>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-           ************************************************************************** -->
-          <!--<ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;">&nbsp;</ion-col></ion-row></ion-grid>-->
-          <!-- ************************************************************************** 
-          <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
-          <ion-grid [fixed]="true" class="toBotton">
-            <ion-row>
-              <ion-col class="centerMiddle">
-                <ion-button size="large" >
-                  <ion-icon slot="icon-only" name="box"></ion-icon>
-                </ion-button>
-              </ion-col>
-              <ion-col class="centerMiddle">
-                <ion-button size="large" >
-                  <ion-icon slot="icon-only" name="box"></ion-icon>
-                </ion-button>
-              </ion-col>
-              <ion-col class="centerMiddle">
-                <ion-button size="large" >
-                  <ion-icon slot="icon-only" name="box"></ion-icon>
-                </ion-button>
-              </ion-col>
-              <ion-col class="centerMiddle">
-                <ion-button size="large" >
-                  <ion-icon slot="icon-only" name="box"></ion-icon>
-                </ion-button>
-              </ion-col>
-              <ion-col class="centerMiddle">
-                <ion-button size="large" >
-                  <ion-icon slot="icon-only" name="box"></ion-icon>
-                </ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>-->
-          <!---->
-          <!-- ************************************************************************** --> 
-        </ion-card-content>
+
+  <div class="container">
+		<div class="row 1">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row 2">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
       
-      </ion-card-content>
-    </ion-card-content>
-  </ion-card>
+		</div>
+		<div class="row 3">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row 4">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row 5">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row 6">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row 7">
+			<div class="hexagon 1"></div>
+			<div class="hexagon 2"></div>
+			<div class="hexagon 3"></div>
+			<div (mouseenter)="hexOut()" class="hexagon 4"><div>HOLA</div> </div>
+			<div class="hexagon 5"></div>
+			<div class="hexagon 6"></div>
+			<div class="hexagon 7"></div>
+			<div class="hexagon 8"></div>
+			<div class="hexagon 9"></div>
+			<div class="hexagon 10"></div>
+			<div class="hexagon 11"></div>
+			<div class="hexagon 12"></div>
+			<div class="hexagon 13"></div>
+			<div class="hexagon 14"></div>
+			<div class="hexagon 15"></div>
+			<div class="hexagon 16"></div>
+		</div>
+		<div class="row 8">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row 9">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row 10">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row 11">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row 12">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+	</div>
 </ion-content>
 
 

@@ -1,49 +1,37 @@
 <ion-content [fullscreen]="true">
-    <ion-grid [fixed]="true" class="headTop">
-        <ion-row><ion-col><h1>&nbsp;</h1></ion-col></ion-row>
-        <ion-row>
-          <ion-col>
-            <p class="headLeft downSized">&nbsp;</p>
-            <p class="text-custom upSized">manifesto</p>
-            <p class="bottomRight downSized">Keeping Things Trackable</p>
+    <ion-grid [fixed]="true" class="headTop noPadding" style="height:85.3%">
+      <!-- <ion-row ><ion-col><h1>&nbsp;</h1></ion-col></ion-row>--> 
+        <ion-row class="noPadding">
+          <ion-col class="noPadding">
+          <!--  <p class="borderR headLeft downSized">&nbsp;</p> --> 
+            <p class="fullWidth text-custom upSized">manifesto</p>
+            <p class="fullWidth bottomRight downSized" style="bottom: 12%; color: #737373; font-size: 0.815rem;">Keeping Things Trackable</p>
           </ion-col>
         </ion-row>
+      <ion-row class="alignCenter noPadding">
+        <ion-col class="alignCenter noPadding"></ion-col>
+        <ion-col size="auto" class="alignCenter noPadding">
+
+          <!--<div class="preview">
+            <ion-avatar (click)="changeImage()">
+              <img [src]="usrImage" />
+            </ion-avatar>
+          </div>-->
+
+          <div class="hex alignCenter" style="align-content: center;" (click)="changeImage()">
+              @if (userAvatar){<img class="hex-img alignCenter" [src]="usrImage"/>}
+              @else {<img class="hex-img alignCenter coated" src="../../../../../assets/plus2.jpg " />}
+          </div>
+
+        </ion-col>
+        <ion-col class="alignCenter noPadding"></ion-col>
+      </ion-row>
       </ion-grid>
       
       <ion-grid [fixed]="true">
-        <ion-row><ion-col>&nbsp;</ion-col></ion-row>
-        <ion-row><ion-col>&nbsp;</ion-col></ion-row>
         <ion-row>
           <ion-col>
-            <ion-button size="large" type="button">
-              <ion-icon slot="icon-only" name="cube"></ion-icon>
-            </ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button size="large" type="button">
-              <ion-icon slot="icon-only" name="cube"></ion-icon>
-            </ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button size="large" type="button">
-              <ion-icon slot="icon-only" name="cube"></ion-icon>
-            </ion-button>
-          </ion-col>
-        </ion-row>
-        <ion-row><ion-col></ion-col></ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-button size="large" type="button">
-              <ion-icon slot="icon-only" name="cube"></ion-icon>
-            </ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button size="large" type="button">
-              <ion-icon slot="icon-only" name="cube"></ion-icon>
-            </ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button size="large" (click)="logOut()">
+            <ion-button color="softing" size="large" (click)="logOut()">
               <ion-icon slot="icon-only" name="log-out"></ion-icon>
             </ion-button>
           </ion-col>

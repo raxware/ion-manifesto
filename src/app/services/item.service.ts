@@ -1,5 +1,8 @@
+import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc, query, where } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { itemData } from '../model/interfaces';
+import { Auth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -7,35 +10,28 @@ import { itemData } from '../model/interfaces';
 
 export class ItemService {
 
-  constructor() { }
+  constructor(private firestore: Firestore, private auth: Auth){}
 
-  getThings(): itemData[] {
-    if (window.localStorage.getItem('myThings') !== null) {
-      return JSON.parse(window.localStorage.getItem('myThings')!);
-    } else {
-      return [];
+    getThings(): Observable<itemData[]> {
+      const itemsRef = collection(this.firestore, 'myThings');
+      const q = query(itemsRef, where('user', '==', this.auth.currentUser!.uid) );
+      return collectionData(q, { idField: 'id'}) as Observable<itemData[]>;
     }
-  }
-  setThing(thingUnit: itemData) { // recibe parámetros de "thing-form.c.ts"  -->  thingTagger() { ... setThing(yetTaggedThing);}
-    const myThings = this.getThings(); 
-    myThings.push(thingUnit);
-    this.saveThings(myThings);
-  }
-  editThing(index: number, reDefinedThing: itemData){  // recibe parámetros de "edit.c.ts"  -->  editThing(this.index, thingUnit);{ ... setThing(thingUnit);}
-    const myThings = this.getThings();
-    myThings[index] = reDefinedThing;
-    this.saveThings(myThings);
-  }
-  thingPicker(index: number){     // recibe parámetros de "home.c.ts"  -->  thingIndexer(index: number){ ... thingPicker(index);}
-    const pickedThing = this.getThings();
-    return pickedThing[index];
-  }
-  thingKicker(index: number) {    // recibe parámetros de "home.c.ts"  -->  removeItem(index: number) { ...  thingKicker(index);}
-    const myThings = this.getThings();
-    myThings.splice(index, 1);
-    this.saveThings(myThings);
-  }
-  private saveThings(editedThings: itemData[]){
-    window.localStorage.setItem('myThings', JSON.stringify(editedThings));
-  }
+    getThingById(id: string): Observable<itemData> {
+      const itemDocRef = doc(this.firestore, `myThings/${id}`);
+      return docData(itemDocRef, { idField: 'id' }) as Observable<itemData>;
+    }
+    setThing(thingUnit: itemData) {
+      thingUnit.user = this.auth.currentUser?.uid;
+      const itemsRef = collection(this.firestore, 'myThings');
+      return addDoc(itemsRef, thingUnit);
+    }
+    editThing(reDefinedThing: itemData){
+      const itemsRef = doc(this.firestore, `myThings/${reDefinedThing.id}`);
+      return updateDoc(itemsRef, { ...reDefinedThing });
+    }
+    thingKicker(id: string) {
+      const itemDocRef = doc(this.firestore, `myThings/${id}`);
+      return deleteDoc(itemDocRef);
+    } 
 }

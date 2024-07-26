@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonNote, IonButton, 
 	IonCardContent, IonCard, IonGrid, IonRow, IonCol, IonLabel, IonCheckbox, IonInput, 
@@ -17,14 +16,14 @@ import { AuthService } from 'src/app/services/auth.service';
   imports: [IonImg, IonInput, IonCheckbox, IonLabel, IonCol, IonRow, IonGrid, IonCard, IonCardContent, IonButton, IonNote, IonItem, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, ReactiveFormsModule, IonInputPasswordToggle]
 })
 export class LoginPage implements OnInit {
-	credentials!: FormGroup;
-
+	@Output() flipCard = new EventEmitter<boolean>();
+//	@Output() showPwd = new EventEmitter<boolean>();	
 	@Input() isFlipped: boolean = false;
 	@Input() isHidden: boolean = true;
+
+	credentials!: FormGroup;
 	@Input() pwdSatusLabel: string = 'Show password';
- 
-	@Output() flipCard = new EventEmitter<boolean>();
-	@Output() showPwd = new EventEmitter<boolean>();
+
 
 	constructor(
 		public alertService: AlertService,
@@ -108,16 +107,15 @@ export class LoginPage implements OnInit {
 		console.log(cardFace);
 		if(cardFace === 'back'){
 			this.alertDummy('DISCLAIMER', 
-				'', 
-				'Please provide a valid email address to make sure your profile is recoverable. All your data may become unreachable, otherwise.', 
-				'Ack',
+				'',
+				'Please provide a valid email address to make sure your profile is recoverable. All your data may become unreachable, otherwise.', ['Ack'],
 			);
 		}
 		this.isFlipped = !this.isFlipped;
 		this.flipCard.emit(this.isFlipped);
 	}
 
-	alertDummy(ttl: string, subttl: string, msg: string, btn: string){
+	alertDummy(ttl: string, subttl: string, msg: string, btn: any){
 		setTimeout(() => {
 			this.alertService.basicAlert(ttl, subttl, msg, [{text: btn}]);
 		}, 500);
@@ -125,6 +123,6 @@ export class LoginPage implements OnInit {
 
 	doSmthng(direction: any){
 		console.log(direction)
-		
 	}
+
 }

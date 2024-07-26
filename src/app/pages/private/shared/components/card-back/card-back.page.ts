@@ -29,4 +29,15 @@ export class CardBackPage implements OnInit{
   ngOnInit(): void {}
 
   dummyToast(msg: string){ this.alertService.presentToast(msg); }
+
+
+  updateTrigger(updateItem: Event){
+    
+  }
+
+
+
+
+
 }
+

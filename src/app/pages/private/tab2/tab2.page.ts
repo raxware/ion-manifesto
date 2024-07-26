@@ -9,11 +9,12 @@ import { addIcons } from 'ionicons';
 import { book, brush, build, calculator, camera, chatbubbles, 
   checkmarkCircle, cube, diamond, dice, disc, extensionPuzzle, 
   film, gameController, home, images, language, medkit, rocket, 
-  shirt, thumbsDown, thumbsUp, wine, cash, musicalNotes,
-  person, logOut, logOutOutline, logOutSharp, helpCircle, 
+  shirt, thumbsDown, thumbsUp, wine, cash, musicalNotes, idCard,
+  person, logOut, logOutOutline, logOutSharp, helpCircle, key,
   helpCircleOutline, send, informationCircleOutline,
   informationCircle, settings, mail, mailOutline,
   personCircleOutline, personCircleSharp, personCircle,
+  contrast, colorPalette, bulb, megaphone, notificationsCircle,  
 } from 'ionicons/icons';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
@@ -52,7 +53,7 @@ export class Tab2Page implements OnInit{
       disc, thumbsUp, thumbsDown, home, checkmarkCircle, cash, musicalNotes, person, logOut, 
       logOutOutline, logOutSharp, helpCircle, helpCircleOutline, send, informationCircle, 
       informationCircleOutline, settings, mail, mailOutline, personCircleOutline, personCircleSharp, 
-      personCircle
+      personCircle, contrast, colorPalette, bulb, megaphone, notificationsCircle, idCard, key
     });
   }
   ngOnInit(): void {
@@ -90,28 +91,17 @@ export class Tab2Page implements OnInit{
   }
 
   dummyAlert(head: string, sub: string, msg: string, btn: any){
-    this.alertService.basicAlert(
-      head, sub, msg,
-      [{text: btn}],
-    )
+    this.alertService.basicAlert(head, sub, msg, [{text: btn}])
   }
     
   easterEgg(): void{
     if(this.witness !== true){
     this.count++;
-      if(this.count === 21 ){
-        console.log('contador: ', this.count);
-        const id1 = Math.floor((Math.random() * (9999 - 1000 + 1)) + 1000);
-        const id2 = Math.floor((Math.random() * (9999 - 1000 + 1)) + 1000);
-        //window.crypto.randomUUID()
-        let now: Date = new Date(); let year: number = now.getFullYear(); 
-        let code: string = 'mnf-'; code = (code.concat(year.toString()));
-        code = (code.concat('-')); code =(code.concat(id1.toString())); 
-        code = (code.concat('-')); code = (code.concat(id2.toString()));
-        console.log(code);
-        this.dummyAlert('Ostara has a gift for you!', 'Save this code to redeem it:', code, 'Ok');
+      if(this.count === 7){
+        //console.log('contador: ', this.count);
         this.count = 0; this.witness = true;
-        console.log('contador/testigo: ', this.count, this.witness);
+        //console.log('contador/testigo: ', this.count, this.witness);
+        this.router.navigateByUrl('/card-front', { replaceUrl: true });
       }
     }
   }

@@ -10,6 +10,9 @@ import { environment } from './environments/environment';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { getFirestore, provideFirestore } from "@angular/fire/firestore";
+import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
 // Call the element loader before the bootstrapModule/bootstrapApplication call
@@ -23,7 +26,6 @@ if (environment.production) {
   providedIn: 'root'
 })
 export class HammerConfig extends HammerGestureConfig {
-
   override overrides = <any>{
     'swipe': { direction: Hammer.DIRECTION_ALL },
     'doubletap': new Hammer.Tap({ event: 'doubletap', taps: 2 }),
@@ -39,9 +41,13 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideHttpClient(),
     importProvidersFrom(HammerModule),
-    { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig }, 
+    { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig },
+
     provideFirebaseApp(() => initializeApp({"projectId":"manifesto-268c5","appId":"1:167271764279:web:a156eaed7b7723d6d58ab2","storageBucket":"manifesto-268c5.appspot.com",
       "apiKey":"AIzaSyB8ISzWHB4YBy6S4QX6apmeal6tpdI6q4E","authDomain":"manifesto-268c5.firebaseapp.com","messagingSenderId":"167271764279","measurementId":"G-XVJEEQW56C"})), 
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()), provideAnimationsAsync(),
+    provideStorage(() => getStorage()), provideFirebaseApp(() => initializeApp({"projectId":"manifesto-268c5","appId":"1:167271764279:web:a156eaed7b7723d6d58ab2","storageBucket":"manifesto-268c5.appspot.com","apiKey":"AIzaSyB8ISzWHB4YBy6S4QX6apmeal6tpdI6q4E","authDomain":"manifesto-268c5.firebaseapp.com","messagingSenderId":"167271764279","measurementId":"G-XVJEEQW56C"})), provideFirestore(() => getFirestore()), 
+    provideFirebaseApp(() => initializeApp({"projectId":"manifesto-268c5","appId":"1:167271764279:web:a156eaed7b7723d6d58ab2","storageBucket":"manifesto-268c5.appspot.com",/*"locationId":"europe-west",*/"apiKey":"AIzaSyB8ISzWHB4YBy6S4QX6apmeal6tpdI6q4E","authDomain":"manifesto-268c5.firebaseapp.com","messagingSenderId":"167271764279","measurementId":"G-XVJEEQW56C"})), provideStorage(() => getStorage())
   ],
 });

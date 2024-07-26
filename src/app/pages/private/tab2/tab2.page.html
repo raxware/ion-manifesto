@@ -4,6 +4,7 @@
       <ion-img class="header-image" src="../../assets/logo.png" (click)="easterEgg()"></ion-img>
     </div>
   </ion-grid>
+
   <ion-grid [fixed]="true" style="height:85.3%" class="noPadding">
 
       <div class="scene scene--card">
@@ -15,19 +16,11 @@
                 <ion-card-content class="bgLayer inline-self-aligned child-align">
                   <ion-card-content class="contentFull inline-self-aligned">
 
-                    <ion-grid [fixed]="true" class="headTop">
-                      <!--<ion-row>
-                        <ion-col>
-                          <div class="altHeader">
-                            <ion-img class="header-image" src="../../assets/logo.png"></ion-img>
-                          </div>
-                        </ion-col>
-                      </ion-row>-->
-                      <ion-row>
-                        <ion-col>
-                          <p class="headLeft downSized">&nbsp;</p>
-                          <p class="text-custom upSized">manifesto</p>
-                          <p class="bottomRight downSized">Keeping Things Trackable</p>
+                    <ion-grid [fixed]="true" class="headTop noPadding">
+                      <ion-row class="noPadding">
+                        <ion-col class="noPadding">
+                          <p class="fullWidth text-custom upSized">manifesto</p>
+                          <p class="fullWidth bottomRight downSized" style="bottom: 12%;">Keeping Things Trackable</p>
                         </ion-col>
                       </ion-row>
                     </ion-grid>
@@ -37,16 +30,16 @@
                       <ion-row><ion-col>&nbsp;</ion-col></ion-row>
                       <ion-row>
                         <ion-col>
-                          <ion-button size="large" type="button" (click)="bindComponent('help')">
+                          <ion-button color="softing" size="large" type="button" (click)="bindComponent('help')">
                             <ion-icon slot="icon-only" name="help-circle"></ion-icon>
                           </ion-button></ion-col>
                         <ion-col>
-                          <ion-button size="large" type="button" (click)="bindComponent('info')">
+                          <ion-button color="softing" size="large" type="button" (click)="bindComponent('info')">
                             <ion-icon slot="icon-only" name="information-circle"></ion-icon>
                           </ion-button>
                         </ion-col>
                         <ion-col>
-                          <ion-button size="large" type="button" (click)="bindComponent('feedback')">
+                          <ion-button color="softing" size="large" type="button" (click)="bindComponent('feedback')">
                             <ion-icon class="diagonal" slot="icon-only" name="mail"></ion-icon>
                           </ion-button>
                         </ion-col>
@@ -54,17 +47,17 @@
                       <ion-row><ion-col></ion-col></ion-row>
                       <ion-row>
                         <ion-col>
-                          <ion-button size="large" type="button" (click)="bindComponent('share')">
+                          <ion-button color="softing" size="large" type="button" (click)="bindComponent('share')">
                             <ion-icon slot="icon-only" name="cube"></ion-icon>
                           </ion-button>
                         </ion-col>
                         <ion-col>
-                          <ion-button size="large" (click)="bindComponent('logout')">
+                          <ion-button color="softing" size="large" (click)="bindComponent('logout')">
                             <ion-icon slot="icon-only" name="person-circle"></ion-icon>
                           </ion-button>
                         </ion-col>
                         <ion-col>
-                          <ion-button size="large" type="button" (click)="bindComponent('settings')">
+                          <ion-button color="softing" size="large" type="button" (click)="bindComponent('settings')">
                             <ion-icon slot="icon-only" name="settings"></ion-icon>
                           </ion-button>
                         </ion-col>

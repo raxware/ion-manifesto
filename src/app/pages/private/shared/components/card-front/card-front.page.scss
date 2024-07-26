@@ -1,133 +1,63 @@
-ion-content::part(background){
-    background: transparent !important;
-}  
-  ion-card{
-    display: flex;
-    justify-content: center;
-    background: linear-gradient(rgb(255, 204, 119), #ffeecc);
-    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.4);
-    height: 72vh;
-    .whiteBorder{
-      background-color: #ffffff;
-      width: 97%;
-      height: 98%;
-      .bgLayer{
-        width: 98%;
-        height: 99%;
-        background-image: url(/../../../assets/whiteNBG.png), linear-gradient(#ffcc7740, #ffeecc1f);
-            //background-image: url(/../../../assets/whiteNBG.png), linear-gradient(#ffeecc40, #fff2d81f);
-            //background-image: url(/../../../assets/whiteNBG.png), linear-gradient(#ff400040, #ffeecc1f);
-        background-blend-mode:color-dodge;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-      }
-    }
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background: #000;
+  min-height: 100vh;
+}
+.container{
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  animation: animate 4s linear infinite;
+}
+@keyframes animate{
+  0%{
+    filter: hue-rotate(0deg);
   }
-  .flex-self-aligned{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    border-radius: 5px;
-    padding: 0%;
+  100%{
+    filter: hue-rotate(360deg);
   }
-  .inline-self-aligned{
-    display: inline-block;
-    position: relative;
-    justify-content: center;
-    align-self: center;
-    border-radius: 5px;
-    padding: 0%;
-  }
-  .child-align{
-    align-items: center;
-    align-content: center;
-    text-align: center;
-  }
-  .contentFront{
-    width: 97.5%;
-    height: 98.5%;
-      //border:#ff00d9 dotted .5px;
-  }
-  .imgFrame{
-    display: inline-block;
-    position: absolute;
-    justify-content: center;
-    align-self: center;
-    border-radius: 5px;
-    padding: 0%;
-    width: 100%;
-    height: 100%;
-    //    background-color: #ffcc7744;
-          background-color: rgba(255, 255, 255, 0.65);
-  }
-  
-  /*---------------------------------------------NO MORE CHANGE UP FROM HERE ---------------------------------------------*/
-
-  .offUnderSpace{
-    display:inline-block !important;
-    vertical-align: middle;
-    line-height:20px;
-    margin: 0;
-  }
-
-  .hiddenContent{
-    display: none !important;
-  }
-
-  .contentSpliter{
-    width: 100%;
-    height: auto;
-      //height: 41.5%;
-      //border:#0000ff dotted .5px;
-  }
-  .thumbFrame{
-      height: 10vh;
-      width: 10vh;
-  }
-  
-  .shadow{
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4); 
+}
+.row{
+  display: inline-flex;
+  margin-left: -50px;
+  margin-top: -32px;
+  overflow: hidden;
+}
+.row:nth-child(even){
+  margin-left: .5px;
+}
+.hexagon{
+  position: relative;
+  height: 110px;
+  width: 100px;
+  background: #111;
+  margin: .5px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  transition: 2s;
+}
+.hexagon:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  pointer-events: visibleFill;
+  background: rgba(255, 255, 255, 0.02);
+}
+.hexagon:hover{
+  transition: 0s;
+  background: #f90;
+  cursor: pointer;
 }
 
-  /*------------------------------------------------------------------------------------------*/
-  img{
-    border-radius: 5px;
-    //border:#00f7ff dotted .5px;
-  }
-  ion-card-header{
-    background-color: transparent;
-  }
-  ion-button{
-    color: rgb(255, 255, 255) !important;
-    width: 8vh;
-    height: 8vh;
-  }
-  ion-icon{
-    //color: #ffcc77;
-    color: #ffffff;
-    font-size: 48px;
-  }
-  ion-img::part(image) {
-    border-radius: 5px;
-    max-width: 374px;
-    max-height: 374px;
-  }
-  /*------------------------------------------------------------------------------------------*/
-.borded{
-  border: #aaaaaa solid .5px;
-  border-radius: 5px;
+/*
+.alignCenter{
+  align-self: center;
+  vertical-align: middle;
 }
-.borderR{
-  border: rgb(252, 0, 0) dotted 1px;
-}
-.borderG{
-  border: rgb(88, 252, 0) dotted 1px;
-}
-.borderB{
-  border: rgb(4, 0, 252) dotted 1px;
-}
-.noPadding{
-  padding: 0%;
-}
+*/

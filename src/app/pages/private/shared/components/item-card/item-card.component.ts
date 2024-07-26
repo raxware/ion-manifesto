@@ -36,7 +36,8 @@ export class ItemCardComponent implements OnInit{
   @Input() typeIcon?: string;
 
   @Input() isFlipped: boolean = false;
-  @Input() item?: itemData;
+  @Input() item!: itemData;
+  theThing!: itemData[];
 
   @Output() flipCard = new EventEmitter<boolean>();
 
@@ -60,38 +61,41 @@ export class ItemCardComponent implements OnInit{
     );
   }
   ngOnInit(): void {
-    this.item!.name = 'Name'; //shows off in the front card and inside Form Placeholder
+    this.item!.name = ''; //shows off in the front card and inside Form Placeholder
     this.item!.picture = ''; // ??
-    this.item!.maker = 'Maker'; //doesn't show off anywere
-    this.thingName = 'Name'; //shows off in the Form Label/Animation
-    this.typeIcon = this.defaultIcon;
-    this.thingType = 'Type'; //??
-  }
-  /** ****************** CARD INTERFACE STARTS HERE *************************** */
+    this.item!.maker = ''; //doesn't show off anywere
 
+    this.typeIcon = this.defaultIcon;
+    this.thingName = 'Name'; //shows off in the Form Label/Animation
+    this.thingType = 'Type'; //??
+
+    this.myThingsService.getThings().subscribe((items: itemData[]) => {
+      for (let index = 0; index < items.length; index++) {
+        const element = items[index];
+        console.log(element);
+        //this.formFiller(element);
+      }
+    })
+  }
+  /** ****************** LOGIC FOR CARD INTERFACE BEGINS HERE *************************** */
   flip(face: string) {
     if(face === 'back') {
       if(this.thingPrototype.valid){
         if(this.savedData === false){
           this.thingTagger();
           this.savedData = true;
-        } else {this.dummyAlert('This card already exists!', '', 'If you need to edit, complete its data or delete it, please do it from the menus \"Lists\", in the \"output\" tab.', 'Ok')};
+        } else {this.dummyAlert('This card already exists!', '', 'If you need to edit or delete it, do it from the menu \"Lists\", in the \"output\" tab.', 'Ok')};
       } else {this.dummyAlert('Card wasn\'t saved!', '', '\"Name\" field is mandatory', 'Ok')};
     } //else if(this.savedData = false) {this.dummyAlert('No data was entered', '', 'This card was not saved', 'Ok')};
     this.isFlipped = !this.isFlipped;
     this.flipCard.emit(this.isFlipped);
   }
-  addToContainer() {
-    console.log(this.item?.id, 'swipeup');
-  }
-  openMenu() {
-    console.log(this.item?.id, 'swipedown');
-  }
-  
-  /** ****************** CARD INTERFACE ENDS HERE *************************** */
 
-  /** ****************** CRUD LOGIC STARTS HERE *************************** */
+  addToContainer() { console.log(this.item?.id, 'swipeup'); }
+  openMenu() { console.log(this.item?.id, 'swipedown'); }
 
+  /** ****************** LOGIC FOR CARD INTERFACE ENDS HERE *************************** */
+  /** ****************** LOGIC FOR CRUD BEGINS HERE *************************** */
   emptyFormBuilder() {
     this.thingPrototype = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -104,16 +108,27 @@ export class ItemCardComponent implements OnInit{
       tags: new FormControl(''),
     });
   }
-  updatePrototype() {
+
+  formFiller(thingToEdit: itemData){
     this.thingPrototype.patchValue({
-      type: this.thingType, 
-      picture: this.thingPicture,
+      name: thingToEdit.name,
+      type: thingToEdit.type,
+      maker: thingToEdit.maker,
+      picture: '' /*thingToEdit.picture*/,
+      quantity: thingToEdit.quantity,
+      status: thingToEdit.status,
+      notes: thingToEdit.notes,
+      tags: thingToEdit.tags,
     });
   }
+
   thingTagger() {
     if (this.thingPrototype.valid){
       this.updatePrototype();
       const justTaggedThing: itemData = {
+        id: this.item.id,
+        user: this.item.user,
+
         name: this.thingPrototype.get('name')!.value,
         type: this.thingPrototype.get('type')!.value,
         maker: this.thingPrototype.get('maker')!.value,
@@ -129,14 +144,17 @@ export class ItemCardComponent implements OnInit{
         console.log('thingPrototype is INVALID!!!');
     }
   }
+  updatePrototype() {
+    this.thingPrototype.patchValue({
+      type: this.thingType, 
+      picture: this.thingPicture,
+    });
+  }
   saveThing(yetTaggedThing: itemData) {
     this.myThingsService.setThing(yetTaggedThing);
   }
-
-  /** ****************** CRUD LOGIC ENDS HERE *************************** */
-
-  /** ****************** ITEM CONTENT MANAGER STARTS  HERE*************************** */
-  
+  /** ****************** LOGIC FOR CRUD ENDS HERE *************************** */
+  /** ****************** LOGIC FOR ITEM CONTENT MANAGER BEGINS HERE *************************** */
   addImage(){
     if (!(this.item!.picture ==='')) {this.dummyAlert('Meant to edit?', '', 'Double click the card to flip it and then click its thumbnail.', 'Ok'); }
     else{this.editImage(); }
@@ -196,9 +214,8 @@ export class ItemCardComponent implements OnInit{
     */
     }
   }
-
-  /** ****************** ITEM CONTENT MANAGER ENDS HERE *************************** */
-
+  /** ****************** LOGIC FOR ITEM CONTENT MANAGER ENDS HERE *************************** */
+  /** ****************** LOGIC FOR AUX FUNCTIONS BEGINS HERE *************************** */
   dummyToast(msg: string){this.alertService.presentToast(msg); }
 
   alertLocked(){
@@ -211,7 +228,6 @@ export class ItemCardComponent implements OnInit{
   dummyAlert(head: string, sub: string, msg: string, btn: any){
     this.alertService.basicAlert(head, sub, msg, [{text: btn}]);
   }
-
 }
 
 

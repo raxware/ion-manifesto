@@ -1,5 +1,5 @@
 import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component, Input, Output, OnInit, inject } from '@angular/core';
+import { Component, Input, Output, OnInit, inject, EventEmitter } from '@angular/core';
 import { IonIcon, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, 
   IonChip, IonLabel, IonCardSubtitle, IonAlert, IonButton, IonInput, IonItem, 
   IonThumbnail, IonItemOption, IonSegment, IonGrid, IonRow, IonCol, IonTitle, 
@@ -33,23 +33,38 @@ import { ParamsService } from "src/app/services/params.service";
   ]
 })
 export class FormBackPage implements OnInit{
+  //-----------------------------------
   myThingsService = inject(ItemService);
+  //-----------------------------------
   myThingsList: itemData[] = [];
-  thingPrototype!: FormGroup;
-  unit!: itemData;
-  index!: number;
-  
+
   @Input() item!: itemData;
-  @Input() thingPicture!: string;
+  theThing!: itemData;
+  unit!: itemData;
+  //-----------------------------------
+  @Input() thingPicture!: string; 
+  @Input() typeIcon?: string; 
+  @Input() defaultIcon: string = 'cube';
+
+  thingPrototype!: FormGroup;
+
   @Input() thingType: string = 'Type';
-  
+  @Input() thingMaker: string = 'Maker'
+  @Input() thingName: string = 'Name'
+  @Input() thingQuantity: string = 'Quantity';
+  @Input() thingStatus: string = 'Status';
+  @Input() thingNotes: string = 'Notes';
+
+  index!: string;
+  //----------------------------------- 
+  @Output () backButton = new EventEmitter<string>();
+  //-----------------------------------  
   @Input () set thingUnit(thingToEdit: itemData){
     this.unit = thingToEdit;
-    this.thingPicture = this.myThingsList[this.index].picture;
-    this.formFiller(thingToEdit);
-  }; get thingUnit (){
-    return this.unit;
-  }
+  //  this.thingPicture = this.theThing.picture;
+  //  this.formFiller(thingToEdit);
+  }; get thingUnit (){ return this.unit; }
+  //-----------------------------------
 
   constructor(
     public paramS: ParamsService,
@@ -67,22 +82,29 @@ export class FormBackPage implements OnInit{
   }
   ngOnInit(): void {
     this.bringItBack();
-                          //console.log('onINit: ', this.thingPicture);
+                        console.log('ngOnInit: ', this.thingPicture);
   }
-  /* --------------------------------------------------------------------*/
+
+  /** ****************** LOGIC FOR ITEM MANAGER BEGINS HERE *************************** */
   bringItBack() {
     this.index = this.getThingId();
-    this.myThingsList = this.myThingsService.getThings();
-    this.formFiller(this.myThingsList[this.index]);
-  } 
+    this.myThingsService.getThingById(this.index).subscribe((item: itemData) => {
+      this.theThing = item;
+      this.formFiller(this.theThing);
+      //this.updatePrototype();
+      console.log('trae la foto? => ', this.theThing.picture);
+    })
+  }
   getThingId(){
     let params: any;
     this.paramS.serviceData.subscribe(data => (params = data));
     return params;
   }
+  /** ****************** LOGIC FOR ITEM MANAGER ENDS HERE *************************** */
+  /** ****************** LOGIC FOR CRUD BEGINS HERE *************************** */
   emptyFormBuilder() {
     this.thingPrototype = new FormGroup({
-      name: new FormControl(''),
+      name: new FormControl('', [Validators.required]),
       type: new FormControl(''),
       maker: new FormControl(''),
       picture: new FormControl(''),
@@ -91,6 +113,25 @@ export class FormBackPage implements OnInit{
       notes: new FormControl(''),
       tags: new FormControl(''),
     });
+  }
+  thingTagger() {
+    if (this.thingPrototype.valid){
+      this.updatePrototype();
+      const justTaggedThing: itemData = {
+        id: this.theThing.id,
+        name: this.thingPrototype.get('name')!.value,
+        type: this.thingPrototype.get('type')!.value,
+        maker: this.thingPrototype.get('maker')!.value,
+        picture: this.thingPrototype.get('picture')!.value,
+        quantity: this.thingPrototype.get('quantity')!.value,
+        status: this.thingPrototype.get('status')!.value,
+        notes: this.thingPrototype.get('notes')?.value,
+        tags: this.thingPrototype.get('tags')?.value,
+        user: this.theThing.user,
+      }
+      this.saveChanges(justTaggedThing); 
+      //console.log('patcheó la foto? => ', justTaggedThing.picture); 
+    } else {console.log('thingPrototype is INVALID!!!');}
   }
   formFiller(thingToEdit: itemData){
     this.thingPrototype.patchValue({
@@ -102,34 +143,20 @@ export class FormBackPage implements OnInit{
       status: thingToEdit.status,
       notes: thingToEdit.notes,
       tags: thingToEdit.tags,
-    })
-  }
-  thingTagger() {
-    if (this.thingPrototype.valid){
-      this.updatePrototype();
-      const justTaggedThing: itemData = {
-        name: this.thingPrototype.get('name')!.value,
-        type: this.thingPrototype.get('type')!.value,
-        maker: this.thingPrototype.get('maker')!.value,
-        picture: this.thingPrototype.get('picture')!.value,
-        quantity: this.thingPrototype.get('quantity')!.value,
-        status: this.thingPrototype.get('status')!.value,
-        notes: this.thingPrototype.get('notes')?.value,
-        tags: this.thingPrototype.get('tags')?.value,
-      }
-      this.saveChanges(justTaggedThing);
-    } else {console.log('thingPrototype is INVALID!!!');}
+    });
+    this.typeSelector(thingToEdit.type);
   }
   updatePrototype() {
     this.thingPrototype.patchValue({
-      type: this.thingType, 
-      picture: this.thingPicture,
+      type: this.theThing.type, 
+      picture: this.theThing.picture,
     });
   }
   saveChanges(yetTaggedThing: itemData) {
-    this.myThingsService.editThing(this.index, yetTaggedThing);
+    this.myThingsService.editThing(yetTaggedThing);
   }
-  /* --------------------------------------------------------------------*/
+  /** ****************** LOGIC FOR CRUD ENDS HERE *************************** */
+  /** ****************** LOGIC FOR ITEM CONTENT MANAGER BEGINS HERE *************************** */
   editImage(){
     this.alertService.basicAlert(
       'Image Source', '', '',
@@ -154,26 +181,39 @@ export class FormBackPage implements OnInit{
       'What kind of Item is this?',
       [{ label: 'Disc', type: 'radio', value: 'Disc' },
        { label: 'Book', type: 'radio', value: 'Book' }, 
-       { label: 'Tools', type: 'radio', value: 'Tools' },
+       { label: 'Tool', type: 'radio', value: 'Tool' },
        { label: 'Cloth', type: 'radio', value: 'Cloth' },
        { label: 'Comic', type: 'radio', value: 'Comic' },
        { label: 'Wine', type: 'radio', value: 'Wine'},
        { label: 'Currency', type: 'radio', value: 'Currency'},
       ],
       [{text: 'Cancel', role: 'cancel', handler: (alertData: string) => { this.item!.type = 'undefined'; console.log('addType cancel', alertData); }}, 
-       {text: 'Ok', handler: (alertData: string) => { this.thingType = alertData; }}
+       {text: 'Ok', handler: (alertData: string) => { this.thingType = alertData; this.typeSelector(this.thingType) }}
       ]
     )
   }
-  /* --------------------------------------------------------------------*/
+  typeSelector(sellectedType: string){
+    switch (sellectedType){
+      case "Album": this.typeIcon = 'disc'; this.thingMaker = 'Artist'; this.thingName = sellectedType ; break;
+      case "Book": this.typeIcon = 'book'; this.thingMaker = 'Author'; this.thingName = sellectedType ; break;
+      case "Tool": this.typeIcon = 'build'; this.thingMaker = 'Brand'; this.thingName = sellectedType ; break;
+      case "Cloth": this.typeIcon = 'shirt'; this.thingMaker = "Brand"; this.thingName = sellectedType ; break;
+      case "Comic": this.typeIcon = 'chatbubbles'; this.thingMaker = "Author"; this.thingName = sellectedType ; break;
+      case "Wine": this.typeIcon = 'wine'; this.thingMaker = "Producer"; this.thingName = sellectedType ; break;
+      case "Currency": this.typeIcon = 'cash'; this.thingMaker = "Country"; this.thingName = sellectedType ; break;
+      case "Human": this.typeIcon = 'person'; this.thingMaker = "Surname"; this.thingName = sellectedType ; break;
+    }
+  }
+  /** ****************** LOGIC FOR ITEM CONTENT MANAGER ENDS HERE *************************** */
+  /** ****************** LOGIC FOR AUX FUNCTIONS BEGINS HERE *************************** */
   updateTrigger(){
     this.thingTagger();
     //this.navCtrl.navigateBack("lists-page");
   }
-
   /* --------------------------------------------------------------------*/
   dummyToast(msg: string){
     this.alertService.presentToast(msg);
   }
   /* --------------------------------------------------------------------*/
+  /** ****************** LOGIC FOR AUX FUNCTIONS ENDS HERE *************************** */
 }
