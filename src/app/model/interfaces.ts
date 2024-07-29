@@ -88,7 +88,30 @@ export interface Subjects {
 
 export interface userData {
   id?: string;
+  nick?: string;
   email: string;
   pushToken: string;
   avatarImg?: string;
+}
+
+export interface pushNotification {
+  actionId: string;
+  notification: {
+      id: string;
+      data: {
+        google: {
+          delivered_priority: string;
+          original_priority: string;
+        },
+        /* id: string;
+        name: string;
+        type: string;
+        maker: string;
+        picture: string;
+        quantity: number;
+        status: string;
+        from: string;
+        collapse_key: string; */
+      }
+  }
 }

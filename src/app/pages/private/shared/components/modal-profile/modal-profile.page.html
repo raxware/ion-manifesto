@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="tollbarCustom">
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Profile editor</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-header collapse="condense">
+    <ion-toolbar class="tollbarCustom">
+      <ion-buttons slot="start">
+        <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+      </ion-buttons>
+      <ion-title>Welcome</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+<!-- <ion-grid [fixed]="true" class=""><ion-row><ion-col>
+    <div class="altHeader"><ion-img class="header-image" src="../../assets/logo.png"></ion-img></div></ion-col></ion-row>
+  </ion-grid>
+  <ion-card>
+    <ion-card-content class="whiteBorder flex-self-aligned">
+      <ion-card-content class="bgLayer flex-self-aligned">
+        <ion-card-content class="contentFront inline-self-aligned">
+        </ion-card-content>
+      </ion-card-content>
+    </ion-card-content>
+  </ion-card>--> 
+</ion-content>

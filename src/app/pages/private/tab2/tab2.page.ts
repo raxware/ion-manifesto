@@ -23,8 +23,8 @@ import { InfoPage } from '../buttons/info/info.page';
 import { SettingsPage } from '../buttons/settings/settings.page';
 import { FeedbackPage } from '../buttons/feedback/feedback.page';
 import { SharePage } from '../buttons/share/share.page';
-import { LogoutPage } from '../buttons/logout/logout.page';
-import { MenuPage } from '../buttons/menu/menu.page';
+import { ProfilePage } from '../buttons/profile/profile.page';
+//import { MenuPage } from '../buttons/menu/menu.page';
 import { concat } from 'rxjs';
 
 @Component({
@@ -36,7 +36,8 @@ import { concat } from 'rxjs';
     IonCardHeader, IonCard, IonImg, IonHeader, IonToolbar, IonTitle, IonContent, 
     IonIcon, IonCardSubtitle, IonAlert, IonButton, IonInput, IonItem, IonThumbnail, 
     IonItemOption, IonSegment, HelpPage, InfoPage, SettingsPage, FeedbackPage, SharePage,
-    LogoutPage, MenuPage,
+    ProfilePage, 
+    //MenuPage,
   ],
 })
 

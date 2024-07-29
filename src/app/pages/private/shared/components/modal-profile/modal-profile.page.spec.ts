@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LogoutPage } from './logout.page';
+import { ModalProfilePage } from './modal-profile.page';
 
-describe('LogoutPage', () => {
-  let component: LogoutPage;
-  let fixture: ComponentFixture<LogoutPage>;
+describe('ModalProfilePage', () => {
+  let component: ModalProfilePage;
+  let fixture: ComponentFixture<ModalProfilePage>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LogoutPage);
+    fixture = TestBed.createComponent(ModalProfilePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

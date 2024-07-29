@@ -1,0 +1,56 @@
+<ion-content [fullscreen]="true">
+  <ion-grid [fixed]="true" class="headTop noPadding" style="height:82%">
+        <ion-row class="noPadding">
+          <ion-col class="noPadding">
+            <p class="fullWidth text-custom upSized" color="primary">manifesto</p>
+            <p class="bottomRight downSized" style="bottom: 12%; color: #737373; font-size: 0.8rem;">Keeping Things Trackable</p>
+          </ion-col>
+        </ion-row>
+      <ion-row class="alignCenter noPadding">
+        <ion-col class="alignCenter noPadding"></ion-col>
+        <ion-col size="auto" class="alignCenter noPadding">
+          <div class="hex alignCenter" style="align-content: center;" (click)="changeImage()">
+              @if (userAvatar){<img class="hex-img alignCenter" [src]="usrImage"/>}
+              @else {<img class="hex-img alignCenter coated" src="../../../../../assets/plus2.jpg " />}
+          </div>
+        </ion-col>
+        <ion-col class="alignCenter noPadding">
+          <ion-row class="alignCenter noPadding">
+            <ion-col class="alignCenter noPadding"></ion-col>
+            <ion-col size="auto" class="alignCenter noPadding">
+              <ion-icon id="logoutBtn" (click)="logOut()" class="decoratedIcon noPadding" style="display: none" name="log-out"></ion-icon>
+            </ion-col>
+            <ion-col class="alignCenter noPadding"></ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="noPadding"><ion-col class="noPadding">&nbsp;</ion-col></ion-row>
+      <ion-row class="noPadding"><ion-col size="2" class="noPadding">&nbsp;</ion-col><ion-col class="noPadding">
+          <ion-chip (click)="openModal()" id="open-modal" [disabled]="disabled" >
+            <ion-avatar><img [src]="usrImage" /></ion-avatar>
+            @if (user.nick!){<ion-label>{{user.nick!}}</ion-label>}
+            @else {<ion-label>{{usrName}}</ion-label>}
+          </ion-chip>
+        </ion-col><ion-col size="2" class="noPadding">&nbsp;</ion-col>
+      </ion-row>
+      <ion-row class="noPadding"><ion-col size="2" class="noPadding">&nbsp;</ion-col><ion-col class="noPadding">
+          <ion-chip (click)="openModal()" [disabled]="disabled">
+            <ion-icon name="mail"></ion-icon>
+            <ion-label>{{usrEmail}}</ion-label>
+          </ion-chip>
+      </ion-col><ion-col size="2" class="noPadding">&nbsp;</ion-col></ion-row>
+  </ion-grid>
+  <ion-grid [fixed]="true" class="noPadding">
+    <ion-row class="alignCenter noPadding">
+      <ion-col class="alignCenter noPadding">
+        <ion-item class="downSized" style="height: 3.2em">
+          <ion-toggle (ionChange)="editProfile($event)" [checked]="!disabled" justify="space-between">Allow profile editing</ion-toggle>
+        </ion-item>
+        <ion-item class="downSized" style="height: 3.2em">
+          <ion-toggle (ionChange)="logoutBtn($event)" [checked]="logoutOpt" justify="space-between">Show <span class="decorated">Sign out</span> button</ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

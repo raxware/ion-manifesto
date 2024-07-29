@@ -22,7 +22,7 @@
 											<p class="text-custom upSized">manifesto</p>
 										</ion-col>
 									</ion-row>
-									<form (ngSubmit)="login()" [formGroup]="credentials">
+									<form (ngSubmit)="signin()" [formGroup]="credentials">
 										<ion-row>
 											<ion-col>
 												<ion-input type="email" formControlName="email" label="Email" label-placement="floating" fill="outline" placeholder="Enter email">
@@ -91,7 +91,7 @@
 										</ion-row>
 										<ion-row>
 											<ion-col>
-												<ion-button type="button" class="endOfLine" (click)="register()">Sign up</ion-button>
+												<ion-button type="button" class="endOfLine" (click)="signup()">Sign up</ion-button>
 											</ion-col>
 										</ion-row>
 									</form>

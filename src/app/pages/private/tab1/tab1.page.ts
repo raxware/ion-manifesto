@@ -34,15 +34,15 @@ export class Tab1Page {
     this.myThingsService.getThings().subscribe((items: itemData[]) => {
       const extra: itemData = {
         id: '',
-        name: 'Name (prototype card)',
-        maker: 'Maker (prototype card)',
+        name: 'Name (card 0)',
+        maker: 'Maker (card 0)',
         picture: '',
         type: '',
         quantity: 0,
         status: '',
         tags: [],
         barcode: '',
-        notes: 'Notes (prototype card)',
+        notes: '(card 0)',
         user: ''
       }
       items.unshift(extra)

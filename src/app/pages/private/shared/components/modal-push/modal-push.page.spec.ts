@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MenuPage } from './menu.page';
+import { ModalPushPage } from './modal-push.page';
 
-describe('MenuPage', () => {
-  let component: MenuPage;
-  let fixture: ComponentFixture<MenuPage>;
+describe('ModalPushPage', () => {
+  let component: ModalPushPage;
+  let fixture: ComponentFixture<ModalPushPage>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MenuPage);
+    fixture = TestBed.createComponent(ModalPushPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

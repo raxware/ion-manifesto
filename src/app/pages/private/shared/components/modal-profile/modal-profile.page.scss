@@ -25,6 +25,63 @@ ion-segment-button{
 img{
     height: 100%;
 }
+/* ****************************************************************************** */
+.altHeader {
+    //background: transparent;
+    //background: #8080804e;
+    .header-image {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 0vh;
+      width: 15%;
+    }
+}
+ion-card{
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(rgb(255, 204, 119), #ffeecc);
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.4);
+    height: 72vh;
+    .whiteBorder{
+      background-color: #ffffff;
+      width: 97%;
+      height: 98%;
+      .bgLayer{
+        width: 98%;
+        height: 99%;
+        background-image: url(/../../../assets/whiteNBG.png), linear-gradient(#ffcc7740, #ffeecc1f);
+            //background-image: url(/../../../assets/whiteNBG.png), linear-gradient(#ffeecc40, #fff2d81f);
+            //background-image: url(/../../../assets/whiteNBG.png), linear-gradient(#ff400040, #ffeecc1f);
+        background-blend-mode:color-dodge;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+}
+.flex-self-aligned{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    border-radius: 5px;
+    padding: 0%;
+}  
+.inline-self-aligned{
+    display: inline-block;
+    position: relative;
+    justify-content: center;
+    align-self: center;
+    border-radius: 5px;
+    padding: 0%;
+}
+.child-align{
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
 .iconCustom{
     color:#aaaaaa; font-size: 32px;
     //--ionicon-stroke-width: 32px;
@@ -86,7 +143,7 @@ img{
     font-size: 1.4vh;
   }
 
-.borderG{
+  .borderG{
     border: green solid .5px;
 }
 .borderR{

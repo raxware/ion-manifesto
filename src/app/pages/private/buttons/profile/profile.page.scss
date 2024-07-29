@@ -92,8 +92,20 @@ ion-card{
   text-align: right !important;
   //border:#ff00d9 dotted .5px;
 }
+.topRight{
+  position: absolute; 
+  top: 0%; 
+  width: 100%;
+  display:ruby-text !important;
+  text-align: right !important;
+  //border:#ff00d9 dotted .5px;
+}
 .decorated{
-  color: #ffcc77;
+  color: #ff400090;
+}
+.decoratedIcon{
+  color: #ff400090 !important ;
+  font-size: 56px !important ;
 }
 .diagonal{
   transform: rotate(-30deg);
@@ -101,8 +113,12 @@ ion-card{
 .noPadding{
   padding: 0%;
 }
+.noRipple{
+  --ripple-color: transparent !important;
+  --background-hover: transparent !important;
+}
 .upSized{
-  @extend .decorated;
+  color: #ffcc77;
   font-size: 9.37vh;
 }
 .downSized{
@@ -156,15 +172,12 @@ img{
 ion-card-header{
   background-color: transparent;
 }
-ion-button{
-  --background: linear-gradient(45deg, rgb(255, 204, 119), #ffeecc);
-  color: rgb(255, 255, 255);
-  width: 8vh;
-  height: 8vh;
+ion-toggle{
+  color: #aaaaaa;
 }
-ion-icon{
-  color: #ffffff !important ;
-  font-size: 48px;
+ion-item{
+  --background: transparent;
+  --border-color: transparent;
 }
 ion-img::part(image) {
   border-radius: 5px;
@@ -188,10 +201,12 @@ ion-img::part(image) {
 .gradient{
   --background: linear-gradient(45deg, rgb(255, 204, 119), #ffeecc);
 }
-
 .alignCenter{
   align-self: center;
   vertical-align: middle;
+}
+.justifyCenter{
+  text-align: center;
 }
 .hexagon {
   --b: 16px; /* adjust to control the border*/

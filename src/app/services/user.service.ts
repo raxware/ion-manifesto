@@ -54,6 +54,7 @@ export class UserService {
   saveUser(user: User) {
     const u: userData = {
       id: user.uid,
+      nick: '',
       email: user.email || '',
       pushToken: '',
       avatarImg: ''
@@ -82,8 +83,6 @@ export class UserService {
       this.updateUser(user);
     })
   }
-
-
 
   /*
   

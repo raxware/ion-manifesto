@@ -55,6 +55,14 @@ export const routes: Routes = [
     path: 'card-back',
     loadComponent: () => import('./pages/private/shared/components/card-back/card-back.page').then( m => m.CardBackPage)
   },
+  {
+    path: 'modal-profile',
+    loadComponent: () => import('./pages/private/shared/components/modal-profile/modal-profile.page').then( m => m.ModalProfilePage)
+  },
+  {
+    path: 'modal-push',
+    loadComponent: () => import('./pages/private/shared/components/modal-push/modal-push.page').then( m => m.ModalPushPage)
+  },
   /*
   {
     path: 'details/:id',
@@ -89,8 +97,8 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/private/buttons/share/share.page').then( m => m.SharePage)
   },
   {
-    path: 'logout',
-    loadComponent: () => import('./pages/private/buttons/logout/logout.page').then( m => m.LogoutPage)
+    path: 'profile',
+    loadComponent: () => import('./pages/private/buttons/profile/profile.page').then( m => m.ProfilePage)
   },
   {
     path: 'proto-card',

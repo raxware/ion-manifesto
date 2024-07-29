@@ -13,17 +13,18 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonImg, IonInput, IonCheckbox, IonLabel, IonCol, IonRow, IonGrid, IonCard, IonCardContent, IonButton, IonNote, IonItem, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, ReactiveFormsModule, IonInputPasswordToggle]
+  imports: [ IonImg, IonInput, IonCheckbox, IonLabel, IonCol, 
+	IonRow, IonGrid, IonCard, IonCardContent, IonButton, IonNote, 
+	IonItem, IonContent, IonHeader, IonTitle, IonToolbar, 
+	FormsModule, ReactiveFormsModule, IonInputPasswordToggle
+	]
 })
 export class LoginPage implements OnInit {
 	@Output() flipCard = new EventEmitter<boolean>();
-//	@Output() showPwd = new EventEmitter<boolean>();	
 	@Input() isFlipped: boolean = false;
 	@Input() isHidden: boolean = true;
 
 	credentials!: FormGroup;
-	@Input() pwdSatusLabel: string = 'Show password';
-
 
 	constructor(
 		public alertService: AlertService,
@@ -32,79 +33,27 @@ export class LoginPage implements OnInit {
 		private router: Router,
 	) {}
 
-	// Easy access for form fields
-	get email() {
-		return this.credentials.get('email');
-	}
-
-	get password() {
-		return this.credentials.get('password');
-	}
+	get email() { return this.credentials.get('email'); }
+	get password() { return this.credentials.get('password'); }
 
 	ngOnInit() {
-		let pwd: string;
 		this.credentials = this.fb.group({
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required, Validators.minLength(6)]]
 		});
 	}
-
-	async register() {
-
-		console.log('registering')
-
-		//const loading = await this.loadingController.create();
-		//	await loading.present();
-
+	async signup() {
 		const user = await this.authService.register(this.credentials.value);
-		//	await loading.dismiss();
-
-		console.log('registered')
-		console.log('credentials', this.credentials.value);
-
-		if (user) {
-			this.router.navigateByUrl('/', { replaceUrl: true });
-			//this.router.navigateByUrl('/home', { replaceUrl: true });
-		} else {
-			this.alertDummy('Login failed', '', 'Please try again!', 'Ok');
-			//console.log('Registration failed', 'Please try again!');
-		}
+		if (user) { this.router.navigateByUrl('/', { replaceUrl: true });} 
+		else { this.alertDummy('Sign up failed', '', 'Please try again!', 'Ok');}
 	}
-
-	async login() {
-		//const loading = await this.loadingController.create();
-		//await loading.present();
-
+	async signin() {
 		const user = await this.authService.login(this.credentials.value);
-		//await loading.dismiss();
-
-		console.log('credentials', this.credentials.value);
-		console.log('user', user);
-		console.log('user', user?.user.email);
-
-		if (user) {
-			this.router.navigateByUrl('/', { replaceUrl: true });
-			//this.router.navigateByUrl('/home', { replaceUrl: true });
-		} else {
-			this.alertDummy('Login failed', '', 'Please try again!', 'Ok');
-			//console.log('Login failed', 'Please try again!');
-		}
-
+		if (user) { this.router.navigateByUrl('/', { replaceUrl: true }); } 
+		else { this.alertDummy('Sign in failed', '', 'Please try again!', 'Ok'); }
 	}
-	/*
-	async showAlert(header: string, message: string) {
-		const alert = await this.alertController.create({
-		header,
-		message,
-		buttons: ['OK']
-	});
-		await alert.present();
-	}
-	*/
-
 	flip(face: string) {
 		let cardFace = face;
-		console.log(cardFace);
 		if(cardFace === 'back'){
 			this.alertDummy('DISCLAIMER', 
 				'',

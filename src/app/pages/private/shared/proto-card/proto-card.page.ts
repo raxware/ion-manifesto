@@ -16,13 +16,7 @@ import { IonIcon, IonImg, IonCard, IonCardHeader, IonCardTitle,
 
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { HelpPage } from '../../buttons/help/help.page';
-import { InfoPage } from '../../buttons/info/info.page';
-import { SettingsPage } from '../../buttons/settings/settings.page';
-import { FeedbackPage } from '../../buttons/feedback/feedback.page';
-import { SharePage } from '../../buttons/share/share.page';
-import { LogoutPage } from '../../buttons/logout/logout.page';
-import { MenuPage } from '../../buttons/menu/menu.page';
+
 
 @Component({
   selector: 'app-proto-card',
@@ -32,8 +26,7 @@ import { MenuPage } from '../../buttons/menu/menu.page';
   imports: [IonCheckbox, IonGrid, IonRow, IonCol, IonButton, 
     IonAlert, IonCardSubtitle, IonLabel, IonChip, IonCardContent, 
     IonCardTitle, IonCardHeader, IonCard, IonImg, IonInput, IonIcon, 
-    IonItem, IonThumbnail, IonItemOption, HelpPage, InfoPage, 
-    SettingsPage, FeedbackPage, SharePage, LogoutPage, MenuPage,
+    IonItem, IonThumbnail, IonItemOption,
   ]
 })
 
@@ -67,7 +60,6 @@ export class ProtoCardPage implements OnInit{
       this.router.navigateByUrl('/login', { replaceUrl: true });
     })
   }
-
 
   doSmthng(direction: any){
     console.log(direction)
