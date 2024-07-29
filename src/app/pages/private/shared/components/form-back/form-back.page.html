@@ -3,11 +3,12 @@
   <ion-grid [fixed]="true"><ion-row>
     <ion-col class="centerMiddle">
       <ion-thumbnail class="thumbFrame">
-        @if (item && thingPicture) {
-          <ion-img (click)="editImage()" [src]="thingPicture" class="thumbShadow"></ion-img>
+        @if (theThing && thingPicture) {
+          <ion-img (click)="changeImage()" src={{thingPicture}} class="thumbShadow"></ion-img>
         } @else {
-          <ion-img (click)="editImage()" src="../../assets/plus2.jpg" class="thumbShadow coated"></ion-img>
+          <ion-img (click)="changeImage()" src="../../assets/plus2.jpg" class="thumbShadow coated"></ion-img>
         }
+
       </ion-thumbnail>
     </ion-col>
     <ion-col class="centerMiddle">
@@ -19,15 +20,15 @@
   @if (thingPrototype) {
     <form [formGroup]="thingPrototype">
       <ion-grid [fixed]="true"><ion-row><ion-col class="centerMiddle">
-        <ion-input id="name" type="text" formControlName="name" label={{thingName}} label-placement="floating" fill="outline" placeholder=""></ion-input>
+        <ion-input type="text" formControlName="name" label={{thingName}} label-placement="floating" fill="outline" placeholder=""></ion-input>
       </ion-col></ion-row></ion-grid>
       <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
       <ion-grid [fixed]="true"><ion-row><ion-col class="centerMiddle">
-        <ion-input id="maker" type="text" formControlName="maker" label={{thingMaker}} label-placement="floating" fill="outline" placeholder=""></ion-input>
+        <ion-input type="text" formControlName="maker" label={{thingMaker}} label-placement="floating" fill="outline" placeholder=""></ion-input>
       </ion-col></ion-row></ion-grid>
       <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
       <ion-grid [fixed]="true"><ion-row><ion-col class="centerMiddle">
-        <ion-select id="status" formControlName="status" label="Status" label-placement="floating" fill="outline" placeholder="Status">
+        <ion-select formControlName="status" label="Status" label-placement="floating" fill="outline" placeholder="Status">
           <ion-select-option value="mint">Mint</ion-select-option>
           <ion-select-option value="nearM">Near Mint</ion-select-option>
           <ion-select-option value="vgPlus">Very Good+</ion-select-option>
@@ -37,36 +38,20 @@
         </ion-select>
         </ion-col><ion-row><ion-col>&nbsp;</ion-col></ion-row>
         <ion-col class="centerMiddle">
-          <ion-input id="quantity" type="number" min="1" max="100" formControlName="quantity" label="Quantity" label-placement="floating" fill="outline" placeholder="1"></ion-input>
+          <ion-input type="number" min="1" max="100" formControlName="quantity" label="Quantity" label-placement="floating" fill="outline" placeholder="1"></ion-input>
       </ion-col></ion-row></ion-grid>
       <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
       <ion-grid [fixed]="true"><ion-row><ion-col class="centerMiddle">
-        <ion-textarea id="notes" [autoGrow]="true" [counter]="true" maxlength="300" type="text" formControlName="notes" label="Notes" label-placement="floating" fill="outline" placeholder="Notes go here"></ion-textarea>
+        <ion-textarea [autoGrow]="true" [counter]="true" maxlength="300" type="text" formControlName="notes" label="Notes" label-placement="floating" fill="outline" placeholder="Notes go here"></ion-textarea>
       </ion-col></ion-row></ion-grid>
         <ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>
         <ion-grid [fixed]="true" class="">
           <ion-row>
             <ion-col class="centerMiddle">
-              <ion-button color="softing" type="button" class="endOfLine fullWidth" (click)="updateTrigger()">UPDATE</ion-button>
+              <ion-button color="softing" type="button" class="endOfLine fullWidth" (click)="thingTagger()">UPDATE</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>
-        <!--<ion-grid [fixed]="true" class="ToBotton">
-          <ion-row>
-            <ion-col class="centerMiddle"></ion-col>
-            <ion-col class="centerMiddle"></ion-col>
-            <ion-col class="centerMiddle"></ion-col>
-            <ion-col class="centerMiddle"></ion-col>
-            <ion-col class="centerMiddle"></ion-col>
-          </ion-row>
-        </ion-grid>-->
     </form>
   }
 </ion-content>
-
-
-<!-- ************************************************************************** --> 
-
-    <!---->
-    <!-- ************************************************************************** --> 
-<!-- ************************************************************************** -->

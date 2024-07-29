@@ -48,8 +48,8 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/private/shared/components/form-back/form-back.page').then( m => m.FormBackPage)
   },
   {
-    path: 'card-front',
-    loadComponent: () => import('./pages/private/shared/components/card-front/card-front.page').then( m => m.CardFrontPage)
+    path: 'easter',
+    loadComponent: () => import('./pages/private/shared/components/easter/easter.page').then( m => m.EasterPage)
   },
   {
     path: 'card-back',

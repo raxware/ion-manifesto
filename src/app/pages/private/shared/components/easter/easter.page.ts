@@ -5,14 +5,28 @@ import { AlertService } from 'src/app/services/alert-service.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-card-front',
-  templateUrl: './card-front.page.html',
-  styleUrls: ['./card-front.page.scss'],
+  selector: 'app-easter',
+  templateUrl: './easter.page.html',
+  styleUrls: ['./easter.page.scss'],
   standalone: true,
   imports: [IonContent, FormsModule],
 })
-export class CardFrontPage implements OnInit{
+export class EasterPage implements OnInit{
+
+  elements = document.querySelectorAll('.hexagon');
+
   constructor(public alertService: AlertService, private router: Router) {
+    this.elements.forEach((element) => {
+      // Add touchstart event listener
+      element.addEventListener('touchstart', () => {
+        element.classList.add('touch-hover-effect');
+      });
+
+      element.addEventListener('touchend', () => {
+        // Remove touch effect
+        element.classList.remove('touch-hover-effect');
+      });
+    });
   }
   ngOnInit(): void {}
 
@@ -36,6 +50,23 @@ export class CardFrontPage implements OnInit{
     let path: any = this.router.navigateByUrl('/', { replaceUrl: true });
     this.alertService.basicAlert(head, sub, msg, [{text: btn, handler: () => { path }}]);
   }
+
+  /*
+  allowHover(){
+    const elements = document.querySelectorAll('body');
+    elements.forEach((element) => {
+      // Add touchstart event listener
+      element.addEventListener('touchstart', () => {
+        element.classList.add('touch-hover-effect');
+      });
+
+      element.addEventListener('touchend', () => {
+        // Remove touch effect
+        element.classList.remove('touch-hover-effect');
+      });
+    });
+  }
+  */
 }
 
 

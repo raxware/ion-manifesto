@@ -134,14 +134,14 @@ export class ListsPage implements OnInit {
       this.myThingsList = items;
      });
   }
-  removeItem(index: string) {
+  removeItem(index: string) {   //<-- (thing.id is passed as parameter. Must change it to number later, when 'id' type is set to number too)
     this.alertService.basicAlert(
       'CAUTION!!', '', 'Are you sure you want to delete this thing for ever?',
       [{text: 'Yes, go ahead!', handler: () => { this.myThingsService.thingKicker(index); this.getThings();}},
       {text: 'Cancel', role: 'cancel', handler: (alertData: any) => { console.log('The dialog was closed'); }}],
     );
   }
-  openEditor(index: string): void {
+  openEditor(index: string): void {   //<--  (thing.id is passed as parameter. Must change it to number later, when 'id' type is set to number too)
     this.navCtrl.navigateForward("card-back");
     this.paramS.changeData(index);
   }

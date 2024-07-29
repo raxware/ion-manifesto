@@ -101,12 +101,12 @@ export class Tab2Page implements OnInit{
         //console.log('contador: ', this.count);
         this.count = 0; this.witness = true;
         //console.log('contador/testigo: ', this.count, this.witness);
-        this.router.navigateByUrl('/card-front', { replaceUrl: true });
+        this.router.navigateByUrl('/easter', { replaceUrl: true });
       }
     }
   }
 
-  
+                                                                                                                                                                                                                                                                                                                                                                              
 
 
 

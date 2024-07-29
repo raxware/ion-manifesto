@@ -7,6 +7,7 @@ import { ItemCardComponent } from 'src/app/pages/private/shared/components/item-
 import { HeaderComponent } from 'src/app/pages/private/shared/header/header.component';
 import { AlertService } from 'src/app/services/alert-service.service';
 import { ItemService } from 'src/app/services/item.service';
+import {Swiper} from 'swiper/types';
 
 @Component({
   selector: 'app-tab1',
@@ -24,29 +25,31 @@ export class Tab1Page {
   allowSlideCard: boolean = true;
   tabBarElement: any;
   segmentValue: any;
+
   slides: itemData[] = [];
 
   constructor(public alertService: AlertService, public myThingsService: ItemService) {}
-
 
   ionViewDidEnter() { 
     this.myThingsService.getThings().subscribe((items: itemData[]) => {
       const extra: itemData = {
         id: '',
-        name: 'DEFAULT Name',
-        maker: 'DEFAULT Maker',
+        name: 'Name (prototype card)',
+        maker: 'Maker (prototype card)',
         picture: '',
         type: '',
         quantity: 0,
         status: '',
         tags: [],
         barcode: '',
-        notes: 'DEFAULT Notes',
+        notes: 'Notes (prototype card)',
         user: ''
       }
-      items.unshift(extra);
+      items.unshift(extra)
       this.slides = items;
-    }); 
+
+    //for (let index = 0; index < this.slides.length; index++) {}
+    });
   }
 
   flip(isFlipped: boolean) {
@@ -58,7 +61,6 @@ export class Tab1Page {
   segmentChanged(event: CustomEvent){
     let activeSegment = event.detail.value;
     this.dummyToast('Segment ' + activeSegment)
-    //console.log('msg: ');
   }
 
   dummyToast(msg: string){

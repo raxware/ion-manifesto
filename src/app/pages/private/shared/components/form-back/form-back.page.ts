@@ -3,10 +3,10 @@ import { Component, Input, Output, OnInit, inject, EventEmitter } from '@angular
 import { IonIcon, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, 
   IonChip, IonLabel, IonCardSubtitle, IonAlert, IonButton, IonInput, IonItem, 
   IonThumbnail, IonItemOption, IonSegment, IonGrid, IonRow, IonCol, IonTitle, 
-  IonTextarea, IonSelect, IonSelectOption, IonHeader, IonToolbar, IonContent } from "@ionic/angular/standalone";
-import { itemData } from 'src/app/model/interfaces';
-import { PhotoService } from 'src/app/services/photo.service';
-import { AlertService } from 'src/app/services/alert-service.service';
+  IonTextarea, IonSelect, IonSelectOption, IonHeader, IonToolbar, IonContent,
+  LoadingController, NavController
+} from "@ionic/angular/standalone";
+import { ActivatedRoute } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { book, brush, build, calculator, camera, chatbubbles, 
   checkmarkCircle, cube, diamond, dice, disc, extensionPuzzle, 
@@ -14,10 +14,13 @@ import { book, brush, build, calculator, camera, chatbubbles,
   shirt, thumbsDown, thumbsUp, wine, cash, musicalNotes,
   person, grid, gridOutline, gridSharp
 } from 'ionicons/icons';
-import { ItemService } from 'src/app/services/item.service';
-import { ActivatedRoute } from '@angular/router';
-import { NavController } from "@ionic/angular/standalone";
+
+import { itemData } from 'src/app/model/interfaces';
 import { ParamsService } from "src/app/services/params.service";
+import { StorageService } from 'src/app/services/storage.service';
+import { PhotoService } from 'src/app/services/photo.service';
+import { AlertService } from 'src/app/services/alert-service.service';
+import { ItemService } from 'src/app/services/item.service';
 
 @Component({
   selector: 'app-form-back',
@@ -41,8 +44,11 @@ export class FormBackPage implements OnInit{
   @Input() item!: itemData;
   theThing!: itemData;
   unit!: itemData;
+
   //-----------------------------------
-  @Input() thingPicture!: string; 
+  @Input() thingPicture!: string;
+  itemImage: string = '';
+  
   @Input() typeIcon?: string; 
   @Input() defaultIcon: string = 'cube';
 
@@ -67,10 +73,13 @@ export class FormBackPage implements OnInit{
   //-----------------------------------
 
   constructor(
+
+    private photoService: PhotoService, 
+    private alertService: AlertService,
+    private loadingController: LoadingController,
+    private storageService: StorageService,
     public paramS: ParamsService,
-    public photoService: PhotoService, 
-    public alertService: AlertService,
-    private navCtrl: NavController,
+    private navCtrl: NavController, //<---------------- ?
     public route: ActivatedRoute, )
   {
     this.emptyFormBuilder();
@@ -82,29 +91,50 @@ export class FormBackPage implements OnInit{
   }
   ngOnInit(): void {
     this.bringItBack();
-                        console.log('ngOnInit: ', this.thingPicture);
   }
 
   /** ****************** LOGIC FOR ITEM MANAGER BEGINS HERE *************************** */
   bringItBack() {
-    this.index = this.getThingId();
+    this.index = this.getThingIndex();
     this.myThingsService.getThingById(this.index).subscribe((item: itemData) => {
       this.theThing = item;
       this.formFiller(this.theThing);
-      //this.updatePrototype();
-      console.log('trae la foto? => ', this.theThing.picture);
+      this.thingPicture = this.theThing.picture;
+      this.thingType = this.theThing.type;
     })
   }
-  getThingId(){
+  getThingIndex(){
     let params: any;
     this.paramS.serviceData.subscribe(data => (params = data));
     return params;
   }
   /** ****************** LOGIC FOR ITEM MANAGER ENDS HERE *************************** */
+  /** ****************** LOGIC FOR IMAGES MGMT BEGINS HERE *************************** */
+  changeImage(){
+    this.alertService.basicAlert(
+      'Image Source', '', '',
+      [{text: 'Photo Gallery', handler: () => { this.getImage('gallery');  }},
+      {text: 'Camera', handler: () => { this.getImage('camera'); }},
+      {text: 'Cancel', role: 'cancel', handler: (alertData: any) => { console.log('addImg cancel', alertData); }}],
+    );
+  }
+  async getImage(imgSource: string) {
+    const image = await this.photoService.getBase64(imgSource);
+    if (image) {
+      //const imgBase64String = image.base64String;
+      const loading = await this.loadingController.create();
+      await loading.present();
+      const result = await this.storageService.uploadItemImage(image); // llama al servicio que hace upload de la foto y devuelve... 
+      if (result) this.itemImage = result; loading.dismiss();  // la string que contiene la ruta del storage para asa foto => se añade a 'item!.picture' !!!!!!
+      if (!result) { this.dummyAlert('Upload failed', '', 'There was a problem uploading this image.', [{text: 'Ok'}] ); }
+      this.thingPicture = this.itemImage;
+    }
+  }
+  /** ****************** LOGIC FOR AVATAR ENDS HERE *************************** */
   /** ****************** LOGIC FOR CRUD BEGINS HERE *************************** */
   emptyFormBuilder() {
     this.thingPrototype = new FormGroup({
-      name: new FormControl('', [Validators.required]),
+      name: new FormControl('' /*, [Validators.required]*/),
       type: new FormControl(''),
       maker: new FormControl(''),
       picture: new FormControl(''),
@@ -116,22 +146,24 @@ export class FormBackPage implements OnInit{
   }
   thingTagger() {
     if (this.thingPrototype.valid){
-      this.updatePrototype();
       const justTaggedThing: itemData = {
         id: this.theThing.id,
         name: this.thingPrototype.get('name')!.value,
-        type: this.thingPrototype.get('type')!.value,
+        type: this.thingType,
         maker: this.thingPrototype.get('maker')!.value,
-        picture: this.thingPrototype.get('picture')!.value,
+        picture: this.thingPicture,
         quantity: this.thingPrototype.get('quantity')!.value,
         status: this.thingPrototype.get('status')!.value,
         notes: this.thingPrototype.get('notes')?.value,
         tags: this.thingPrototype.get('tags')?.value,
-        user: this.theThing.user,
       }
-      this.saveChanges(justTaggedThing); 
-      //console.log('patcheó la foto? => ', justTaggedThing.picture); 
-    } else {console.log('thingPrototype is INVALID!!!');}
+      this.updatePrototype();
+      console.log('value of justTaggedThing.', justTaggedThing);
+      this.saveChanges(justTaggedThing);
+    }
+    else {
+        console.log('thingPrototype is INVALID!!!');
+    }
   }
   formFiller(thingToEdit: itemData){
     this.thingPrototype.patchValue({
@@ -146,36 +178,18 @@ export class FormBackPage implements OnInit{
     });
     this.typeSelector(thingToEdit.type);
   }
-  updatePrototype() {
+  updatePrototype(){
     this.thingPrototype.patchValue({
-      type: this.theThing.type, 
-      picture: this.theThing.picture,
+      picture: this.itemImage,
     });
   }
+
   saveChanges(yetTaggedThing: itemData) {
+    console.log('value of justTaggedThing.', yetTaggedThing);
     this.myThingsService.editThing(yetTaggedThing);
   }
   /** ****************** LOGIC FOR CRUD ENDS HERE *************************** */
-  /** ****************** LOGIC FOR ITEM CONTENT MANAGER BEGINS HERE *************************** */
-  editImage(){
-    this.alertService.basicAlert(
-      'Image Source', '', '',
-      [{text: 'Photo Gallery', handler: () => { this.openCamera('gallery');  }},
-      {text: 'Camera', handler: () => { this.openCamera('camera'); }},
-      {text: 'Cancel', role: 'cancel', handler: (alertData: any) => { console.log('addImg cancel', alertData); }}],
-    );
-  }
-  openCamera(imgSource: string) {
-    console.log(this.item!);
-    this.photoService.addItemPicture(imgSource).then((value) => {
-      if (value.webviewPath) {
-       this.thingPicture = value.webviewPath;
-        console.log(this.item!);
-        console.log(this.thingPicture);
-        if ((this.thingType === 'Type')){this.editType();} // console.log('blob: ', this.thingPicture);   
-      } else{console.log('no asigna imagen porque no cumple el "if"...'); }
-    });
-  }
+  /** ****************** LOGIC FOR ITEM TYPE MANAGER BEGINS HERE *************************** */
   editType(){
     this.alertService.inputAlert(
       'What kind of Item is this?',
@@ -206,14 +220,11 @@ export class FormBackPage implements OnInit{
   }
   /** ****************** LOGIC FOR ITEM CONTENT MANAGER ENDS HERE *************************** */
   /** ****************** LOGIC FOR AUX FUNCTIONS BEGINS HERE *************************** */
-  updateTrigger(){
-    this.thingTagger();
-    //this.navCtrl.navigateBack("lists-page");
-  }
-  /* --------------------------------------------------------------------*/
   dummyToast(msg: string){
     this.alertService.presentToast(msg);
   }
-  /* --------------------------------------------------------------------*/
+  dummyAlert(head: string, sub: string, msg: string, btn: any){
+    this.alertService.basicAlert(head, sub, msg, [{text: btn}]);
+  }
   /** ****************** LOGIC FOR AUX FUNCTIONS ENDS HERE *************************** */
 }

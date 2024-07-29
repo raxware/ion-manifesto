@@ -1,17 +1,18 @@
-import { Photo } from "@capacitor/camera";
 
 export interface itemData {
-  id?: any;
+  id: string;
   name: string;
   type: string;
   maker: string;
   picture: string;
   quantity: number;
   status: string;
-  tags: string[];
+  tags?: string[];
   barcode?: string;
-  notes: string;
+  notes?: string;
   user?: string;
+  boxed?: boolean;
+  data?: Book | Music | Comic | Cloth | Wine | Currency ;
 }
 
 /*

@@ -27,6 +27,7 @@ export class ItemService {
       return addDoc(itemsRef, thingUnit);
     }
     editThing(reDefinedThing: itemData){
+      console.log('id of reDefinedThing: ', reDefinedThing.id);
       const itemsRef = doc(this.firestore, `myThings/${reDefinedThing.id}`);
       return updateDoc(itemsRef, { ...reDefinedThing });
     }

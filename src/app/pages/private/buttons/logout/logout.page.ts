@@ -5,9 +5,8 @@ import { AlertService } from 'src/app/services/alert-service.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { PhotoService } from 'src/app/services/photo.service';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { LoadingController } from '@ionic/angular';
-import { AvatarService } from 'src/app/services/avatar.service';
+import { StorageService } from 'src/app/services/storage.service'; //<----------------
 
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
@@ -27,7 +26,6 @@ import { IonIcon, IonImg, IonCard, IonCardHeader, IonCardTitle,
 } from "@ionic/angular/standalone";
 import { userData } from 'src/app/model/interfaces';
 import { UserService } from 'src/app/services/user.service';
-
 
 @Component({
   selector: 'app-logout',
@@ -49,11 +47,11 @@ export class LogoutPage implements OnInit{
   @Output() flipCard = new EventEmitter<boolean>();
 
   constructor(
-    public alertService: AlertService, 
+    private alertService: AlertService, 
     private authService: AuthService, 
     private router: Router,
     private photoService: PhotoService,
-    private avatarService: AvatarService,
+    private storageService: StorageService, //<----------------
     private userService: UserService,
 		private loadingController: LoadingController,
   ){
@@ -69,15 +67,14 @@ export class LogoutPage implements OnInit{
         if (this.usrImage !== ''){this.userAvatar = true} else {this.userAvatar = false};
       });
     }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   /** ****************** LOGIC FOR CARD INTERFACE BEGINS HERE *************************** */
+
   flip() {
     this.isFlipped = !this.isFlipped;
     this.flipCard.emit(this.isFlipped);
   }
-
   bindComponent(component: string){
   this.backFace = component;
   this.flip();
@@ -95,39 +92,13 @@ export class LogoutPage implements OnInit{
   }
 
   async getImage(imgSource: string) {
-
-    /*
-
-    this.photoService.getBase64(imgSource).then((value) => {
-      if (value.webviewPath && this.item) {
-        this.thingPicture = this.item.picture = value.webviewPath;
-        if ((this.thingType === 'Type')){
-          this.addType();
-        }
-      }
-    });
-  }
-    
-    */
-
 		const image = await this.photoService.getBase64(imgSource);
-    /*
-    await Camera.getPhoto({
-			quality: 90,
-			allowEditing: false,
-			resultType: CameraResultType.Base64,
-			source: CameraSource.Photos // Camera, Photos or Prompt!
-		});
-    */
-
 		if (image) {
       const imgBase64String = image.base64String;
-
 			const loading = await this.loadingController.create();
 			await loading.present();
-
-			const result = await this.avatarService.uploadImage(image);
-      if (result) this.usrImage = result; loading.dismiss();
+			const result = await this.storageService.uploadAvatarImage(image);  //<---------------- FORMER AVATAR SERVICE
+      if (result) this.usrImage = result; loading.dismiss(); // "result" is the url of uploaded image and usrImage is the variable for "avatar"
 			if (!result) { this.dummyAlert('Upload failed', '', 'There was a problem uploading your avatar.', [{text: 'Ok'}] ); }
 		}
 	}
@@ -139,7 +110,6 @@ export class LogoutPage implements OnInit{
         this.router.navigateByUrl('/login', { replaceUrl: true });
       })
     }
-
   /*  
   async logOut() {
 		await this.authService.logout();

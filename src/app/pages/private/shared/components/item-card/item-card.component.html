@@ -8,8 +8,8 @@
               <!-- ************************************************************************** -->
               <!---->
                   <ion-card-content class="imgFrame inline-self-aligned child-align">
-                    @if (item && thingPicture) {
-                      <ion-img class="gapRemover" (press)="addImage()" [src]="thingPicture"></ion-img>
+                    @if (item && item.picture) {
+                      <ion-img class="gapRemover" (press)="addImage()" src={{item.picture}}></ion-img>
                     } @else {
                       <ion-img class="gapRemover coated" (press)="addImage()" src="../../assets/plus2.jpg"></ion-img>
                     }
@@ -18,6 +18,7 @@
               <!-- ************************************************************************** -->
               <!--<ion-grid [fixed]="true"><ion-row><ion-col style="height: 1vh;"></ion-col></ion-row></ion-grid>-->
               <!-- ************************************************************************** -->
+
               <ion-grid [fixed]="true">
                 <ion-row>
                   <ion-col class="centerMiddle">
@@ -92,10 +93,10 @@
                 <ion-row>
                   <ion-col class="centerMiddle">
                     <ion-thumbnail class="thumbFrame">
-                      @if (item && thingPicture) {
-                        <ion-img (click)="editImage()" [src]="thingPicture" class="thumbShadow"></ion-img>
+                      @if (item && item.picture) {
+                        <ion-img (click)="pickImage('edit')" src={{item.picture}} class="thumbShadow"></ion-img>
                       } @else {
-                        <ion-img (click)="editImage()" src="../../assets/plus2.jpg" class="thumbShadow coated"></ion-img>
+                        <ion-img (click)="pickImage('edit')" src="../../assets/plus2.jpg" class="thumbShadow coated"></ion-img>
                       }
                     </ion-thumbnail>
                   </ion-col>
@@ -110,7 +111,7 @@
               <ion-grid [fixed]="true">         
                 <ion-row>
                   <ion-col class="centerMiddle">
-<ion-input id="name" type="text" formControlName="name" label="{{thingName}}" label-placement="floating" fill="outline" placeholder="{{item.name}}" blur=""></ion-input>
+<ion-input id="name" type="text" formControlName="name" label="{{thingName}}" label-placement="floating" fill="outline" placeholder="{{item.name}}"></ion-input>
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -118,7 +119,7 @@
               <ion-grid [fixed]="true">
                 <ion-row>
                   <ion-col class="centerMiddle">
-<ion-input id="maker" type="text" formControlName="maker" label="{{thingMaker}}" label-placement="floating" fill="outline" placeholder="{{item.maker}}" blur=""></ion-input>
+<ion-input id="maker" type="text" formControlName="maker" label="{{thingMaker}}" label-placement="floating" fill="outline" placeholder="{{item.maker}}"></ion-input>
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -126,7 +127,7 @@
               <ion-grid [fixed]="true">
                 <ion-row>
                   <ion-col class="centerMiddle">
-<ion-select id="status" formControlName="status" label="{{thingStatus}}" label-placement="floating" fill="outline" placeholder="">
+<ion-select id="status" formControlName="status" label="{{thingStatus}}" label-placement="floating" fill="outline" placeholder="{{item.status}}">
                       <ion-select-option value="mint">Mint</ion-select-option>
                       <ion-select-option value="nearM">Near Mint</ion-select-option>
                       <ion-select-option value="vgPlus">Very Good+</ion-select-option>
@@ -139,7 +140,7 @@
                   </ion-col>
                   <ion-row><ion-col>&nbsp;</ion-col></ion-row>
                   <ion-col class="centerMiddle">
-<ion-input id="quantity" type="number" min="1" max="100" formControlName="quantity" label="{{thingQuantity}}" label-placement="floating" fill="outline" placeholder=""></ion-input>
+<ion-input id="quantity" type="number" min="1" max="100" formControlName="quantity" label="{{thingQuantity}}" label-placement="floating" fill="outline" placeholder={{item.quantity}}></ion-input>
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -147,7 +148,7 @@
               <ion-grid [fixed]="true">
                 <ion-row>
                   <ion-col class="centerMiddle">
-<ion-textarea id="notes" [autoGrow]="true" [counter]="true" maxlength="300" type="text" formControlName="notes" label="{{thingNotes}}" label-placement="floating" fill="outline" placeholder=""></ion-textarea>
+<ion-textarea id="notes" [autoGrow]="true" [counter]="true" maxlength="300" type="text" formControlName="notes" label="{{thingNotes}}" label-placement="floating" fill="outline" placeholder="{{item.notes}}"></ion-textarea>
                   </ion-col>
                 </ion-row>
               </ion-grid>

@@ -92,11 +92,8 @@ ion-card{
   text-align: right !important;
   //border:#ff00d9 dotted .5px;
 }
-.coated{
-  opacity: 50%;
-  }
 .decorated{
-  color: #ff400090;
+  color: #ffcc77;
 }
 .diagonal{
   transform: rotate(-30deg);
@@ -105,8 +102,8 @@ ion-card{
   padding: 0%;
 }
 .upSized{
+  @extend .decorated;
   font-size: 9.37vh;
-  color: #ffcc77;
 }
 .downSized{
   font-size: 1.4vh;
@@ -160,6 +157,7 @@ ion-card-header{
   background-color: transparent;
 }
 ion-button{
+  --background: linear-gradient(45deg, rgb(255, 204, 119), #ffeecc);
   color: rgb(255, 255, 255);
   width: 8vh;
   height: 8vh;
@@ -187,13 +185,14 @@ ion-img::part(image) {
 .borderB{
   border: rgb(4, 0, 252) dotted 1px;
 }
-
+.gradient{
+  --background: linear-gradient(45deg, rgb(255, 204, 119), #ffeecc);
+}
 
 .alignCenter{
   align-self: center;
   vertical-align: middle;
 }
-
 .hexagon {
   --b: 16px; /* adjust to control the border*/
   height: 180px; /* adjust to control the size*/
@@ -207,18 +206,21 @@ ion-img::part(image) {
     calc(var(--b)*sin(60deg)) calc(75% - var(--b)*cos(60deg)),
     calc(var(--b)*sin(60deg)) calc(25% + var(--b)*cos(60deg)),
     50% var(--b));
-  background: #ffcc77;
-}
+    background: transparent;
+  }
 
 .hex {
   height: 208.3px;
   aspect-ratio: cos(30deg);
   clip-path: polygon(-50% 50%,50% 100%,150% 50%,50% 0);
-  background: linear-gradient(45deg,#ffcd7777, #ffeecccc);
+  background: linear-gradient(45deg, rgb(255, 204, 119), #ffeecc);
 }
 
 .hex-img {
   height: 200px;
   aspect-ratio: cos(30deg);
   clip-path: polygon(-50% 50%,50% 100%,150% 50%,50% 0);
+}
+.coated{
+  opacity: .5;
 }

@@ -45,28 +45,28 @@ export class PhotoService {
     const base64Data = await this.readAsBase64(photo);
 
     // Write the file to the data directory
-    const fileName = 'manifesto_' + Date.now() + '.jpeg';
+    const fileName = 'manifesto_' + Date.now() + '.jpeg';  // construye la string 'fileName'
     //console.log(fileName, 'picture name');
-    const savedFile = await Filesystem.writeFile({
-      path: fileName,
-      data: base64Data,
-      directory: Directory.Data
+    const savedFile = await Filesystem.writeFile({  // tipo WriteFileResult: 'savedFile'   
+      path: fileName,                               // con el nombre dado por 'fileName'
+      data: base64Data,                             // como base64,
+      directory: Directory.Data                     // directorio de destino
     });
 
     if (this.platform.is('hybrid')) {
       // Display the new image by rewriting the 'file://' path to HTTP
       // Details: https://ionicframework.com/docs/building/webview#file-protocol
       return {
-        filepath: savedFile.uri,
-        webviewPath: Capacitor.convertFileSrc(savedFile.uri),
+        filepath: savedFile.uri,                                  // filepath contiene el uri del fichero salvado en directorio local
+        webviewPath: Capacitor.convertFileSrc(savedFile.uri),     // webviewPath contiene la aruta del fichero salvado convertido a src
       };
     }
     else {
       // Use webPath to display the new image instead of base64 since it's
       // already loaded into memory
       return {
-        filepath: fileName,
-        webviewPath: photo.webPath!
+        filepath: fileName,                                       // filepath contiene unicamente la string 'fileName'
+        webviewPath: photo.webPath!                               // webviewPath contiene la ruta 'efímera' al fichero alocado en memoria, sin salvar
       };
     }
   }

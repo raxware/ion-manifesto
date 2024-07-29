@@ -3,12 +3,8 @@ import { Component, EventEmitter, Input, Output, OnInit, inject } from '@angular
 import { IonIcon, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, 
   IonChip, IonLabel, IonCardSubtitle, IonAlert, IonButton, IonInput, IonItem, 
   IonThumbnail, IonItemOption, IonSegment, IonGrid, IonRow, IonCol, IonTitle, 
-  IonTextarea, IonSelect, IonSelectOption, 
+  IonTextarea, IonSelect, IonSelectOption, LoadingController
 } from "@ionic/angular/standalone";
-import { itemData } from 'src/app/model/interfaces';
-import { ItemService } from 'src/app/services/item.service';
-import { PhotoService } from 'src/app/services/photo.service';
-import { AlertService } from 'src/app/services/alert-service.service';
 import { addIcons } from 'ionicons';
 import { book, brush, build, calculator, camera, chatbubbles, 
   checkmarkCircle, cube, diamond, dice, disc, extensionPuzzle, 
@@ -16,6 +12,12 @@ import { book, brush, build, calculator, camera, chatbubbles,
   shirt, thumbsDown, thumbsUp, wine, cash, musicalNotes,
   person, gridOutline
 } from 'ionicons/icons';
+import { itemData, userData } from 'src/app/model/interfaces';
+import { ItemService } from 'src/app/services/item.service';
+import { PhotoService } from 'src/app/services/photo.service';
+import { AlertService } from 'src/app/services/alert-service.service';
+import { StorageService } from 'src/app/services/storage.service'; //<----------------
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
     selector: 'app-item-card',
@@ -32,16 +34,24 @@ import { book, brush, build, calculator, camera, chatbubbles,
 })
 export class ItemCardComponent implements OnInit{
   myThingsService = inject(ItemService);
-  @Input() defaultIcon: string = 'cube';
-  @Input() typeIcon?: string;
 
-  @Input() isFlipped: boolean = false;
   @Input() item!: itemData;
-  theThing!: itemData[];
+  theThing!: itemData[];  
+  unit!: itemData;
+
+  user!: userData;
+
+  storagedImage: string = '';
+
+  defaultIcon: string = 'cube';
+  typeIcon?: string;
 
   @Output() flipCard = new EventEmitter<boolean>();
+  @Input() isFlipped: boolean = false;
+  savedData: boolean = false;
 
-  @Input() thingPicture!: string;
+  //@Input() thingPicture!: string;
+
   @Input() thingType: string = 'Type';
   @Input() thingMaker: string = 'Maker';
   @Input() thingName: string = 'Name';
@@ -50,16 +60,21 @@ export class ItemCardComponent implements OnInit{
   @Input() thingNotes: string = 'Notes';
     
   thingPrototype!: FormGroup;
-  unit!: itemData;
-  savedData: boolean = false;
 
-  constructor(public photoService: PhotoService, public alertService: AlertService) {
+  constructor(
+    private photoService: PhotoService, 
+    private alertService: AlertService,
+    private loadingController: LoadingController,
+    private userService: UserService,
+    private storageService: StorageService,  //<----------------
+  ){
     this.emptyFormBuilder();
     addIcons({book, build, calculator, brush, shirt, wine, film, dice, diamond, camera, 
       chatbubbles, medkit, images, extensionPuzzle, rocket, language, cube, gameController, 
       disc, thumbsUp, thumbsDown, home, checkmarkCircle, cash, musicalNotes, person, gridOutline}
     );
   }
+
   ngOnInit(): void {
     this.item!.name = ''; //shows off in the front card and inside Form Placeholder
     this.item!.picture = ''; // ??
@@ -69,16 +84,39 @@ export class ItemCardComponent implements OnInit{
     this.thingName = 'Name'; //shows off in the Form Label/Animation
     this.thingType = 'Type'; //??
 
-    this.myThingsService.getThings().subscribe((items: itemData[]) => {
+    console.log('item: ', this.item.id);
+    //console.log('picture: ', this.item.picture);
+    
+    /*this.myThingsService.getThings().subscribe((items: itemData[]) => {
       for (let index = 0; index < items.length; index++) {
-        const element = items[index];
-        console.log(element);
-        //this.formFiller(element);
+        this.item = items[index];
+        console.log('this item id: ', items[index].id, ' is the number: ', index, ' of ', items.length);
+        //this.formFiller(item);
+        //this.thingPicture = items[index].picture;
       }
+    })*/
+    /*
+      bringItBack() {
+    this.index = this.getThingId();
+    this.myThingsService.getThingById(this.index).subscribe((item: itemData) => {
+      this.theThing = item;
+      this.formFiller(this.theThing);
+      this.thingPicture = this.theThing.picture;
+      //this.updatePrototype();
+      //console.log('trae la foto? => ', this.theThing.picture);
     })
+  }
+    */
+
   }
   /** ****************** LOGIC FOR CARD INTERFACE BEGINS HERE *************************** */
   flip(face: string) {
+    if( this.item.picture !== '' ){
+    this.isFlipped = !this.isFlipped;
+    this.flipCard.emit(this.isFlipped);
+    this.formFiller(this.item);
+    }
+    /*
     if(face === 'back') {
       if(this.thingPrototype.valid){
         if(this.savedData === false){
@@ -87,18 +125,18 @@ export class ItemCardComponent implements OnInit{
         } else {this.dummyAlert('This card already exists!', '', 'If you need to edit or delete it, do it from the menu \"Lists\", in the \"output\" tab.', 'Ok')};
       } else {this.dummyAlert('Card wasn\'t saved!', '', '\"Name\" field is mandatory', 'Ok')};
     } //else if(this.savedData = false) {this.dummyAlert('No data was entered', '', 'This card was not saved', 'Ok')};
-    this.isFlipped = !this.isFlipped;
-    this.flipCard.emit(this.isFlipped);
+    */
+  
   }
 
-  addToContainer() { console.log(this.item?.id, 'swipeup'); }
-  openMenu() { console.log(this.item?.id, 'swipedown'); }
+  addToContainer() { console.log('swipeup'); }
+  openMenu() { console.log('swipedown'); }
 
   /** ****************** LOGIC FOR CARD INTERFACE ENDS HERE *************************** */
   /** ****************** LOGIC FOR CRUD BEGINS HERE *************************** */
   emptyFormBuilder() {
     this.thingPrototype = new FormGroup({
-      name: new FormControl('', [Validators.required]),
+      name: new FormControl('', /*[Validators.required]*/),
       type: new FormControl(''),
       maker: new FormControl(''),
       picture: new FormControl(''),
@@ -108,53 +146,94 @@ export class ItemCardComponent implements OnInit{
       tags: new FormControl(''),
     });
   }
-
-  formFiller(thingToEdit: itemData){
+  formFiller(displayItem: itemData){
     this.thingPrototype.patchValue({
-      name: thingToEdit.name,
-      type: thingToEdit.type,
-      maker: thingToEdit.maker,
-      picture: '' /*thingToEdit.picture*/,
-      quantity: thingToEdit.quantity,
-      status: thingToEdit.status,
-      notes: thingToEdit.notes,
-      tags: thingToEdit.tags,
+      name: displayItem.name,
+      type: displayItem.type,
+      maker: displayItem.maker,
+      picture: displayItem.picture,
+      quantity: displayItem.quantity,
+      status: displayItem.status,
+      notes: displayItem.notes,
+      tags: displayItem.tags,
     });
+    this.typeSelector(displayItem.type);
   }
 
-  thingTagger() {
+  thingTagger(action: string) {
     if (this.thingPrototype.valid){
-      this.updatePrototype();
       const justTaggedThing: itemData = {
-        id: this.item.id,
-        user: this.item.user,
-
-        name: this.thingPrototype.get('name')!.value,
-        type: this.thingPrototype.get('type')!.value,
-        maker: this.thingPrototype.get('maker')!.value,
-        picture: this.thingPrototype.get('picture')!.value,
-        quantity: this.thingPrototype.get('quantity')!.value,
-        status: this.thingPrototype.get('status')!.value,
-        notes: this.thingPrototype.get('notes')?.value,
-        tags: this.thingPrototype.get('tags')?.value,
+      id: this.item.id,
+      user: this.item.user,
+      name: this.thingPrototype.get('name')!.value,
+      type: this.thingType,
+      maker: this.thingPrototype.get('maker')!.value,
+      picture: this.storagedImage,
+      quantity: this.thingPrototype.get('quantity')!.value,
+      status: this.thingPrototype.get('status')!.value,
+      notes: this.thingPrototype.get('notes')?.value,
+      tags: this.thingPrototype.get('tags')?.value,
       }
-      this.saveThing(justTaggedThing);
-    }
-    else {
-        console.log('thingPrototype is INVALID!!!');
-    }
+      if(action === 'save'){ this.saveThing(justTaggedThing); }
+      else if(action === 'edit'){ this.editThing(justTaggedThing); }
+    } else { console.log('thingPrototype is INVALID!!!'); }
   }
+  /*
   updatePrototype() {
     this.thingPrototype.patchValue({
       type: this.thingType, 
       picture: this.thingPicture,
     });
   }
+    */
   saveThing(yetTaggedThing: itemData) {
     this.myThingsService.setThing(yetTaggedThing);
   }
+  editThing(yetTaggedThing: itemData) {
+    this.myThingsService.setThing(yetTaggedThing);
+  }
+
   /** ****************** LOGIC FOR CRUD ENDS HERE *************************** */
+  /** ****************** LOGIC FOR IMAGES MGMT BEGINS HERE *************************** */
+
+  addImage(){
+    if (!(this.item.picture ==='')) {this.dummyAlert('Meant to edit?', '', 'Double click the card to flip it and then click its thumbnail.', 'Ok'); }
+    else{ this.pickImage('add') }
+  }
+
+  pickImage(option: string){
+    this.alertService.basicAlert(
+      'Image Source', '', '',
+      [{text: 'Photo Gallery', handler: () => { this.storeImage('gallery', option);  }},
+      {text: 'Camera', handler: () => { this.storeImage('camera', option); }},
+      {text: 'Cancel', role: 'cancel', handler: (alertData: any) => { console.log('addImg cancel', alertData); }}],
+    );
+  }
+  
+    async storeImage(imgSource: string, option: string) {
+      const image = await this.photoService.getBase64(imgSource);
+      if (image) {
+        //const imgBase64String = image.base64String;
+        const loading = await this.loadingController.create();
+        await loading.present();
+        const result = await this.storageService.uploadItemImage(image); // llama al servicio que hace upload de la foto y devuelve... 
+        if (result) {this.storagedImage = result; loading.dismiss(); // la string que contiene la ruta del storage para esa foto => se le pasa a 'item.picture' !!!
+          if(option === 'edit'){
+            this.item.picture = this.storagedImage;
+            this.myThingsService.editThing(this.item);
+          }else if( option === 'add' ){
+            if ((this.thingType === 'Type')){this.addType()}
+            else {this.thingTagger('save')}
+          }
+        } 
+        if (!result) { this.dummyAlert('Upload failed', '', 'There was a problem uploading this image.', [{text: 'Ok'}] ); }
+      }
+    }
+  
+  /** ****************** LOGIC FOR AVATAR ENDS HERE *************************** */
   /** ****************** LOGIC FOR ITEM CONTENT MANAGER BEGINS HERE *************************** */
+
+  /*
   addImage(){
     if (!(this.item!.picture ==='')) {this.dummyAlert('Meant to edit?', '', 'Double click the card to flip it and then click its thumbnail.', 'Ok'); }
     else{this.editImage(); }
@@ -176,7 +255,8 @@ export class ItemCardComponent implements OnInit{
         }
       }
     });
-  }
+  }*/
+
   addType(){
     this.alertService.inputAlert(
       'What kind of Item is this?',
@@ -188,8 +268,8 @@ export class ItemCardComponent implements OnInit{
        { label: 'Wine', type: 'radio', value: 'Wine'},
        { label: 'Currency', type: 'radio', value: 'Currency'},
       ],
-      [{text: 'Cancel', role: 'cancel', handler: (alertData: string) => { this.item!.type = 'undefined'; console.log('addType cancel', alertData); }}, 
-       {text: 'Ok', handler: (alertData: string) => { this.thingType = this.item!.type = alertData; this.typeSelector(this.thingType);}}
+      [{text: 'Cancel', role: 'cancel', handler: (alertData: string) => { this.item.type = 'undefined'; console.log('addType cancel', alertData); }}, 
+       {text: 'Ok', handler: (alertData: string) => { this.thingType = this.item.type = alertData; this.typeSelector(this.thingType); this.thingTagger('edit'); }}
       ]
     )
   }
